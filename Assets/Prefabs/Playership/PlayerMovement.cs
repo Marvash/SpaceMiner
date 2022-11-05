@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         movementVector = new Vector2(0, 0);
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerRigidBody.drag = dragFactor;
+        playerRigidBody.centerOfMass = Vector2.zero;
     }
 
     void FixedUpdate()

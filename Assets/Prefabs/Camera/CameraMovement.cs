@@ -6,13 +6,8 @@ public class CameraMovement : MonoBehaviour
 {
 
     [SerializeField]
-    Transform targetTransform;
+    Transform target;
 
-    [SerializeField]
-    [Range(0.0f, 1.0f)]
-    float smoothDampTime;
-
-    private Vector3 cameraVelocity = Vector3.zero;
     private Vector3 zCameraOffset;
 
     // Start is called before the first frame update
@@ -29,7 +24,7 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 targetPos = targetTransform.position + zCameraOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref cameraVelocity, smoothDampTime);
+        Vector3 targetPos = new Vector3(target.position.x, target.position.y, zCameraOffset.z);
+        transform.position = targetPos;
     }
 }
