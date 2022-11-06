@@ -70,7 +70,7 @@ public class PlayerMiningLaser : MonoBehaviour
             miningLaserPSTargetPos.y = miningLaserPSStart.transform.localPosition.y + rayHit.distance;
             miningLaserPSTarget.transform.localPosition = miningLaserPSTargetPos;
             float angle = Mathf.Atan2(rayHit.normal.y, rayHit.normal.x) * Mathf.Rad2Deg;
-            miningLaserPSTarget.transform.eulerAngles = new Vector3(angle * -1.0f, 0.0f, 0.0f);
+            miningLaserPSTarget.transform.eulerAngles = new Vector3(angle * -1.0f, 90.0f, 0.0f);
             miningLaserPSTarget.SetActive(true);
             AsteroidBehaviour asteroidBehaviour = hitObj.GetComponent<AsteroidBehaviour>();
             if (asteroidBehaviour)
