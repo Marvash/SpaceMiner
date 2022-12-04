@@ -205,7 +205,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -235,8 +235,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.286582, b: 1, a: 1}
-      key1: {r: 0.5235849, g: 0.65997034, b: 1, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 0.5424528, g: 0.8008324, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -280,6 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957908348}
+  - component: {fileID: 657144702}
   m_Layer: 7
   m_Name: LaserGun3
   m_TagString: Untagged
@@ -302,6 +303,21 @@ Transform:
   m_Father: {fileID: 6260465007486634433}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &657144702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957908347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808ec60dba3290b4eb1671476c30eb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSpeed: 2
+  LaserDamage: 10
+  LaserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
 --- !u!1 &1220604815
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1220604816}
+  - component: {fileID: 2082491340}
   m_Layer: 7
   m_Name: LaserGun4
   m_TagString: Untagged
@@ -333,6 +350,21 @@ Transform:
   m_Father: {fileID: 6260465007486634433}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082491340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220604815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808ec60dba3290b4eb1671476c30eb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSpeed: 2
+  LaserDamage: 10
+  LaserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
 --- !u!1 &1717795288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5301,14 +5333,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033396729}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5774779414858710741}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2033396732
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -10097,6 +10129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544225151640990378}
+  - component: {fileID: 2082491343}
   m_Layer: 7
   m_Name: LaserGun1
   m_TagString: Untagged
@@ -10119,6 +10152,21 @@ Transform:
   m_Father: {fileID: 6260465007486634433}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082491343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944465567127678529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808ec60dba3290b4eb1671476c30eb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSpeed: 2
+  LaserDamage: 10
+  LaserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
 --- !u!1 &1015961422726966665
 GameObject:
   m_ObjectHideFlags: 0
@@ -10128,6 +10176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5888303241540862077}
+  - component: {fileID: 2082491339}
   m_Layer: 7
   m_Name: LaserGun5
   m_TagString: Untagged
@@ -10150,6 +10199,21 @@ Transform:
   m_Father: {fileID: 6260465007486634433}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082491339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015961422726966665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808ec60dba3290b4eb1671476c30eb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSpeed: 2
+  LaserDamage: 10
+  LaserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
 --- !u!1 &2335861992077217265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10159,6 +10223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2851130152138700862}
+  - component: {fileID: 972870001370019195}
   m_Layer: 7
   m_Name: LaserGun2
   m_TagString: Untagged
@@ -10181,6 +10246,21 @@ Transform:
   m_Father: {fileID: 6260465007486634433}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972870001370019195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335861992077217265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808ec60dba3290b4eb1671476c30eb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSpeed: 2
+  LaserDamage: 10
+  LaserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
 --- !u!1 &6260465007486634439
 GameObject:
   m_ObjectHideFlags: 0
@@ -10462,7 +10542,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.2
   m_AngularDrag: 0.005
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -10485,7 +10565,7 @@ MonoBehaviour:
   lookLineRenderer: {fileID: 473574590}
   forwardLineRenderer: {fileID: 1717795289}
   mainCam: {fileID: 0}
-  maxVelocity: 1
+  maxVelocity: 1.3
   accelerationFactor: 100
   dragFactor: 1.2
 --- !u!114 &152335307172146065
@@ -10500,14 +10580,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff91a8b2ae36d1946bb5c412272474f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserProjectile: {fileID: 7225787055024174941, guid: 0a134640af550454bb8dc7bc1f727405, type: 3}
-  laserGun1: {fileID: 944465567127678529}
-  laserGun2: {fileID: 2335861992077217265}
-  laserGun3: {fileID: 957908347}
-  laserGun4: {fileID: 1220604815}
-  laserGun5: {fileID: 1015961422726966665}
+  laserGun1: {fileID: 2082491343}
+  laserGun2: {fileID: 972870001370019195}
+  laserGun3: {fileID: 657144702}
+  laserGun4: {fileID: 2082491340}
+  laserGun5: {fileID: 2082491339}
   shotInterval: 0.4
-  projectileSpeed: 1.2
 --- !u!114 &2082491342
 MonoBehaviour:
   m_ObjectHideFlags: 0

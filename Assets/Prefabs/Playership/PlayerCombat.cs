@@ -6,28 +6,22 @@ using UnityEngine.InputSystem;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField]
-    GameObject laserProjectile;
+    LaserGun laserGun1;
 
     [SerializeField]
-    GameObject laserGun1;
+    LaserGun laserGun2;
 
     [SerializeField]
-    GameObject laserGun2;
+    LaserGun laserGun3;
 
     [SerializeField]
-    GameObject laserGun3;
+    LaserGun laserGun4;
 
     [SerializeField]
-    GameObject laserGun4;
-
-    [SerializeField]
-    GameObject laserGun5;
+    LaserGun laserGun5;
 
     [SerializeField]
     float shotInterval;
-
-    [SerializeField]
-    float projectileSpeed;
 
     private bool shooting;
 
@@ -53,37 +47,12 @@ public class PlayerCombat : MonoBehaviour
         float currentTime = Time.time;
         if ((currentTime - lastShot) >= shotInterval)
         {
-            
-            GameObject projectile = Instantiate(laserProjectile, laserGun1.transform.position, transform.rotation);
-            LaserProjectileProperties projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            projectileProperties.projectileSpeed = projectileSpeed;
-            projectileProperties.shooter = gameObject;
-            projectileProperties.damage = 10.0f;
-            projectile = Instantiate(laserProjectile, laserGun2.transform.position, transform.rotation);
-            projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            projectileProperties.projectileSpeed = projectileSpeed;
-            projectileProperties.shooter = gameObject;
-            projectileProperties.damage = 10.0f;
-            projectile = Instantiate(laserProjectile, laserGun3.transform.position, transform.rotation);
-            projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            projectileProperties.projectileSpeed = projectileSpeed;
-            projectileProperties.shooter = gameObject;
-            projectileProperties.damage = 10.0f;
-            projectile = Instantiate(laserProjectile, laserGun4.transform.position, transform.rotation);
-            projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            projectileProperties.projectileSpeed = projectileSpeed;
-            projectileProperties.shooter = gameObject;
-            projectileProperties.damage = 10.0f;
-            projectile = Instantiate(laserProjectile, laserGun5.transform.position, transform.rotation);
-            projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            projectileProperties.projectileSpeed = projectileSpeed;
-            projectileProperties.shooter = gameObject;
-            projectileProperties.damage = 10.0f;
-            //GameObject projectile = Instantiate(laserProjectile, laserGun5.transform.position, transform.rotation);
-            //LaserProjectileProperties projectileProperties = projectile.GetComponent<LaserProjectileProperties>();
-            //projectileProperties.projectileSpeed = projectileSpeed;
-            //projectileProperties.shooter = gameObject;
-            //projectileProperties.damage = 10.0f;
+
+            laserGun1.ShootLaser();
+            laserGun2.ShootLaser();
+            laserGun3.ShootLaser();
+            laserGun4.ShootLaser();
+            laserGun5.ShootLaser();
             lastShot = currentTime;
         }
     }
@@ -91,5 +60,15 @@ public class PlayerCombat : MonoBehaviour
     public void PlayerShoot(InputAction.CallbackContext context)
     {
         shooting = context.ReadValueAsButton();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject other = collision.gameObject;
+        if (other.CompareTag("EnemyProjectile"))
+        {
+            LaserProjectileProperties laserProjectileProperties = other.GetComponent<LaserProjectileProperties>();
+            Destroy(other);
+        }
     }
 }

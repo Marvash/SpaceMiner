@@ -39,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
+        Vector2 playerVelocity = playerRigidBody.velocity;
+        if (playerVelocity.magnitude > maxVelocity)
+        {
+            playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+        }
         float angleLook = Mathf.Atan2(desiredLookVector.y, desiredLookVector.x) * Mathf.Rad2Deg;
         playerRigidBody.MoveRotation(angleLook - 90.0f);
     }
@@ -51,12 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 playerVelocity = playerRigidBody.velocity;
-        if (playerVelocity.magnitude > maxVelocity)
-        {
-            playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
-        }
-
         UpdateLineRenderers();
 
     }
@@ -66,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         movementVector = context.ReadValue<Vector2>();
         if(movementVector.sqrMagnitude > 0)
         {
-            playerRigidBody.drag = 0;
+            //playerRigidBody.drag = 0;
         } else
         {
             playerRigidBody.drag = dragFactor;
