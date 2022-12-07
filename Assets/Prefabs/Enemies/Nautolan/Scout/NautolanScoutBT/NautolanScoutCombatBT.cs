@@ -10,7 +10,7 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
     public GameObject Target;
 
     [SerializeField]
-    public LaserGun SourceLaserGun;
+    public LaserCannonArray LaserCannonArray;
 
     [SerializeField]
     private float LaserCooldown;
@@ -29,15 +29,26 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
         IsFacingPositionApproximateNode isFacingPositionApproximateNode = new IsFacingPositionApproximateNode(gameObject.transform);
         hasLOSOnTargetPositionNode.TargetPositionBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
         isFacingPositionApproximateNode.PositionToFaceBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
-        FireLaserWithCooldownNode fireLaserNode = new FireLaserWithCooldownNode(SourceLaserGun);
-        SequenceNode rootSequence = new SequenceNode(new List<Node>() {
+        StartFireLaserCannonArrayNode startFireLaserNode = new StartFireLaserCannonArrayNode(LaserCannonArray);
+        SequenceNode fireStartSequence = new SequenceNode(new List<Node>() {
             computeTargetPredictedImpactPosition,
             targetInRangeNode,
             hasLOSOnTargetPositionNode,
             isFacingPositionApproximateNode,
-            fireLaserNode
+            startFireLaserNode
         });
-        return rootSequence;
+        StopFireLaserCannonArrayNode stopFireLaserNode = new StopFireLaserCannonArrayNode(LaserCannonArray);
+        IsWeaponActiveNode isWeaponActiveNode = new IsWeaponActiveNode(LaserCannonArray);
+        SequenceNode fireStopSequence = new SequenceNode(new List<Node>() {
+            isWeaponActiveNode,
+            stopFireLaserNode
+        });
+        SelectorNode rootSelector = new SelectorNode(new List<Node>() {
+            fireStartSequence,
+            fireStopSequence
+        });
+
+        return rootSelector;
     }
 
     private void Update()
@@ -49,25 +60,12 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
     {
         _root.SetData("targetPosition", (Vector2)Target.transform.position);
         _root.SetData("targetVelocity", _targetRb2d.velocity);
-        _root.SetData("projectileSpeed", SourceLaserGun.LaserSpeed);
+        _root.SetData("projectileSpeed", LaserCannonArray.LaserSpeed);
     }
 
     protected override void InitTree()
     {
         _targetRb2d = Target.GetComponent<Rigidbody2D>();
-        _root.SetData("laserCooldown", LaserCooldown);
         _root.SetData("attackRange", AttackRange);
-    }
-
-    public void SetLaserCooldown(float laserCooldown)
-    {
-        LaserCooldown = laserCooldown;
-        _root.SetData("laserCooldown", LaserCooldown);
-    }
-
-    public void SetAttackRange(float laserCooldown)
-    {
-        LaserCooldown = laserCooldown;
-        _root.SetData("laserCooldown", LaserCooldown);
     }
 }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 556425749581100749}
   - component: {fileID: 8526157757232776785}
   - component: {fileID: -4887838448164172321}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: LaserProjectile
-  m_TagString: PlayerLaserProjectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9ff3860a90ee7b344849c3e3e975866b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,9 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7225787055024174941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de44f4e90bcb7c74b9ec04b1da5f5cfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a4f597a0d4c3854c88c2e776474f6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProjectileDamage: 10
+  ImpactLayers: 
 --- !u!58 &556425749581100749
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -233,9 +235,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7225787055024174941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8447572408400a049b1768eb3ee667f8, type: 3}
+  m_Script: {fileID: 11500000, guid: a5a951b1863147c46b4b7b38c10c4a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 0
-  damage: 0
-  shooter: {fileID: 0}
+  ProjectileSpeed: 2
+  MaxDistanceFromPlayer: 10

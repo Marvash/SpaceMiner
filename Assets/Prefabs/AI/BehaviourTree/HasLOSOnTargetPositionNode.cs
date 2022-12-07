@@ -42,8 +42,6 @@ namespace BehaviourTree
             RaycastHit2D rayHit = Physics2D.Raycast(origin, rayDir, rayLength, _raycastObstacleMask);
             if (rayHit.collider == null)
             {
-                Debug.Log("HAS LOS");
-
                 CurrentState = BTState.SUCCESS;
                 return CurrentState;
             }

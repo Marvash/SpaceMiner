@@ -1,5 +1,5 @@
 {
-    "name": "SpaceMiner",
+    "name": "SpaceMinerInput",
     "maps": [
         {
             "name": "Player",
@@ -45,6 +45,24 @@
                     "name": "OpenInfoUI",
                     "type": "Button",
                     "id": "36bf844e-896f-4489-8f14-3b81e22c25fc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectWeapon1",
+                    "type": "Button",
+                    "id": "c04a006e-8a52-4f50-b2a1-a12d06285c38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectWeapon2",
+                    "type": "Button",
+                    "id": "15ab495d-b46d-4d40-91b6-fe2b88b2cde6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -291,6 +309,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenInfoUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07bfe613-33cf-46c1-943b-b5184eb7f307",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SelectWeapon1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d742fc34-e1bb-4a69-97bf-241b38263963",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SelectWeapon2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

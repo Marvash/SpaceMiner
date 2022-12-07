@@ -10,7 +10,7 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
     public GameObject Target;
 
     [SerializeField]
-    public LaserGun SourceLaserGun;
+    public LaserCannonArray SourceLaserCannon;
 
     [SerializeField]
     private float PathUpdateInterval;
@@ -89,7 +89,7 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
     {
         _root.SetData("targetPosition", (Vector2)Target.transform.position);
         _root.SetData("targetVelocity", _targetRb2d.velocity);
-        _root.SetData("projectileSpeed", SourceLaserGun.LaserSpeed);
+        _root.SetData("projectileSpeed", SourceLaserCannon.LaserSpeed);
         _root.SetData("positionToFace", _sourceRb2d.worldCenterOfMass + _sourceRb2d.velocity);
     }
 

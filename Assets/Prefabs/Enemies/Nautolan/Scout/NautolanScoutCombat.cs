@@ -2,26 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NautolanScoutCombat : MonoBehaviour
+public class NautolanScoutCombat : IDamageable
 {
-    [SerializeField]
-    float health;
-
-    [SerializeField]
-    public LaserGun laserGun;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void TakeDamage(float damage)
     {
-        GameObject other = collision.gameObject;
-        if (other.CompareTag("PlayerLaserProjectile"))
+        Health -= damage;
+        if(Health <= 0)
         {
-            LaserProjectileProperties laserProjectileProperties = other.GetComponent<LaserProjectileProperties>();
-            health -= laserProjectileProperties.damage;
-            if(health <= 0.0f)
-            {
-                Destroy(gameObject);
-            }
-            Destroy(other);
+            Destroy(gameObject);
         }
     }
 }
