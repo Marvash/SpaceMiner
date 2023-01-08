@@ -5,61 +5,82 @@ using UnityEngine;
 public class AsteroidBehaviour : MonoBehaviour
 {
     [SerializeField]
-    public PickupSpawner pickupSpawner;
+    public PickupSpawner PickupSpawner;
 
     [SerializeField]
-    public GameObject miningPS;
+    public GameObject MiningPS;
 
     [SerializeField]
-    public GameObject asteroidDestructionPS;
+    public GameObject AsteroidDestructionPS;
 
     [SerializeField]
-    public int asteroidMiningHealth;
+    public int AsteroidMiningHealth;
 
     [SerializeField]
-    public int maxMiningDrops;
+    public int MaxMiningDrops;
 
     [SerializeField]
-    public int minMiningDrops;
+    public int MinMiningDrops;
 
     [SerializeField]
-    public int maxBreakingDrops;
+    public int MaxBreakingDrops;
 
     [SerializeField]
-    public int minBreakingDrops;
+    public int MinBreakingDrops;
 
     [SerializeField]
-    DropTableLibraryScriptableObject dropTableLibrarySO;
+    public string DropTableName;
+
+    [SerializeField]
+    DropTableLibraryScriptableObject DropTableLibrarySO;
+
+    [SerializeField]
+    public AsteroidDiffManager DiffManager;
+
+    public int[] MiningDropTimings { get; set; }
+    public int MiningDropTimingIndex { get; set; }
+    public bool WasLoadedFromDiff { get; set; } = false;
+
+    public string AsteroidId { get; set; }
 
     public Droppable asteroidDropTable;
 
     private int miningDrops;
     private int breakingDrops;
-    private int[] miningDropTimings;
-    private int miningDropTimingIndex;
     private Vector2 miningNormalDirection;
     private Vector2 miningPosition;
+
+    private int _startingMiningHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        asteroidDropTable = dropTableLibrarySO.getDropTable("AsteroidDropTable");
+        asteroidDropTable = DropTableLibrarySO.getDropTable(DropTableName);
+        breakingDrops = Random.Range(MinBreakingDrops, MaxBreakingDrops);
 
-        miningDrops = Random.Range(minMiningDrops, maxMiningDrops);
-        breakingDrops = Random.Range(minBreakingDrops, maxBreakingDrops);
-        miningDropTimings = new int[miningDrops];
-        int miningDropHealthInterval = asteroidMiningHealth / miningDrops;
-
-        for (int i = 0; i < miningDrops; i++)
+        if (!WasLoadedFromDiff)
         {
-            miningDropTimings[i] = (miningDropHealthInterval * i) + Random.Range(0, miningDropHealthInterval);
+            miningDrops = Random.Range(MinMiningDrops, MaxMiningDrops);
+            MiningDropTimings = new int[miningDrops];
+            int miningDropHealthInterval = AsteroidMiningHealth / miningDrops;
+
+            for (int i = 0; i < miningDrops; i++)
+            {
+                MiningDropTimings[i] = (miningDropHealthInterval * i) + Random.Range(0, miningDropHealthInterval);
+            }
+            MiningDropTimingIndex = miningDrops - 1;
+            _startingMiningHealth = AsteroidMiningHealth;
         }
-        miningDropTimingIndex = miningDrops - 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public bool HasChangedFromStartingState()
+    {
+        return _startingMiningHealth != AsteroidMiningHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,8 +93,8 @@ public class AsteroidBehaviour : MonoBehaviour
     }
     public void applyMiningDamage(int damage)
     {
-        asteroidMiningHealth -= damage;
-        while (miningDropTimingIndex >= 0 && (asteroidMiningHealth <= (miningDropTimings[miningDropTimingIndex])))
+        AsteroidMiningHealth -= damage;
+        while (MiningDropTimingIndex >= 0 && (AsteroidMiningHealth <= (MiningDropTimings[MiningDropTimingIndex])))
         {
             GameObject droppedItem = dropRandomPickup(miningPosition);
             PickupStackScript valuablePickup = droppedItem.GetComponent<PickupStackScript>();
@@ -86,9 +107,9 @@ public class AsteroidBehaviour : MonoBehaviour
                 Vector2 targetPos = miningPosition + (dropLerpDirection * 0.3f);
                 valuablePickup.setLerpToTargetPosition(targetPos);
             }
-            miningDropTimingIndex--;
+            MiningDropTimingIndex--;
         }
-        if(asteroidMiningHealth <= 0)
+        if(AsteroidMiningHealth <= 0)
         {
             for(int i = 0; i < breakingDrops; i++)
             {
@@ -105,9 +126,7 @@ public class AsteroidBehaviour : MonoBehaviour
                     valuablePickup.setLerpToTargetPosition(targetPos);
                 }
             }
-            GameObject destructionPSInstance = Instantiate(asteroidDestructionPS, transform.position, Quaternion.identity);
-            destructionPSInstance.GetComponent<ParticleSystem>().Play();
-            Destroy(gameObject);
+            DestroyAsteroid();
         }
     }
     private GameObject dropRandomPickup(Vector2 dropPosition)
@@ -116,7 +135,7 @@ public class AsteroidBehaviour : MonoBehaviour
         GameObject selectedGO = null;
         if (droppedStack != null)
         {
-            selectedGO = pickupSpawner.spawnStandardPickup(droppedStack);
+            selectedGO = PickupSpawner.spawnStandardPickup(droppedStack);
             selectedGO.transform.position = dropPosition;
         }
         return selectedGO;
@@ -126,17 +145,25 @@ public class AsteroidBehaviour : MonoBehaviour
         miningNormalDirection = direction;
         miningPosition = position;
         float angle = Mathf.Atan2(miningNormalDirection.y, miningNormalDirection.x) * Mathf.Rad2Deg;
-        miningPS.transform.position = new Vector3(miningPosition.x, miningPosition.y, 0.0f);
-        miningPS.transform.eulerAngles = new Vector3(angle * -1.0f, 0.0f, 0.0f);
-        miningPS.SetActive(true);
-        if (miningPS.GetComponent<ParticleSystem>().isStopped) {
-            miningPS.GetComponent<ParticleSystem>().Play();
+        MiningPS.transform.position = new Vector3(miningPosition.x, miningPosition.y, 0.0f);
+        MiningPS.transform.eulerAngles = new Vector3(angle * -1.0f, 0.0f, 0.0f);
+        MiningPS.SetActive(true);
+        if (MiningPS.GetComponent<ParticleSystem>().isStopped) {
+            MiningPS.GetComponent<ParticleSystem>().Play();
         }
     }
 
     public void stopMiningFX()
     {
-        miningPS.GetComponent<ParticleSystem>().Stop();
-        miningPS.SetActive(false);
+        MiningPS.GetComponent<ParticleSystem>().Stop();
+        MiningPS.SetActive(false);
+    }
+
+    public void DestroyAsteroid()
+    {
+        DiffManager.RegisterDestroyedAsteroid(AsteroidId);
+        GameObject destructionPSInstance = Instantiate(AsteroidDestructionPS, transform.position, Quaternion.identity);
+        destructionPSInstance.GetComponent<ParticleSystem>().Play();
+        Destroy(gameObject);
     }
 }

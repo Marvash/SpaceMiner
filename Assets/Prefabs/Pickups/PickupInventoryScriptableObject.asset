@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af2abb6fd78a4b4196b792a4386d080, type: 3}
   m_Name: PickupInventoryScriptableObject
   m_EditorClassIdentifier: 
-  cargoSlotCount: 3
+  cargoSlotCount: 8
   cargoSlotChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  infoWindowOpenCloseEvent:
     m_PersistentCalls:
       m_Calls: []

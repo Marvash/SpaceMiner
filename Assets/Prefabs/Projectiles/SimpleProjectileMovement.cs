@@ -11,18 +11,24 @@ public class SimpleProjectileMovement : MonoBehaviour
     public float MaxDistanceFromPlayer;
 
     private GameObject _player;
+    private Rigidbody2D _rb;
 
     private void Start()
     {
         _player = PlayerManager.Instance.Player;
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 movementVector = new Vector2(transform.up.x, transform.up.y) * ProjectileSpeed * Time.deltaTime;
+        Vector2 movementVector = new Vector2(transform.up.x, transform.up.y) * ProjectileSpeed * Time.fixedDeltaTime;
         Vector2 newPosition = new Vector2(transform.position.x, transform.position.y) + movementVector;
-        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        _rb.MovePosition(new Vector3(newPosition.x, newPosition.y, transform.position.z));
+
+    }
+
+    private void Update()
+    {
         if (((Vector2)transform.position - (Vector2)_player.transform.position).magnitude > MaxDistanceFromPlayer)
         {
             Destroy(gameObject);

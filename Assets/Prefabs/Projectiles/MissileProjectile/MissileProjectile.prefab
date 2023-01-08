@@ -4825,6 +4825,7 @@ GameObject:
   - component: {fileID: 4501421804407337749}
   - component: {fileID: 2958383014183359434}
   - component: {fileID: -8253887118647786906}
+  - component: {fileID: -6008438400261260686}
   m_Layer: 0
   m_Name: MissileProjectile
   m_TagString: PlayerMissileProjectile
@@ -4945,3 +4946,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpeed: 5
   MaxDistanceFromPlayer: 10
+--- !u!50 &-6008438400261260686
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678407571635919242}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

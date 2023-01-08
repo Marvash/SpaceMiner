@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c464be8feeba14f97aa18e6c649c05, type: 3}
+  m_Name: UncommonAsteroidConfig
+  m_EditorClassIdentifier: 
+  Type: 1
+  DisplayName: Uncommon Asteroid
+  VariantPrefabs:
+  - {fileID: 8771384793757390020, guid: 9c8e7bfaaff9a1a4c926c879a69bb332, type: 3}
+  - {fileID: 6670494475821398464, guid: d5671c1f37fc8e24a9ded8527b25e4f2, type: 3}
+  - {fileID: 3771566476276367202, guid: 9871222d04c187445a49191eccab41b3, type: 3}
+  - {fileID: 3656585546036684952, guid: dfaf91bad6bbceb4faae2dbb78d0d929, type: 3}
+  Health: 200
+  DropTableId: UncommonAsteroidDropTable
+  MaxMiningDrops: 6
+  MinMiningDrops: 4
+  MaxBreakingDrops: 3
+  MinBreakingDrops: 2

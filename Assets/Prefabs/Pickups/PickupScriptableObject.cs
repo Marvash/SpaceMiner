@@ -7,7 +7,10 @@ public class PickupScriptableObject : ScriptableObject
     {
         IRON,
         NICKEL,
-        COPPER
+        COPPER,
+        GOLD,
+        PLATINUM,
+        DIAMOND
     }
 
     public PickupId pickupId;

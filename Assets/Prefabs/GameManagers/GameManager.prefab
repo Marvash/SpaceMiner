@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2640318911723764314}
   - component: {fileID: 2640318911723764315}
+  - component: {fileID: 1228296533}
+  - component: {fileID: 1228296534}
+  - component: {fileID: 2113577957}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,3 +48,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupTemplate: {fileID: 4351824779652171247, guid: e3f5dc56cd2b198439eee0812d307eac, type: 3}
+  pickupLibrarySO: {fileID: 11400000, guid: 27bfa9b13f564aa498a6165a3f2d13a6, type: 2}
+--- !u!114 &1228296533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640318911723764312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5f821b90f34564a9e7178bd62a5f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupLibrarySO: {fileID: 11400000, guid: 27bfa9b13f564aa498a6165a3f2d13a6, type: 2}
+  dropTableLibrarySO: {fileID: 11400000, guid: 5aafa16e91a52b74e8f100052950814a, type: 2}
+--- !u!114 &1228296534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640318911723764312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7227b3ab990067843a84ffa36c6bff52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+--- !u!114 &2113577957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640318911723764312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6186798cb73b243428cc42c4855882ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CommonAsteroidPrefab: {fileID: 4906208686634096070, guid: 2ee013aa294f9124cb6408bdf1eae65e, type: 3}
+  UncommonAsteroidPrefab: {fileID: 8771384793757390020, guid: 9c8e7bfaaff9a1a4c926c879a69bb332, type: 3}
+  PickupSpawner: {fileID: 2640318911723764315}
