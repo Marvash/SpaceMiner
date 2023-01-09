@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,22 +12,33 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRigidBody;
 
     [SerializeField]
-    LineRenderer lookLineRenderer;
+    private LineRenderer lookLineRenderer;
 
     [SerializeField]
-    LineRenderer forwardLineRenderer;
+    private LineRenderer forwardLineRenderer;
     
     [SerializeField]
-    Camera mainCam;
+    private Camera mainCam;
 
     [SerializeField]
-    float maxVelocity;
+    private float maxVelocity;
 
     [SerializeField]
-    float accelerationFactor;
+    private float accelerationFactor;
 
     [SerializeField]
-    float dragFactor;
+    private float dragFactor;
+
+    [SerializeField]
+    private float EnergyConsumptionTickRate;
+
+    [SerializeField]
+    private float EnergyConsumptionPerTickAmount;
+
+    [SerializeField]
+    private EnergyBehaviour EnergyBehaviour;
+
+    private bool _engineOn = false;
 
     void Start()
     {
@@ -38,11 +50,38 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
-        Vector2 playerVelocity = playerRigidBody.velocity;
-        if (playerVelocity.magnitude > maxVelocity)
+        if ((movementVector.sqrMagnitude != 0.0f))
         {
-            playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+            if (!_engineOn)
+            {
+                if (consumeEnergy())
+                {
+                    InvokeRepeating("consumeEnergy", EnergyConsumptionTickRate, EnergyConsumptionTickRate);
+                    playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
+                    Vector2 playerVelocity = playerRigidBody.velocity;
+                    if (playerVelocity.magnitude > maxVelocity)
+                    {
+                        playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+                    }
+                    _engineOn = true;
+                } else
+                {
+                    _engineOn = false;
+                }
+            }
+            else
+            {
+                playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
+                Vector2 playerVelocity = playerRigidBody.velocity;
+                if (playerVelocity.magnitude > maxVelocity)
+                {
+                    playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+                }
+            }
+        } else if(_engineOn)
+        {
+            CancelInvoke();
+            _engineOn = false;
         }
         float angleLook = Mathf.Atan2(desiredLookVector.y, desiredLookVector.x) * Mathf.Rad2Deg;
         playerRigidBody.MoveRotation(angleLook - 90.0f);
@@ -58,6 +97,17 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateLineRenderers();
 
+    }
+
+    private bool consumeEnergy()
+    {
+        if(EnergyBehaviour.ConsumeEnergy(EnergyConsumptionPerTickAmount) == 0.0f)
+        {
+            CancelInvoke();
+            _engineOn = false;
+            return false;
+        }
+        return true;
     }
 
     public void MovementActionHandler(InputAction.CallbackContext context)

@@ -28,6 +28,12 @@ public class PlayerMiningLaser : MonoBehaviour
     [SerializeField]
     float laserMaxLength;
 
+    [SerializeField]
+    float laserTickEnergyCost = 0.2f;
+
+    [SerializeField]
+    private EnergyBehaviour EnergyBehaviour;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,30 +65,36 @@ public class PlayerMiningLaser : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(laserOrigin, laserDir, laserMaxLength, layerMask);
         if (rayHit.collider != null)
         {
-            GameObject hitObj = rayHit.rigidbody.gameObject;
-            Vector2 rayHitLocation = laserOrigin + (laserDir * rayHit.distance);
-            Vector2 rayHitLocationWithOffset = laserOrigin + (laserDir * (rayHit.distance));
-            miningLaserLineRenderer.SetPosition(0, laserOrigin);
-            miningLaserLineRenderer.SetPosition(1, rayHitLocationWithOffset);
-            miningLaserLineRenderer.enabled = true;
-            miningLaserPSStart.SetActive(true);
-            Vector3 miningLaserPSTargetPos = miningLaserPSTarget.transform.localPosition;
-            miningLaserPSTargetPos.y = miningLaserPSStart.transform.localPosition.y + rayHit.distance;
-            miningLaserPSTarget.transform.localPosition = miningLaserPSTargetPos;
-            float angle = Mathf.Atan2(rayHit.normal.y, rayHit.normal.x) * Mathf.Rad2Deg;
-            miningLaserPSTarget.transform.eulerAngles = new Vector3(angle * -1.0f, 90.0f, 0.0f);
-            miningLaserPSTarget.SetActive(true);
-            AsteroidBehaviour asteroidBehaviour = hitObj.GetComponent<AsteroidBehaviour>();
-            if (asteroidBehaviour)
+            if (EnergyBehaviour.ConsumeEnergy(laserTickEnergyCost) > 0.0f)
             {
-                targetedAsteroid = asteroidBehaviour;
-                targetedAsteroid.updateMiningFX(rayHitLocation, rayHit.normal);
-                float currentTime = Time.time;
-                if ((currentTime - lastMiningDamageTiming) >= miningDamageInterval)
+                GameObject hitObj = rayHit.rigidbody.gameObject;
+                Vector2 rayHitLocation = laserOrigin + (laserDir * rayHit.distance);
+                Vector2 rayHitLocationWithOffset = laserOrigin + (laserDir * (rayHit.distance));
+                miningLaserLineRenderer.SetPosition(0, laserOrigin);
+                miningLaserLineRenderer.SetPosition(1, rayHitLocationWithOffset);
+                miningLaserLineRenderer.enabled = true;
+                miningLaserPSStart.SetActive(true);
+                Vector3 miningLaserPSTargetPos = miningLaserPSTarget.transform.localPosition;
+                miningLaserPSTargetPos.y = miningLaserPSStart.transform.localPosition.y + rayHit.distance;
+                miningLaserPSTarget.transform.localPosition = miningLaserPSTargetPos;
+                float angle = Mathf.Atan2(rayHit.normal.y, rayHit.normal.x) * Mathf.Rad2Deg;
+                miningLaserPSTarget.transform.eulerAngles = new Vector3(angle * -1.0f, 90.0f, 0.0f);
+                miningLaserPSTarget.SetActive(true);
+                AsteroidBehaviour asteroidBehaviour = hitObj.GetComponent<AsteroidBehaviour>();
+                if (asteroidBehaviour)
                 {
-                    asteroidBehaviour.applyMiningDamage(miningDamage);
-                    lastMiningDamageTiming = currentTime;
+                    targetedAsteroid = asteroidBehaviour;
+                    targetedAsteroid.updateMiningFX(rayHitLocation, rayHit.normal);
+                    float currentTime = Time.time;
+                    if ((currentTime - lastMiningDamageTiming) >= miningDamageInterval)
+                    {
+                        asteroidBehaviour.applyMiningDamage(miningDamage);
+                        lastMiningDamageTiming = currentTime;
+                    }
                 }
+            } else
+            {
+                resetMiningLaser();
             }
         }
         else

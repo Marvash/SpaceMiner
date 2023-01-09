@@ -19,6 +19,12 @@ public class LaserCannonArray : IWeapon
     [SerializeField]
     public float LaserShotInterval;
 
+    [SerializeField]
+    private EnergyBehaviour EnergyBehaviour;
+
+    [SerializeField]
+    private float EnergyCostPerShot = 1.0f;
+
     private bool _shootingLaser;
 
     private float _lastLaserShot;
@@ -45,8 +51,12 @@ public class LaserCannonArray : IWeapon
         {
             foreach(GameObject laserCannon in LaserCannons)
             {
-                _shootLaser(laserCannon);
+                if (EnergyBehaviour.ConsumeEnergy(EnergyCostPerShot) > 0.0f)
+                {
+                    _shootLaser(laserCannon);
+                }
             }
+            
             _lastLaserShot = currentTime;
         }
     }
