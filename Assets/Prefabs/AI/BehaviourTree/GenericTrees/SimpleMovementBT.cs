@@ -4,13 +4,13 @@ using UnityEngine;
 using BehaviourTree;
 using Pathfinding;
 
-public class NautolanScoutMovementBT : BehaviourTree.Tree
+public class SimpleMovementBT : BehaviourTree.Tree
 {
     [SerializeField]
     public GameObject Target;
 
     [SerializeField]
-    public LaserCannonArray SourceLaserCannon;
+    public float ProjectileSpeed;
 
     [SerializeField]
     private float PathUpdateInterval;
@@ -30,10 +30,16 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
     [SerializeField]
     private float WaypointReachDistance;
 
+    [SerializeField]
+    private float RotationSmoothnessFactor;
+
     private Rigidbody2D _targetRb2d;
     private Rigidbody2D _sourceRb2d;
 
     private Seeker _seeker;
+
+    [SerializeField]
+    private GameObject targetToFaceDebug;
 
     protected override Node SetupTree()
     {
@@ -57,7 +63,7 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
 
         HasLOSOnTargetPositionNode hasLOSOnImpactPoint = new HasLOSOnTargetPositionNode(gameObject);
         hasLOSOnImpactPoint.TargetPositionBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
-        FacePositionSmoothNode faceImpactSmoothNode = new FacePositionSmoothNode(gameObject);
+        FacePositionSmoothNode faceImpactSmoothNode = new FacePositionSmoothNode(gameObject, targetToFaceDebug);
         faceImpactSmoothNode.PositionToFaceBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
 
         SequenceNode impactPointLookSequence = new SequenceNode(new List<Node>() { 
@@ -65,7 +71,7 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
             faceImpactSmoothNode
         });
 
-        FacePositionSmoothNode faceVelocitySmoothNode = new FacePositionSmoothNode(gameObject);
+        FacePositionSmoothNode faceVelocitySmoothNode = new FacePositionSmoothNode(gameObject, targetToFaceDebug);
 
         SelectorNode lookSelector = new SelectorNode(new List<Node>() {
             impactPointLookSequence,
@@ -89,8 +95,9 @@ public class NautolanScoutMovementBT : BehaviourTree.Tree
     {
         _root.SetData("targetPosition", (Vector2)Target.transform.position);
         _root.SetData("targetVelocity", _targetRb2d.velocity);
-        _root.SetData("projectileSpeed", SourceLaserCannon.LaserSpeed);
+        _root.SetData("projectileSpeed", ProjectileSpeed);
         _root.SetData("positionToFace", _sourceRb2d.worldCenterOfMass + _sourceRb2d.velocity);
+        _root.SetData("rotSmoothness", RotationSmoothnessFactor);
     }
 
     protected override void InitTree()

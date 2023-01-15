@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class AsteroidBehaviour : MonoBehaviour
@@ -40,8 +41,9 @@ public class AsteroidBehaviour : MonoBehaviour
     public int[] MiningDropTimings { get; set; }
     public int MiningDropTimingIndex { get; set; }
     public bool WasLoadedFromDiff { get; set; } = false;
+    private string _asteroidId = "";
 
-    public string AsteroidId { get; set; }
+    public string AsteroidId { get => _asteroidId; set => _asteroidId = value; }
 
     public Droppable asteroidDropTable;
 
@@ -56,17 +58,17 @@ public class AsteroidBehaviour : MonoBehaviour
     void Start()
     {
         asteroidDropTable = DropTableLibrarySO.getDropTable(DropTableName);
-        breakingDrops = Random.Range(MinBreakingDrops, MaxBreakingDrops);
+        breakingDrops = UnityEngine.Random.Range(MinBreakingDrops, MaxBreakingDrops);
 
         if (!WasLoadedFromDiff)
         {
-            miningDrops = Random.Range(MinMiningDrops, MaxMiningDrops);
+            miningDrops = UnityEngine.Random.Range(MinMiningDrops, MaxMiningDrops);
             MiningDropTimings = new int[miningDrops];
             int miningDropHealthInterval = AsteroidMiningHealth / miningDrops;
 
             for (int i = 0; i < miningDrops; i++)
             {
-                MiningDropTimings[i] = (miningDropHealthInterval * i) + Random.Range(0, miningDropHealthInterval);
+                MiningDropTimings[i] = (miningDropHealthInterval * i) + UnityEngine.Random.Range(0, miningDropHealthInterval);
             }
             MiningDropTimingIndex = miningDrops - 1;
             _startingMiningHealth = AsteroidMiningHealth;
@@ -101,7 +103,7 @@ public class AsteroidBehaviour : MonoBehaviour
             if(valuablePickup)
             {
                 float normalDirAngle = Mathf.Atan2(miningNormalDirection.y, miningNormalDirection.x) * Mathf.Rad2Deg;
-                normalDirAngle += Random.Range(-60, 61);
+                normalDirAngle += UnityEngine.Random.Range(-60, 61);
                 float normalDirAngleRad = normalDirAngle * Mathf.Deg2Rad;
                 Vector2 dropLerpDirection = new Vector2(Mathf.Cos(normalDirAngleRad), Mathf.Sin(normalDirAngleRad));
                 Vector2 targetPos = miningPosition + (dropLerpDirection * 0.3f);
@@ -119,7 +121,7 @@ public class AsteroidBehaviour : MonoBehaviour
                 if (valuablePickup)
                 {
                     float normalDirAngle = Mathf.Atan2(miningNormalDirection.y, miningNormalDirection.x) * Mathf.Rad2Deg;
-                    normalDirAngle += Random.Range(-180, 181);
+                    normalDirAngle += UnityEngine.Random.Range(-180, 181);
                     float normalDirAngleRad = normalDirAngle * Mathf.Deg2Rad;
                     Vector2 dropLerpDirection = new Vector2(Mathf.Cos(normalDirAngleRad), Mathf.Sin(normalDirAngleRad));
                     Vector2 targetPos = v2Position + (dropLerpDirection * 0.2f);
@@ -161,6 +163,9 @@ public class AsteroidBehaviour : MonoBehaviour
 
     public void DestroyAsteroid()
     {
+        if(_asteroidId.Equals("")) {
+            _asteroidId = Guid.NewGuid().ToString();
+        }
         DiffManager.RegisterDestroyedAsteroid(AsteroidId);
         GameObject destructionPSInstance = Instantiate(AsteroidDestructionPS, transform.position, Quaternion.identity);
         destructionPSInstance.GetComponent<ParticleSystem>().Play();

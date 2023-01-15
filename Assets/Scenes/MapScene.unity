@@ -1346,11 +1346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupInventorySO: {fileID: 11400000, guid: dd7b670bd6cd1de4c9281f799d0dc109, type: 2}
   cargoSlotGO: {fileID: 1262873739836163011, guid: b2bed913624de9842ab981a1c74e34fd, type: 3}
---- !u!1 &1067765752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2640318911723764312, guid: 789581bf57dd6ec418163abf1a8c8ae5, type: 3}
-  m_PrefabInstance: {fileID: 2640318912649767688}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1156775544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,29 +2179,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6125575506210005533, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
   m_PrefabInstance: {fileID: 6125575505201293776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2082491352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240948339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122e1d06ee8423740894306215b9d437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FuelCapacity: 10
-  EnergyConversionTickRate: 0.2
-  EnergyConvertedPerTick: 1
-  EnergyConversionFuelPerTick: 0.01
-  EnergyCapacity: 100
-  CurrentEnergy: 0
-  CurrentFuel: 0
-  SystemShutdownTime: 3
-  InfiniteFuel: 0
-  InfiniteEnergy: 0
-  gameplayCanvasControllerSO: {fileID: 11400000, guid: 71674a8e819179542a720fc6c04637af, type: 2}
 --- !u!1 &2109112518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,19 +2261,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2113577957, guid: 789581bf57dd6ec418163abf1a8c8ae5, type: 3}
   m_PrefabInstance: {fileID: 2640318912649767688}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067765752}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6186798cb73b243428cc42c4855882ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2113577962
+--- !u!114 &2113577962 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2113577962, guid: 789581bf57dd6ec418163abf1a8c8ae5, type: 3}
+  m_PrefabInstance: {fileID: 2640318912649767688}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067765752}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fded5b6b30916645af4b85265ab6346, type: 3}
@@ -2375,10 +2346,6 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 240948339}
-    - target: {fileID: 2113577957, guid: 789581bf57dd6ec418163abf1a8c8ae5, type: 3}
-      propertyPath: DiffManager
-      value: 
-      objectReference: {fileID: 2113577962}
     - target: {fileID: 2640318911723764312, guid: 789581bf57dd6ec418163abf1a8c8ae5, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2440,38 +2407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip
       objectReference: {fileID: 0}
-    - target: {fileID: 6125575506210005504, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: EnergyBehaviour
-      value: 
-      objectReference: {fileID: 2082491352}
-    - target: {fileID: 6125575506210005506, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: EnergyBehaviour
-      value: 
-      objectReference: {fileID: 2082491352}
-    - target: {fileID: 6125575506210005506, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: laserTickEnergyCost
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125575506210005506, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: GameplayCanvasControllerSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 71674a8e819179542a720fc6c04637af, type: 2}
     - target: {fileID: 6125575506210005507, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 6125575506210005507, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: EnergyBehaviour
-      value: 
-      objectReference: {fileID: 2082491352}
-    - target: {fileID: 6125575506210005507, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: EnergyConsumptionTickRate
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125575506210005507, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
-      propertyPath: EnergyConsumptionPerTickAmount
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6125575506210005533, guid: a72642380ee3fa1438e4b230db1698e5, type: 3}
       propertyPath: m_RootOrder
       value: 1

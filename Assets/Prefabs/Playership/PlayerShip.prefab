@@ -5024,6 +5024,8 @@ GameObject:
   - component: {fileID: 6125575506210005534}
   - component: {fileID: 6125575506210005504}
   - component: {fileID: 6125575506210005535}
+  - component: {fileID: 2082491352}
+  - component: {fileID: 2082491353}
   m_Layer: 7
   m_Name: PlayerShip
   m_TagString: Player
@@ -5289,7 +5291,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5304,11 +5306,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.14183906}
-      - {x: -0.1509578, y: -0.04632188}
-      - {x: -0.1509578, y: -0.13639843}
-      - {x: 0.1509578, y: -0.13639843}
-      - {x: 0.15095781, y: -0.046321876}
+    - - {x: 0.054485254, y: 0.040246397}
+      - {x: 0.0506123, y: 0.06732757}
+      - {x: 0.008500036, y: 0.13235359}
+      - {x: -0.008373328, y: 0.1319753}
+      - {x: -0.051743835, y: 0.064680144}
+      - {x: -0.054565787, y: 0.040530954}
+      - {x: -0.14982446, y: -0.05255524}
+      - {x: -0.15039113, y: -0.117131695}
+      - {x: -0.06322585, y: -0.07114432}
+      - {x: -0.030537529, y: -0.07137805}
+      - {x: -0.03068699, y: -0.12867281}
+      - {x: 0.03175552, y: -0.12906975}
+      - {x: 0.030803032, y: -0.070332624}
+      - {x: 0.06514427, y: -0.070084594}
+      - {x: 0.1503911, y: -0.11543168}
+      - {x: 0.15095781, y: -0.05085523}
 --- !u!50 &6125575506210005508
 Rigidbody2D:
   serializedVersion: 4
@@ -5348,6 +5361,9 @@ MonoBehaviour:
   maxVelocity: 1.3
   accelerationFactor: 100
   dragFactor: 1.2
+  EnergyConsumptionTickRate: 0.05
+  EnergyConsumptionPerTickAmount: 0.5
+  EnergyBehaviour: {fileID: 2082491352}
 --- !u!114 &6125575506210005506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5366,6 +5382,8 @@ MonoBehaviour:
   miningDamage: 2
   miningDamageInterval: 0.2
   laserMaxLength: 1
+  laserTickEnergyCost: 0.02
+  EnergyBehaviour: {fileID: 2082491352}
 --- !u!114 &6125575506210005505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5415,6 +5433,8 @@ MonoBehaviour:
   LaserDamage: 10
   LaserProjectile: {fileID: 4373572196716076429, guid: cd32819d11030f84d98a0207f2e88aa6, type: 3}
   LaserShotInterval: 0.3
+  EnergyBehaviour: {fileID: 2082491352}
+  EnergyCostPerShot: 1
 --- !u!114 &6125575506210005535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5434,6 +5454,45 @@ MonoBehaviour:
   MissileDamage: 50
   MissileProjectile: {fileID: 5678407571635919242, guid: 7473767347f30e540b296647e44795cc, type: 3}
   LaserShotInterval: 0.5
+--- !u!114 &2082491352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125575505430707619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122e1d06ee8423740894306215b9d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FuelCapacity: 10
+  EnergyConversionTickRate: 0.2
+  EnergyConvertedPerTick: 1
+  EnergyConversionFuelPerTick: 0.01
+  EnergyCapacity: 100
+  CurrentEnergy: 0
+  CurrentFuel: 0
+  SystemShutdownTime: 3
+  InfiniteFuel: 0
+  InfiniteEnergy: 1
+  gameplayCanvasControllerSO: {fileID: 11400000, guid: 71674a8e819179542a720fc6c04637af, type: 2}
+--- !u!58 &2082491353
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125575505430707619}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  serializedVersion: 2
+  m_Radius: 0.18
 --- !u!1 &6125575505717743905
 GameObject:
   m_ObjectHideFlags: 0

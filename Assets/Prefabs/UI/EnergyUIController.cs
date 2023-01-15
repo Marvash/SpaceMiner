@@ -24,6 +24,8 @@ public class EnergyUIController : MonoBehaviour
 
     private float _targetEnergyPercentage;
 
+    private float _targetAllocatedEnergyPercentage;
+
     private float _targetFuelPercentage;
 
     [SerializeField]
@@ -92,6 +94,13 @@ public class EnergyUIController : MonoBehaviour
             if (_fuelTextLowColorTween.IsPlaying())
                 _fuelTextLowColorTween.Pause();
         }
+    }
+
+    public void SetAllocatedEnergy(float percentage)
+    {
+        _targetAllocatedEnergyPercentage = percentage;
+        CurrentFuelImage.DOFillAmount(_targetFuelPercentage, FuelBarSmoothness);
+
     }
 
     public void EnableEnergyShutdown(float duration)

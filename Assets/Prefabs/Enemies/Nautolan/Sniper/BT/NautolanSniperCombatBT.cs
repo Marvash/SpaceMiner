@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
-using Pathfinding;
 
-public class NautolanScoutCombatBT : BehaviourTree.Tree
+public class NautolanSniperCombatBT : BehaviourTree.Tree
 {
     [SerializeField]
     public GameObject Target;
 
     [SerializeField]
-    public LaserCannonArray LaserCannonArray;
+    public ChargedLaserCannonArray ChargedLaserCannonArray;
 
     [SerializeField]
     private float AttackRange;
+
+    [SerializeField]
+    private float LaserCannonCooldown;
 
     private Rigidbody2D _targetRb2d;
 
@@ -26,26 +28,35 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
         IsFacingPositionApproximateNode isFacingPositionApproximateNode = new IsFacingPositionApproximateNode(gameObject.transform);
         hasLOSOnTargetPositionNode.TargetPositionBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
         isFacingPositionApproximateNode.PositionToFaceBBVarName = computeTargetPredictedImpactPosition.OutputPositionBBVarName;
-        StartFireLaserCannonArrayNode startFireLaserNode = new StartFireLaserCannonArrayNode(LaserCannonArray);
-        SequenceNode fireStartSequence = new SequenceNode(new List<Node>() {
+        StartFireChargedLaserCannonNode startFireChargedLaserNode = new StartFireChargedLaserCannonNode(ChargedLaserCannonArray);
+        IsChargedLaserReadyNode isChargedLaserReadyNode = new IsChargedLaserReadyNode(ChargedLaserCannonArray);
+        StopFireChargedLaserCannonNode stopFireChargedLaserNode = new StopFireChargedLaserCannonNode(ChargedLaserCannonArray);
+        SequenceNode aimSequence = new SequenceNode(new List<Node>() {
             computeTargetPredictedImpactPosition,
             targetInRangeNode,
             hasLOSOnTargetPositionNode,
-            isFacingPositionApproximateNode,
-            startFireLaserNode
+            isFacingPositionApproximateNode
         });
-        StopFireLaserCannonArrayNode stopFireLaserNode = new StopFireLaserCannonArrayNode(LaserCannonArray);
-        IsWeaponActiveNode isWeaponActiveNode = new IsWeaponActiveNode(LaserCannonArray);
-        SequenceNode fireStopSequence = new SequenceNode(new List<Node>() {
-            isWeaponActiveNode,
-            stopFireLaserNode
+        ResultInverterNode resultInverterNode = new ResultInverterNode(stopFireChargedLaserNode);
+        TimerGateNode timerGateNode = new TimerGateNode();
+        BBVarSetter timerSetter = new BBVarSetter(timerGateNode._TimerStartBBVarName, true);
+        SelectorNode aimSelector = new SelectorNode(new List<Node>() {
+            aimSequence,
+            resultInverterNode
         });
-        SelectorNode rootSelector = new SelectorNode(new List<Node>() {
-            fireStartSequence,
-            fireStopSequence
+        SequenceNode chargeReadyShootSequence = new SequenceNode(new List<Node>() { 
+            isChargedLaserReadyNode,
+            stopFireChargedLaserNode,
+            timerSetter
+        });
+        SequenceNode rootSequence = new SequenceNode(new List<Node>() {
+            aimSelector,
+            timerGateNode,
+            startFireChargedLaserNode,
+            chargeReadyShootSequence
         });
 
-        return rootSelector;
+        return rootSequence;
     }
 
     private void Update()
@@ -57,7 +68,8 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
     {
         _root.SetData("targetPosition", (Vector2)Target.transform.position);
         _root.SetData("targetVelocity", _targetRb2d.velocity);
-        _root.SetData("projectileSpeed", LaserCannonArray.LaserSpeed);
+        _root.SetData("projectileSpeed", ChargedLaserCannonArray.GetCurrentProjectileSpeed());
+        _root.SetData("timerDuration", LaserCannonCooldown);
     }
 
     protected override void InitTree()

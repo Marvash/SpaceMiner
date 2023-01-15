@@ -15,10 +15,12 @@ namespace BehaviourTree
         private string _rotSmoothnessBBVarName = "rotSmoothness";
         public string RotSmoothnessBBVarName { get => _rotSmoothnessBBVarName; set => _rotSmoothnessBBVarName = value; }
         private float _rotVelocity;
+        private GameObject _targetToFaceDebug;
 
-        public FacePositionSmoothNode(GameObject source)
+        public FacePositionSmoothNode(GameObject source, GameObject debug)
         {
             _sourceRb = source.GetComponent<Rigidbody2D>();
+            _targetToFaceDebug = debug;
         }
 
         public override BTState Evaluate()
@@ -31,14 +33,17 @@ namespace BehaviourTree
             }
             _positionToFace = (Vector2)positionToFaceBBObj;
 
-            object rotSmoothnessBBObj = GetData("RotSmoothnessFactor");
+            object rotSmoothnessBBObj = GetData(_rotSmoothnessBBVarName);
             if (rotSmoothnessBBObj != null)
             {
                 _rotSmoothness = (float)rotSmoothnessBBObj;
             }
 
             Vector2 faceDirection = (_positionToFace - _sourceRb.worldCenterOfMass).normalized;
-
+            if (_targetToFaceDebug)
+            {
+                _targetToFaceDebug.transform.position = _positionToFace;
+            }
             float targetAngle = (Mathf.Atan2(faceDirection.y, faceDirection.x) * Mathf.Rad2Deg) - 90.0f;
             float currentAngle = _sourceRb.rotation;
             float nextAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref _rotVelocity, _rotSmoothness);

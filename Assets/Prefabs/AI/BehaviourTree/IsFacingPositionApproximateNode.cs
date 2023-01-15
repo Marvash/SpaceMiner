@@ -11,7 +11,7 @@ namespace BehaviourTree
         private string _positionToFaceBBVarName = "positionToFaceApproximate";
         public string PositionToFaceBBVarName { get => _positionToFaceBBVarName; set => _positionToFaceBBVarName = value; }
         private Rigidbody2D _sourceRb;
-        private float _facingToleranceDegrees = 5.0f;
+        private float _facingToleranceDegrees = 0.06f;
         private string _facingToleranceDegreesBBVarName = "facingToleranceDegrees";
         public string FacingToleranceDegreesBBVarName { get => _facingToleranceDegreesBBVarName; set => _facingToleranceDegreesBBVarName = value; }
 
@@ -37,10 +37,9 @@ namespace BehaviourTree
             }
 
             Vector2 faceDirection = (_positionToFace - _sourceRb.worldCenterOfMass).normalized;
-            float targetAngle = ((Mathf.Atan2(faceDirection.y, faceDirection.x) * Mathf.Rad2Deg) - 90.0f);
-            float currentAngle = _sourceRb.rotation;
-            float delta = Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle));
-            if (delta <= _facingToleranceDegrees)
+            Vector2 currentDirection = new Vector2(Mathf.Cos(_sourceRb.rotation * Mathf.Deg2Rad), Mathf.Sin(_sourceRb.rotation * Mathf.Deg2Rad)).normalized;
+            float dp = Vector2.Dot(currentDirection, faceDirection);
+            if (dp <= _facingToleranceDegrees)
             {
                 CurrentState = BTState.SUCCESS;
             }

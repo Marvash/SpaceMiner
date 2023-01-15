@@ -88,7 +88,7 @@ namespace BehaviourTree
                 return CurrentState;
             }
             else
-            {
+            {                                                                                                                                                                                                                                                                                                        
                 Vector2 seekDir = ((Vector2)_path.vectorPath[_currentWaypoint] - _sourceRb.worldCenterOfMass).normalized;
                 float scaledAccelerationFactor = _accelerationFactor;
                 float distanceToTarget = (_targetPosition - _sourceRb.worldCenterOfMass).magnitude;

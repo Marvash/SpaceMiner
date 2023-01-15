@@ -39,6 +39,8 @@ public class EnergyBehaviour : MonoBehaviour
 
     private bool _isEnergySystemShutdown = false;
 
+    private float _allocatedEnergy = 0.0f;
+
     [SerializeField]
     private GameplayCanvasControllerSO gameplayCanvasControllerSO;
 
@@ -81,10 +83,39 @@ public class EnergyBehaviour : MonoBehaviour
                     gameplayCanvasControllerSO.EnableEnergyShutdown(SystemShutdownTime);
                     Invoke("energySystemRestart", SystemShutdownTime);
                 }
+                _allocatedEnergy = Mathf.Min(_allocatedEnergy, CurrentEnergy);
             }
             gameplayCanvasControllerSO.UpdateEnergy(CurrentEnergy / EnergyCapacity);
         }
         return energyConsumed;
+    }
+
+    public float AllocateEnergy(float energy)
+    {
+        float availableEnergy = CurrentEnergy - _allocatedEnergy;
+        if(CurrentEnergy > 0.0f && availableEnergy > 0.0f)
+        {
+            _allocatedEnergy += Mathf.Max(availableEnergy, energy);
+        }
+        return _allocatedEnergy;
+    }
+
+    public void ResetAllocatedEnergy()
+    {
+        _allocatedEnergy = 0.0f;
+    }
+
+    public float ConsumeAllocatedEnergy()
+    {
+        float consumableEnergy = Mathf.Min(CurrentEnergy, _allocatedEnergy);
+        ConsumeEnergy(consumableEnergy);
+        _allocatedEnergy = 0.0f;
+        return consumableEnergy;
+    }
+
+    public float GetAllocatedEnergy()
+    {
+        return _allocatedEnergy;
     }
 
     private void energySystemRestart()

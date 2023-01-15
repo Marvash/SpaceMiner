@@ -51,7 +51,7 @@ public class LaserCannonArray : IWeapon
         {
             foreach(GameObject laserCannon in LaserCannons)
             {
-                if (EnergyBehaviour.ConsumeEnergy(EnergyCostPerShot) > 0.0f)
+                if (EnergyBehaviour == null || EnergyBehaviour.ConsumeEnergy(EnergyCostPerShot) > 0.0f)
                 {
                     _shootLaser(laserCannon);
                 }

@@ -40,6 +40,7 @@ namespace BehaviourTree
             _targetPosition = (Vector2)targetPositionBBObj;
             _targetVelocity = (Vector2)targetVelocityBBObj;
             _projectileSpeed = (float)projectileSpeedBBObj;
+
             _shooterPosition = _sourceRb.worldCenterOfMass;
 
             Vector2 finalDirection = Vector2.zero;

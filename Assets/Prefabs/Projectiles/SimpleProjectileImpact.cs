@@ -13,7 +13,7 @@ public class SimpleProjectileImpact : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        if (matchesImpactLayers(other.layer))
+        if (matchesImpactLayers(other.layer) && collision.isTrigger)
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             if(damageable != null)

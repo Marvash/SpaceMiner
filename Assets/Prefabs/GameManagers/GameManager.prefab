@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1228296533}
   - component: {fileID: 1228296534}
   - component: {fileID: 2113577957}
+  - component: {fileID: 2113577962}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -88,6 +89,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6186798cb73b243428cc42c4855882ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CommonAsteroidPrefab: {fileID: 4906208686634096070, guid: 2ee013aa294f9124cb6408bdf1eae65e, type: 3}
-  UncommonAsteroidPrefab: {fileID: 8771384793757390020, guid: 9c8e7bfaaff9a1a4c926c879a69bb332, type: 3}
   PickupSpawner: {fileID: 2640318911723764315}
+  DiffManager: {fileID: 2113577962}
+--- !u!114 &2113577962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640318911723764312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded5b6b30916645af4b85265ab6346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
