@@ -19,8 +19,11 @@ public class SimpleProjectileImpact : MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(ProjectileDamage);
+                if (!damageable.Invulnerable)
+                {
+                    Destroy(gameObject);
+                }
             }
-            Destroy(gameObject);
         }
     }
 

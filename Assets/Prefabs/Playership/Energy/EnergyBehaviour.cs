@@ -127,6 +127,11 @@ public class EnergyBehaviour : MonoBehaviour
         }
     }
 
+    public float GetAvailableEnergy()
+    {
+        return CurrentEnergy;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

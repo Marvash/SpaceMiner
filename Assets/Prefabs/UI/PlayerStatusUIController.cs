@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
-public class EnergyUIController : MonoBehaviour
+public class PlayerStatusUIController : MonoBehaviour
 {
     [SerializeField]
     private Image CurrentEnergyImage;
 
     [SerializeField]
     private Image CurrentFuelImage;
+
+    [SerializeField]
+    private Image CurrentHealthImage;
 
     [SerializeField]
     private Text EnergyShutdownText;
@@ -28,6 +31,8 @@ public class EnergyUIController : MonoBehaviour
 
     private float _targetFuelPercentage;
 
+    private float _targetHealthPercentage;
+
     [SerializeField]
     private float EnergyBarSmoothness = 0.3f;
 
@@ -42,6 +47,9 @@ public class EnergyUIController : MonoBehaviour
 
     [SerializeField]
     private float FuelCriticalThreshold = 0.15f;
+
+    [SerializeField]
+    private float HealthBarSmoothness = 0.3f;
 
     private Tween _energyTextColorTween;
     private Tween _fuelTextLowColorTween;
@@ -117,10 +125,17 @@ public class EnergyUIController : MonoBehaviour
         _energyTextColorTween.Pause();
     }
 
+    public void SetHealthPercentage(float percentage)
+    {
+        _targetHealthPercentage = percentage;
+        CurrentHealthImage.DOFillAmount(_targetHealthPercentage, HealthBarSmoothness);
+    }
+
     private void Awake()
     {
         gameplayCanvasControllerSO.EnergyUpdateEvent.AddListener(SetEnergyPercentage);
         gameplayCanvasControllerSO.FuelUpdateEvent.AddListener(SetFuelPercentage);
+        gameplayCanvasControllerSO.HealthUpdateEvent.AddListener(SetHealthPercentage);
         gameplayCanvasControllerSO.EnergyShutdownEnableEvent.AddListener(EnableEnergyShutdown);
         gameplayCanvasControllerSO.EnergyShutdownDisableEvent.AddListener(DisableEnergyShutdown);
         _energyBarInitialColor = CurrentEnergyImage.color;

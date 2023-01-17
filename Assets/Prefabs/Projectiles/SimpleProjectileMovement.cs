@@ -13,6 +13,8 @@ public class SimpleProjectileMovement : MonoBehaviour
     private GameObject _player;
     private Rigidbody2D _rb;
 
+    private Vector3 _currentPlayerPosition = Vector3.zero;
+
     private void Start()
     {
         _player = PlayerManager.Instance.Player;
@@ -29,7 +31,12 @@ public class SimpleProjectileMovement : MonoBehaviour
 
     private void Update()
     {
-        if (((Vector2)transform.position - (Vector2)_player.transform.position).magnitude > MaxDistanceFromPlayer)
+        if(_player != null)
+        {
+            _currentPlayerPosition = _player.transform.position;
+
+        }
+        if (((Vector2)transform.position - (Vector2)_currentPlayerPosition).magnitude > MaxDistanceFromPlayer)
         {
             Destroy(gameObject);
         }

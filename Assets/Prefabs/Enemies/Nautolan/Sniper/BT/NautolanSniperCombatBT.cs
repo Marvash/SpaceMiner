@@ -34,8 +34,7 @@ public class NautolanSniperCombatBT : BehaviourTree.Tree
         SequenceNode aimSequence = new SequenceNode(new List<Node>() {
             computeTargetPredictedImpactPosition,
             targetInRangeNode,
-            hasLOSOnTargetPositionNode,
-            isFacingPositionApproximateNode
+            hasLOSOnTargetPositionNode
         });
         ResultInverterNode resultInverterNode = new ResultInverterNode(stopFireChargedLaserNode);
         TimerGateNode timerGateNode = new TimerGateNode();
@@ -52,6 +51,7 @@ public class NautolanSniperCombatBT : BehaviourTree.Tree
         SequenceNode rootSequence = new SequenceNode(new List<Node>() {
             aimSelector,
             timerGateNode,
+            isFacingPositionApproximateNode,
             startFireChargedLaserNode,
             chargeReadyShootSequence
         });

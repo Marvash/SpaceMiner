@@ -8,6 +8,7 @@ public class GameplayCanvasControllerSO : ScriptableObject
 {
     public UnityEvent<float> EnergyUpdateEvent = new UnityEvent<float>();
     public UnityEvent<float> FuelUpdateEvent = new UnityEvent<float>();
+    public UnityEvent<float> HealthUpdateEvent = new UnityEvent<float>();
     public UnityEvent<float> EnergyShutdownEnableEvent = new UnityEvent<float>();
     public UnityEvent EnergyShutdownDisableEvent = new UnityEvent();
 
@@ -29,5 +30,10 @@ public class GameplayCanvasControllerSO : ScriptableObject
     public void DisableEnergyShutdown()
     {
         EnergyShutdownDisableEvent.Invoke();
+    }
+
+    public void UpdateHealth(float healthPercentage)
+    {
+        HealthUpdateEvent.Invoke(healthPercentage);
     }
 }

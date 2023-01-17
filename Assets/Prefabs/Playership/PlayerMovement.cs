@@ -12,22 +12,22 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRigidBody;
 
     [SerializeField]
-    private LineRenderer lookLineRenderer;
+    private LineRenderer LookLineRenderer;
 
     [SerializeField]
-    private LineRenderer forwardLineRenderer;
-    
-    [SerializeField]
-    private Camera mainCam;
+    private LineRenderer ForwardLineRenderer;
 
     [SerializeField]
-    private float maxVelocity;
+    private Camera MainCam;
 
     [SerializeField]
-    private float accelerationFactor;
+    private float MaxVelocity;
 
     [SerializeField]
-    private float dragFactor;
+    private float AccelerationFactor;
+
+    [SerializeField]
+    private float DragFactor;
 
     [SerializeField]
     private float EnergyConsumptionTickRate;
@@ -38,14 +38,41 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private EnergyBehaviour EnergyBehaviour;
 
+    [SerializeField]
+    private float BoostForceMultiplier;
+
+    [SerializeField]
+    private int BoostCycles;
+
+    [SerializeField]
+    private float BoostCooldown;
+
+    [SerializeField]
+    private float BoostEnergyConsumption;
+
+    [SerializeField]
+    private float InvulnerabilityWindow;
+
+    [SerializeField]
+    private IDamageable InvulnerabilityTarget;
+
     private bool _engineOn = false;
+
+    private bool _boost = false;
+
+    private float _boostCooldownTime;
+
+    private int _currentBoostCycle = 0;
+
+    private bool _boostReset = true;
 
     void Start()
     {
         movementVector = new Vector2(0, 0);
         playerRigidBody = GetComponent<Rigidbody2D>();
-        playerRigidBody.drag = dragFactor;
+        playerRigidBody.drag = DragFactor;
         playerRigidBody.centerOfMass = Vector2.zero;
+        _boostCooldownTime = -BoostCooldown;
     }
 
     void FixedUpdate()
@@ -54,14 +81,33 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!_engineOn)
             {
-                if (consumeEnergy())
+                if (consumeMovementEnergy())
                 {
-                    InvokeRepeating("consumeEnergy", EnergyConsumptionTickRate, EnergyConsumptionTickRate);
-                    playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
-                    Vector2 playerVelocity = playerRigidBody.velocity;
-                    if (playerVelocity.magnitude > maxVelocity)
+                    InvokeRepeating("consumeMovementEnergy", EnergyConsumptionTickRate, EnergyConsumptionTickRate);
+                    float boost = 1.0f;
+                    if (_boost)
                     {
-                        playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+                        if (_boostReset && (_currentBoostCycle == 0) && (Time.time - _boostCooldownTime) > BoostCooldown)
+                        {
+                            if (consumeBoostEnergy())
+                            {
+                                _currentBoostCycle = BoostCycles;
+                                _boostCooldownTime = Time.time;
+                                _boostReset = false;
+                                InvulnerabilityTarget.SetInvulnerable(InvulnerabilityWindow);
+                            }
+                        }
+                        if (_currentBoostCycle > 0)
+                        {
+                            boost = BoostForceMultiplier;
+                            _currentBoostCycle--;
+                        }
+                    }
+                    playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * AccelerationFactor * boost);
+                    Vector2 playerVelocity = playerRigidBody.velocity;
+                    if (playerVelocity.magnitude > MaxVelocity)
+                    {
+                        playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, MaxVelocity);
                     }
                     _engineOn = true;
                 } else
@@ -71,11 +117,30 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * accelerationFactor);
-                Vector2 playerVelocity = playerRigidBody.velocity;
-                if (playerVelocity.magnitude > maxVelocity)
+                float boost = 1.0f;
+                if (_boost || _currentBoostCycle > 0)
                 {
-                    playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, maxVelocity);
+                    if(_boostReset && (_currentBoostCycle == 0) && (Time.time - _boostCooldownTime) > BoostCooldown)
+                    {
+                        if (consumeBoostEnergy())
+                        {
+                            _currentBoostCycle = BoostCycles;
+                            _boostCooldownTime = Time.time;
+                            _boostReset = false;
+                            InvulnerabilityTarget.SetInvulnerable(InvulnerabilityWindow);
+                        }
+                    }
+                    if (_currentBoostCycle > 0)
+                    {
+                        boost = BoostForceMultiplier;
+                        _currentBoostCycle--;
+                    }
+                }
+                playerRigidBody.AddForce(movementVector * Time.fixedDeltaTime * AccelerationFactor * boost);
+                Vector2 playerVelocity = playerRigidBody.velocity;
+                if (playerVelocity.magnitude > MaxVelocity)
+                {
+                    playerRigidBody.velocity = Vector2.ClampMagnitude(playerVelocity, MaxVelocity);
                 }
             }
         } else if(_engineOn)
@@ -89,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        pointerWorldCoords = mainCam.ScreenToWorldPoint(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, mainCam.nearClipPlane));
+        pointerWorldCoords = MainCam.ScreenToWorldPoint(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, MainCam.nearClipPlane));
         desiredLookVector = new Vector2(pointerWorldCoords.x, pointerWorldCoords.y) - new Vector2(transform.position.x, transform.position.y);
     }
 
@@ -99,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private bool consumeEnergy()
+    private bool consumeMovementEnergy()
     {
         if(EnergyBehaviour.ConsumeEnergy(EnergyConsumptionPerTickAmount) == 0.0f)
         {
@@ -110,6 +175,19 @@ public class PlayerMovement : MonoBehaviour
         return true;
     }
 
+    private bool consumeBoostEnergy()
+    {
+        if (EnergyBehaviour.GetAvailableEnergy() < BoostEnergyConsumption)
+        {
+            return false;
+        } else if(EnergyBehaviour.ConsumeEnergy(BoostEnergyConsumption) == BoostEnergyConsumption)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     public void MovementActionHandler(InputAction.CallbackContext context)
     {
         movementVector = context.ReadValue<Vector2>();
@@ -118,7 +196,20 @@ public class PlayerMovement : MonoBehaviour
             //playerRigidBody.drag = 0;
         } else
         {
-            playerRigidBody.drag = dragFactor;
+            playerRigidBody.drag = DragFactor;
+        }
+    }
+
+    public void BoostActionHandler(InputAction.CallbackContext context)
+    {
+        bool boost = context.ReadValueAsButton();
+        if(_boost && !boost)
+        {
+            _boost = false;
+        } else if(!_boost && boost)
+        {
+            _boost = true;
+            _boostReset = true;
         }
     }
 
@@ -126,10 +217,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 spaceShipPos = transform.position;
         Vector2 forwardDirScaled = (transform.up * 100) + spaceShipPos;
-        forwardLineRenderer.SetPosition(0, new Vector3(spaceShipPos.x, spaceShipPos.y, 0));
-        forwardLineRenderer.SetPosition(1, new Vector3(forwardDirScaled.x, forwardDirScaled.y, 0));
-        lookLineRenderer.SetPosition(0, new Vector3(spaceShipPos.x, spaceShipPos.y, 0));
+        ForwardLineRenderer.SetPosition(0, new Vector3(spaceShipPos.x, spaceShipPos.y, 0));
+        ForwardLineRenderer.SetPosition(1, new Vector3(forwardDirScaled.x, forwardDirScaled.y, 0));
+        LookLineRenderer.SetPosition(0, new Vector3(spaceShipPos.x, spaceShipPos.y, 0));
         Vector2 lookTargetPoint = desiredLookVector + new Vector2(spaceShipPos.x, spaceShipPos.y);
-        lookLineRenderer.SetPosition(1, new Vector3(lookTargetPoint.x, lookTargetPoint.y, 0));
+        LookLineRenderer.SetPosition(1, new Vector3(lookTargetPoint.x, lookTargetPoint.y, 0));
     }
 }

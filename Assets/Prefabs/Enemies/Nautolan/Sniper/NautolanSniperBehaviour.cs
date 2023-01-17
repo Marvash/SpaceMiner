@@ -19,23 +19,15 @@ public class NautolanSniperBehaviour : IDamageable
     [SerializeField]
     private ParticleSystem PsChargeLaser;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InterruptCharge();
     }
 
     private void Update()
     {
         SimpleMovementBT.ProjectileSpeed = ChargedLaserCannonArray.GetCurrentProjectileSpeed();
-    }
-
-    public override void TakeDamage(float damage)
-    {
-        Health -= damage;
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void StartCharge()
