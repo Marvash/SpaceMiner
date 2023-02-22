@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3332252754484007833}
+  - {fileID: 7808799443393357487}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d01aff38a01544a9ae72c3c8bd016f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickupSpawner: {fileID: 0}
-  MiningPS: {fileID: 8027809210112710781}
+  PickupSpawnerSO: {fileID: 11400000, guid: 54a6df215659ba6458e4eac7fe7591f1, type: 2}
+  MiningDebriesPS: {fileID: 3244956165696400715}
   AsteroidDestructionPS: {fileID: 8235023338344826125, guid: e41dace2d4a2a584186b853a6b0607f2, type: 3}
   AsteroidMiningHealth: 100
   MaxMiningDrops: 6
@@ -176,7 +176,7 @@ MonoBehaviour:
   MinBreakingDrops: 2
   DropTableName: CommonAsteroidDropTable
   DropTableLibrarySO: {fileID: 11400000, guid: 5aafa16e91a52b74e8f100052950814a, type: 2}
-  DiffManager: {fileID: 0}
+  DiffManager: {fileID: 11400000, guid: 688e080e96abd9e4582e8b7e0cc7f2b0, type: 2}
 --- !u!114 &9047519162384052542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1921142300160884241
+  uniqueID: 7997387719355298285
   updateError: 1
   checkTime: 0.5
---- !u!1001 &4906208685876982810
+--- !u!1001 &465767758727905580
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -202,11 +202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3134183457526295655, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
       propertyPath: m_Name
-      value: MiningPS
-      objectReference: {fileID: 0}
-    - target: {fileID: 3134183457526295655, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: MiningDebrisPS
       objectReference: {fileID: 0}
     - target: {fileID: 7649593729039476611, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
       propertyPath: m_RootOrder
@@ -254,13 +250,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
---- !u!4 &3332252754484007833 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7649593729039476611, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
-  m_PrefabInstance: {fileID: 4906208685876982810}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8027809210112710781 stripped
+--- !u!1 &3244956165696400715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3134183457526295655, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
-  m_PrefabInstance: {fileID: 4906208685876982810}
+  m_PrefabInstance: {fileID: 465767758727905580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7808799443393357487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7649593729039476611, guid: ddc641cb28a39bc429e9ca7dd3a2615d, type: 3}
+  m_PrefabInstance: {fileID: 465767758727905580}
   m_PrefabAsset: {fileID: 0}

@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d01aff38a01544a9ae72c3c8bd016f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickupSpawner: {fileID: 0}
-  MiningPS: {fileID: 5736094177477401666}
+  PickupSpawnerSO: {fileID: 11400000, guid: 54a6df215659ba6458e4eac7fe7591f1, type: 2}
+  MiningDebriesPS: {fileID: 5736094177477401666}
   AsteroidDestructionPS: {fileID: 8235023338344826125, guid: bc9fd4ac160ab1f4fb56402ab8f35b7a, type: 3}
   AsteroidMiningHealth: 250
   MaxMiningDrops: 6
@@ -184,7 +184,7 @@ MonoBehaviour:
   MinBreakingDrops: 2
   DropTableName: UncommonAsteroidDropTable
   DropTableLibrarySO: {fileID: 11400000, guid: 5aafa16e91a52b74e8f100052950814a, type: 2}
-  DiffManager: {fileID: 0}
+  DiffManager: {fileID: 11400000, guid: 688e080e96abd9e4582e8b7e0cc7f2b0, type: 2}
 --- !u!114 &8771384793757390023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3134183457526295655, guid: 9deb6420ed30a234ea58beae1e70cd1b, type: 3}
       propertyPath: m_Name
-      value: MiningPS
+      value: MiningDebrisPS
       objectReference: {fileID: 0}
     - target: {fileID: 7649593729039476611, guid: 9deb6420ed30a234ea58beae1e70cd1b, type: 3}
       propertyPath: m_RootOrder

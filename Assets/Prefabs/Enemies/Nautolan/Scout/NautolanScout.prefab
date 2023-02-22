@@ -363,7 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401fe917bd448c440a2b26ddf1c34d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  MaxHealth: 100
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
+  SimpleMovementBT: {fileID: 8224124148739245738}
+  NautolanScoutCombatBT: {fileID: 8224124148739245737}
 --- !u!114 &8224124148739245745
 MonoBehaviour:
   m_ObjectHideFlags: 0

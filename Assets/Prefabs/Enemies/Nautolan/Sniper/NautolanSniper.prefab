@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaserCannons:
   - {fileID: 7236987731320155151}
-  LaserMaxSpeed: 10
+  LaserMaxSpeed: 12
   LaserMinSpeed: 4
   LaserMaxDamage: 40
   LaserMinDamage: 10
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  ProjectileSpeed: 8
+  ProjectileSpeed: 12
   PathUpdateInterval: 0.5
   SlowDownRange: 6
   StopRange: 5
@@ -297,9 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c734deb90ab84a43b58c895ac40c44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 80
-  ChargedLaserCannonArray: {fileID: 329869700}
+  MaxHealth: 80
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
   SimpleMovementBT: {fileID: 329869699}
+  NautolanSniperCombatBT: {fileID: 859645446021870528}
+  ChargedLaserCannonArray: {fileID: 329869700}
   PsCharge1: {fileID: 859645446468790971}
   PsCharge2: {fileID: 9104382956673428472}
   PsChargeLaser: {fileID: 8815730177267437929}

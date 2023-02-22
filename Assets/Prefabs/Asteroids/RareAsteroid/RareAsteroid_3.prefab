@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4906208686634096064, guid: 38a77b17e778e2149907824d456575a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.616
       objectReference: {fileID: 0}
     - target: {fileID: 4906208686634096064, guid: 38a77b17e778e2149907824d456575a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.118
       objectReference: {fileID: 0}
     - target: {fileID: 4906208686634096064, guid: 38a77b17e778e2149907824d456575a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -331,6 +331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RareAsteroid_3
       objectReference: {fileID: 0}
+    - target: {fileID: 5663058703114985580, guid: 38a77b17e778e2149907824d456575a3, type: 3}
+      propertyPath: DiffManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 688e080e96abd9e4582e8b7e0cc7f2b0, type: 2}
     - target: {fileID: 9047519162384052542, guid: 38a77b17e778e2149907824d456575a3, type: 3}
       propertyPath: uniqueID
       value: 6525967791074653242

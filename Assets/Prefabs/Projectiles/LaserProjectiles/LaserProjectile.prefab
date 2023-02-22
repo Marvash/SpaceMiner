@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4f597a0d4c3854c88c2e776474f6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageableLayers: 
   ProjectileDamage: 10
-  ImpactLayers: 
 --- !u!58 &556425749581100749
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a951b1863147c46b4b7b38c10c4a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
   ProjectileSpeed: 2
   MaxDistanceFromPlayer: 10
 --- !u!50 &3962530017837035501

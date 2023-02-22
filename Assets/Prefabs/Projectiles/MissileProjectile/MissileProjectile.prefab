@@ -4929,9 +4929,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a4620f685b7cb4e8f506ea3c888e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageableLayers: 0600000008000000
   ExplosionVFXGO: {fileID: 4342653602587319237, guid: 108eb6a11d9b54f40b79ed1d48a04d85, type: 3}
   ProjectileAreaDamage: 60
-  ImpactLayers: 0600000008000000
 --- !u!114 &-8253887118647786906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a951b1863147c46b4b7b38c10c4a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
   ProjectileSpeed: 5
   MaxDistanceFromPlayer: 10
 --- !u!50 &-6008438400261260686

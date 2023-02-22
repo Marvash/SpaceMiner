@@ -53,7 +53,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 619d3bb0c8eb8944fa165a641cc9d479, type: 2}
+  - {fileID: 2100000, guid: 27c9e5db14add7446aea6f69ebd2b240, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,13 +182,13 @@ GameObject:
   - component: {fileID: 2765345273476693824}
   - component: {fileID: 2765345273476693825}
   - component: {fileID: 2765345273476693839}
-  - component: {fileID: 2765345273476693833}
   - component: {fileID: 2765345273476693834}
-  - component: {fileID: 2765345273476693835}
   - component: {fileID: 2765345273476693836}
   - component: {fileID: 2765345273476693837}
   - component: {fileID: 1803288391}
   - component: {fileID: 1709890172}
+  - component: {fileID: 308722893371097785}
+  - component: {fileID: 8511120784775789257}
   m_Layer: 6
   m_Name: NautolanFighter
   m_TagString: Untagged
@@ -296,19 +296,6 @@ PolygonCollider2D:
       - {x: 0.051467314, y: -0.12611331}
       - {x: 0.15611331, y: -0.016872397}
       - {x: 0.027014045, y: 0.13014165}
---- !u!114 &2765345273476693833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765345273476693826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 401fe917bd448c440a2b26ddf1c34d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 260
 --- !u!114 &2765345273476693834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,21 +318,6 @@ MonoBehaviour:
   WaypointReachDistance: 1
   RotationSmoothnessFactor: 0.05
   targetToFaceDebug: {fileID: 0}
---- !u!114 &2765345273476693835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765345273476693826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe94cacc45db0894bb6e294a7f1bc809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  LaserCannonArray: {fileID: 2765345273476693836}
-  AttackRange: 5
 --- !u!114 &2765345273476693836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,3 +403,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!114 &308722893371097785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765345273476693826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425e7524c40ed974f839ff06684df8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 200
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
+  SimpleMovementBT: {fileID: 2765345273476693834}
+  NautolanFighterCombatBT: {fileID: 8511120784775789257}
+--- !u!114 &8511120784775789257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765345273476693826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb9bb40036984c4a95264876ecb54c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  LaserCannonArray: {fileID: 2765345273476693836}
+  AttackRange: 5

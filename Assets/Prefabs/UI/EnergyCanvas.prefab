@@ -573,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentEnergyImage: {fileID: 4683958460710274050}
   CurrentFuelImage: {fileID: 4683958461523532908}
+  CurrentHealthImage: {fileID: 7601330895701131212}
   EnergyShutdownText: {fileID: 4683958461146251932}
   FuelLevelText: {fileID: 4683958461331055435}
   gameplayCanvasControllerSO: {fileID: 11400000, guid: 71674a8e819179542a720fc6c04637af, type: 2}
@@ -581,6 +582,7 @@ MonoBehaviour:
   EnergyShutdownFlashingInterval: 0.3
   FuelLowThreshold: 0.2
   FuelCriticalThreshold: 0.1
+  HealthBarSmoothness: 0.3
 --- !u!114 &4683958461020077905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,7 +1093,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.485
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1283,7 +1285,7 @@ GameObject:
   - component: {fileID: 4680506119195934950}
   - component: {fileID: 6652950000436497838}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Wrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
