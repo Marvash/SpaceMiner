@@ -105,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
                 } else
                 {
                     _engineOn = false;
+                    _isBoosting = false;
                 }
             }
             else
@@ -120,6 +121,9 @@ public class PlayerMovement : MonoBehaviour
                             _boostCooldownTime = Time.time;
                             _isBoosting = true;
                             InvulnerabilityTarget.SetInvulnerable(InvulnerabilityWindow);
+                        } else
+                        {
+                            _shouldBoost = false;
                         }
                     } else
                     {
@@ -150,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CancelInvoke();
             _engineOn = false;
+            _isBoosting = false;
         }
         float angleLook = Mathf.Atan2(_desiredLookVector.y, _desiredLookVector.x) * Mathf.Rad2Deg;
         playerRigidBody.MoveRotation(angleLook - 90.0f);

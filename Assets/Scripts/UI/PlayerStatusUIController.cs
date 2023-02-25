@@ -23,7 +23,7 @@ public class PlayerStatusUIController : MonoBehaviour
     private Text FuelLevelText;
 
     [SerializeField]
-    private GameplayCanvasControllerSO gameplayCanvasControllerSO;
+    private GameplayCanvasControllerSO GameplayCanvasControllerSO;
 
     private float _targetEnergyPercentage;
 
@@ -133,11 +133,11 @@ public class PlayerStatusUIController : MonoBehaviour
 
     private void Awake()
     {
-        gameplayCanvasControllerSO.EnergyUpdateEvent.AddListener(SetEnergyPercentage);
-        gameplayCanvasControllerSO.FuelUpdateEvent.AddListener(SetFuelPercentage);
-        gameplayCanvasControllerSO.HealthUpdateEvent.AddListener(SetHealthPercentage);
-        gameplayCanvasControllerSO.EnergyShutdownEnableEvent.AddListener(EnableEnergyShutdown);
-        gameplayCanvasControllerSO.EnergyShutdownDisableEvent.AddListener(DisableEnergyShutdown);
+        GameplayCanvasControllerSO.EnergyUpdateEvent.AddListener(SetEnergyPercentage);
+        GameplayCanvasControllerSO.FuelUpdateEvent.AddListener(SetFuelPercentage);
+        GameplayCanvasControllerSO.HealthUpdateEvent.AddListener(SetHealthPercentage);
+        GameplayCanvasControllerSO.EnergyShutdownEnableEvent.AddListener(EnableEnergyShutdown);
+        GameplayCanvasControllerSO.EnergyShutdownDisableEvent.AddListener(DisableEnergyShutdown);
         _energyBarInitialColor = CurrentEnergyImage.color;
         _energyTextColorTween = EnergyShutdownText.DOColor(Color.red, EnergyShutdownFlashingInterval).SetEase(Ease.OutFlash).SetLoops(-1, LoopType.Restart);
         _fuelTextCriticalColorTween = FuelLevelText.DOColor(Color.red, 0.6f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);

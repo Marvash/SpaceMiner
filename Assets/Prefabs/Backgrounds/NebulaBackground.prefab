@@ -809,6 +809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5374f65338b8bd34aa794604a33d71e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
   maxTargetRange: 100
   scale: 0.96
-  target: {fileID: 0}

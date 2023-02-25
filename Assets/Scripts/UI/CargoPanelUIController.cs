@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CargoPanelUI : MonoBehaviour
+public class CargoPanelUIController : MonoBehaviour
 {
     [SerializeField]
     private PickupCargoSO PickupCargoSO;
@@ -20,20 +20,14 @@ public class CargoPanelUI : MonoBehaviour
         PickupCargoSO.cargoSlotChangeEvent.AddListener(onCargoSlotChangeEvent);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void onCargoSlotChangeEvent(int index, PickupStack pickup)
     {
         if (pickup != null)
         {
-            _cargoSlots[index].GetComponent<CargoSlotUI>().setSlotByPickup(pickup);
+            _cargoSlots[index].GetComponent<CargoSlotUIController>().setSlotByPickup(pickup);
         } else
         {
-            _cargoSlots[index].GetComponent<CargoSlotUI>().resetSlot();
+            _cargoSlots[index].GetComponent<CargoSlotUIController>().resetSlot();
         }
     }
 
@@ -50,7 +44,7 @@ public class CargoPanelUI : MonoBehaviour
     {
         for (int i = 0; i < _cargoSlots.Length; i++)
         {
-            _cargoSlots[i].GetComponent<CargoSlotUI>().resetSlot();
+            _cargoSlots[i].GetComponent<CargoSlotUIController>().resetSlot();
         }
     }
 }

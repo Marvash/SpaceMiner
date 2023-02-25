@@ -7,9 +7,14 @@ public class PlayershipBehaviour : MonoBehaviour
     public PlayershipManagerSO PlayershipManagerSO;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         PlayershipManagerSO.RegisterPlayer(gameObject);
+    }
+
+    private void Start()
+    {
+        PlayershipManagerSO.ForceUpdateMoney();
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CargoSlotUI : MonoBehaviour
+public class CargoSlotUIController : MonoBehaviour
 {
     [SerializeField]
     private Image imageComponent;

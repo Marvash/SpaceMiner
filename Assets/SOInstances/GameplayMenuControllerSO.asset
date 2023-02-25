@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afe0ed96fd9c1b64680f1bdea765f1d4, type: 3}
-  m_Name: PlayerShipUIControllerSO
+  m_Name: GameplayMenuControllerSO
   m_EditorClassIdentifier: 
-  OpenPlayerShipMenuEvent:
+  InputDispatcherSO: {fileID: 11400000, guid: 42c6211f9ae4c684daa10e33893a5391, type: 2}
+  OpenPlayershipMenuEvent:
     m_PersistentCalls:
       m_Calls: []
-  ClosePlayerShipMenuEvent:
+  ClosePlayershipMenuEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OpenMineralShopEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CloseMineralShopEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CloseMineralShopUISignalEvent:
     m_PersistentCalls:
       m_Calls: []

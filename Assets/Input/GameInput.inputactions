@@ -448,6 +448,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ShopMenu",
+            "id": "773ac078-1e7e-422e-b8ef-db171860ec8f",
+            "actions": [
+                {
+                    "name": "CloseShopMenu",
+                    "type": "Button",
+                    "id": "f99d17a7-7aab-47a5-a08c-d8f93670a33d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "13312e1e-d3e7-4619-9184-d276d6e73086",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CloseShopMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

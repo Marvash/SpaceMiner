@@ -5,6 +5,9 @@ using UnityEngine.Events;
 public class MovingProceduralPOIGenerator : MonoBehaviour
 {
     [SerializeField]
+    private PlayershipManagerSO PlayershipManagerSO;
+
+    [SerializeField]
     private float GridCellSize;
 
     [SerializeField]
@@ -25,8 +28,7 @@ public class MovingProceduralPOIGenerator : MonoBehaviour
     [SerializeField]
     private float DespawnRadius;
 
-    [SerializeField]
-    private Transform Target;
+    private Transform _target;
 
     private int CurrentSpawnXIndex;
     private int CurrentSpawnYIndex;
@@ -52,15 +54,16 @@ public class MovingProceduralPOIGenerator : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        CurrentSpawnXIndex = Mathf.FloorToInt(Target.position.x / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
-        CurrentSpawnYIndex = Mathf.FloorToInt(Target.position.y / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
+        _target = PlayershipManagerSO.Player.transform;
+        CurrentSpawnXIndex = Mathf.FloorToInt(_target.position.x / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
+        CurrentSpawnYIndex = Mathf.FloorToInt(_target.position.y / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
         if (_shouldRandomizeSeedAtStart)
         {
             randomizeSeed();
         }
         StartCoroutine(spawnCoroutine());
-        CurrentDespawnXIndex = Mathf.FloorToInt(Target.position.x / GridCellSize);
-        CurrentDespawnYIndex = Mathf.FloorToInt(Target.position.y / GridCellSize);
+        CurrentDespawnXIndex = Mathf.FloorToInt(_target.position.x / GridCellSize);
+        CurrentDespawnYIndex = Mathf.FloorToInt(_target.position.y / GridCellSize);
         StartCoroutine(despawnCoroutine());
     }
 
@@ -94,8 +97,8 @@ public class MovingProceduralPOIGenerator : MonoBehaviour
     protected void Spawn()
     {
         //Debug.Log("Generating asteroids...");
-        int newXIndex = Mathf.FloorToInt(Target.position.x / GridCellSize);
-        int newYIndex = Mathf.FloorToInt(Target.position.y / GridCellSize);
+        int newXIndex = Mathf.FloorToInt(_target.position.x / GridCellSize);
+        int newYIndex = Mathf.FloorToInt(_target.position.y / GridCellSize);
         int xSteps = newXIndex - CurrentSpawnXIndex;
         int ySteps = newYIndex - CurrentSpawnYIndex;
         //Debug.Log("xSteps: " + xSteps);
@@ -198,8 +201,8 @@ public class MovingProceduralPOIGenerator : MonoBehaviour
 
     private void Despawn()
     {
-        int newDespawnXIndex = Mathf.FloorToInt(Target.position.x / GridCellSize);
-        int newDespawnYIndex = Mathf.FloorToInt(Target.position.y / GridCellSize);
+        int newDespawnXIndex = Mathf.FloorToInt(_target.position.x / GridCellSize);
+        int newDespawnYIndex = Mathf.FloorToInt(_target.position.y / GridCellSize);
         int xSteps = newDespawnXIndex - CurrentDespawnXIndex;
         int ySteps = newDespawnYIndex - CurrentDespawnYIndex;
         //Debug.Log("DESP xSteps: " + xSteps);

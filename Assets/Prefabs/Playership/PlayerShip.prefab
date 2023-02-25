@@ -5195,7 +5195,7 @@ MonoBehaviour:
   AccelerationFactor: 100
   DragFactor: 1.7
   EnergyConsumptionTickRate: 0.05
-  EnergyConsumptionPerTickAmount: 0.5
+  EnergyConsumptionPerTickAmount: 0.2
   EnergyBehaviour: {fileID: 2082491352}
   BoostForceMultiplier: 20
   BoostCycles: 10
@@ -5222,7 +5222,7 @@ MonoBehaviour:
   miningDamage: 2
   miningDamageInterval: 0.2
   laserMaxLength: 1
-  laserTickEnergyCost: 0.02
+  laserTickEnergyCost: 0.01
   EnergyBehaviour: {fileID: 2082491352}
 --- !u!114 &6125575506210005505
 MonoBehaviour:
@@ -5310,7 +5310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FuelCapacity: 10
   EnergyConversionTickRate: 0.2
-  EnergyConvertedPerTick: 1.5
+  EnergyConvertedPerTick: 3
   EnergyConversionFuelPerTick: 0.01
   EnergyCapacity: 200
   CurrentEnergy: 0
@@ -5378,7 +5378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputDispatcherSO: {fileID: 11400000, guid: 42c6211f9ae4c684daa10e33893a5391, type: 2}
-  PlayershipMenuUIControllerSO: {fileID: 11400000, guid: 2ae4cc20627e7dc4ea43544b99dbaf0b, type: 2}
+  GameplayMenuControllerSO: {fileID: 11400000, guid: 2ae4cc20627e7dc4ea43544b99dbaf0b, type: 2}
 --- !u!114 &1876349195426373378
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,12 +41,14 @@ public class EnergyBehaviour : MonoBehaviour
 
     private float _allocatedEnergy = 0.0f;
 
+    private bool _consumedEnergyThisTick = false;
+
     [SerializeField]
     private GameplayCanvasControllerSO gameplayCanvasControllerSO;
 
     private void tickConversion()
     {
-        if ((CurrentEnergy < EnergyCapacity) && CurrentFuel > 0.0f) {
+        if ((CurrentEnergy < EnergyCapacity) && CurrentFuel > 0.0f && !_consumedEnergyThisTick) {
             CurrentEnergy += EnergyConvertedPerTick;
             if (!InfiniteFuel)
             {
@@ -64,6 +66,7 @@ public class EnergyBehaviour : MonoBehaviour
             gameplayCanvasControllerSO.UpdateEnergy(CurrentEnergy / EnergyCapacity);
             gameplayCanvasControllerSO.UpdateFuel(CurrentFuel / FuelCapacity);
         }
+        _consumedEnergyThisTick = false;
     }
 
     public float ConsumeEnergy(float energy)
@@ -75,6 +78,7 @@ public class EnergyBehaviour : MonoBehaviour
             if (!InfiniteEnergy)
             {
                 CurrentEnergy -= energy;
+                _consumedEnergyThisTick = true;
                 if (CurrentEnergy < 0.0f)
                 {
                     energyConsumed = energy + CurrentEnergy;

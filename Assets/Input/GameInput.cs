@@ -470,6 +470,34 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ShopMenu"",
+            ""id"": ""773ac078-1e7e-422e-b8ef-db171860ec8f"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseShopMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f99d17a7-7aab-47a5-a08c-d8f93670a33d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""13312e1e-d3e7-4619-9184-d276d6e73086"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CloseShopMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -521,6 +549,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         // PlayershipMenu
         m_PlayershipMenu = asset.FindActionMap("PlayershipMenu", throwIfNotFound: true);
         m_PlayershipMenu_CloseShipMenu = m_PlayershipMenu.FindAction("CloseShipMenu", throwIfNotFound: true);
+        // ShopMenu
+        m_ShopMenu = asset.FindActionMap("ShopMenu", throwIfNotFound: true);
+        m_ShopMenu_CloseShopMenu = m_ShopMenu.FindAction("CloseShopMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -746,6 +777,39 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         }
     }
     public PlayershipMenuActions @PlayershipMenu => new PlayershipMenuActions(this);
+
+    // ShopMenu
+    private readonly InputActionMap m_ShopMenu;
+    private IShopMenuActions m_ShopMenuActionsCallbackInterface;
+    private readonly InputAction m_ShopMenu_CloseShopMenu;
+    public struct ShopMenuActions
+    {
+        private @GameInput m_Wrapper;
+        public ShopMenuActions(@GameInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseShopMenu => m_Wrapper.m_ShopMenu_CloseShopMenu;
+        public InputActionMap Get() { return m_Wrapper.m_ShopMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ShopMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IShopMenuActions instance)
+        {
+            if (m_Wrapper.m_ShopMenuActionsCallbackInterface != null)
+            {
+                @CloseShopMenu.started -= m_Wrapper.m_ShopMenuActionsCallbackInterface.OnCloseShopMenu;
+                @CloseShopMenu.performed -= m_Wrapper.m_ShopMenuActionsCallbackInterface.OnCloseShopMenu;
+                @CloseShopMenu.canceled -= m_Wrapper.m_ShopMenuActionsCallbackInterface.OnCloseShopMenu;
+            }
+            m_Wrapper.m_ShopMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CloseShopMenu.started += instance.OnCloseShopMenu;
+                @CloseShopMenu.performed += instance.OnCloseShopMenu;
+                @CloseShopMenu.canceled += instance.OnCloseShopMenu;
+            }
+        }
+    }
+    public ShopMenuActions @ShopMenu => new ShopMenuActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -784,5 +848,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     public interface IPlayershipMenuActions
     {
         void OnCloseShipMenu(InputAction.CallbackContext context);
+    }
+    public interface IShopMenuActions
+    {
+        void OnCloseShopMenu(InputAction.CallbackContext context);
     }
 }

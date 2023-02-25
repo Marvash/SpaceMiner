@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputDispatcherSO", menuName = "ScriptableObjects/InputDispatcherSO", order = 1)]
-public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayActions, GameInput.IPlayershipMenuActions
+public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayActions, GameInput.IPlayershipMenuActions, GameInput.IShopMenuActions
 {
     [SerializeField]
     private GameInput GameInput;
@@ -23,6 +23,7 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
     public UnityAction CycleWeaponSlotBackward;
     public UnityAction Boost;
     public UnityAction<float> IncDecWeaponSlot;
+    public UnityAction CloseShopMenu;
 
     public void OnEnable()
     {
@@ -31,6 +32,7 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
             GameInput = new GameInput();
             GameInput.BaseGameplay.SetCallbacks(this);
             GameInput.PlayershipMenu.SetCallbacks(this);
+            GameInput.ShopMenu.SetCallbacks(this);
         }
         GameInput.BaseGameplay.Enable();
     }
@@ -39,6 +41,7 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
     {
         GameInput.BaseGameplay.Disable();
         GameInput.PlayershipMenu.Disable();
+        GameInput.ShopMenu.Disable();
     }
 
     public void EnableBaseGameplayControls()
@@ -52,7 +55,14 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
     {
         DisableAllControls();
         GameInput.PlayershipMenu.Enable();
-        Debug.Log("Enabled menu");
+        Debug.Log("Enabled ship menu");
+    }
+
+    public void EnableShopMenuControls()
+    {
+        DisableAllControls();
+        GameInput.ShopMenu.Enable();
+        Debug.Log("Enabled shop");
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -186,6 +196,14 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
         if(IncDecWeaponSlot != null && context.performed)
         {
             IncDecWeaponSlot.Invoke(context.ReadValue<float>());
+        }
+    }
+
+    public void OnCloseShopMenu(InputAction.CallbackContext context)
+    {
+        if(CloseShopMenu != null && context.performed)
+        {
+            CloseShopMenu.Invoke();
         }
     }
 }

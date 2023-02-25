@@ -13,18 +13,34 @@ public class PickupCargoSO: ScriptableObject
     private PickupStack[] _pickupCargo;
     public UnityEvent<int, PickupStack> cargoSlotChangeEvent;
     public UnityEvent<bool> infoWindowOpenCloseEvent;
-    private bool _infoWindowIsOpen;
 
     private void OnEnable()
     {
         _pickupCargo = new PickupStack[cargoSlotCount];
+        resetCargo();
+        cargoSlotChangeEvent = new UnityEvent<int, PickupStack>();
+        infoWindowOpenCloseEvent = new UnityEvent<bool>();
+    }
+
+    private void resetCargo()
+    {
         for (int i = 0; i < cargoSlotCount; i++)
         {
             _pickupCargo[i] = null;
         }
-        cargoSlotChangeEvent = new UnityEvent<int, PickupStack>();
-        infoWindowOpenCloseEvent = new UnityEvent<bool>();
-        _infoWindowIsOpen = false;
+    }
+
+    public List<PickupStack> GetPickups()
+    {
+        List<PickupStack> pickups = new List<PickupStack>();
+        foreach(PickupStack ps in _pickupCargo)
+        {
+            if (ps != null)
+            {
+                pickups.Add(ps);
+            }
+        }
+        return pickups;
     }
 
     public void addPickupStackToInventory(PickupStack pickupStack)
@@ -82,12 +98,18 @@ public class PickupCargoSO: ScriptableObject
         return cargoHasFreeSlot() || (pickupIndexInCargo(pickupStack.pickupSO.pickupId) != -1); 
     }
 
-    public void infoWindowOpenCloseHandler(InputAction.CallbackContext context)
+    public void SetPickups(List<PickupStack> pickupList)
     {
-        if (context.performed)
+        resetCargo();
+        for (int i = 0; i < cargoSlotCount; i++)
         {
-            _infoWindowIsOpen = !_infoWindowIsOpen;
-            infoWindowOpenCloseEvent.Invoke(_infoWindowIsOpen);
+            if(pickupList.Count > i)
+            {
+                addPickupStackToInventory(pickupList[i]);
+            } else
+            {
+                cargoSlotChangeEvent.Invoke(i, null);
+            }
         }
     }
 }
