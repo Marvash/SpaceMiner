@@ -12,25 +12,14 @@ public class AsteroidProceduralSpawner : MonoBehaviour
     public float CenterSpawnDenialRadius;
 
     [SerializeField]
-    public string AsteroidDistributionId;
-
-    [SerializeField]
     private AsteroidDiffSO DiffManager;
 
-    private Dictionary<string, SceneAsteroidDistributionConfigSO> asteroidDistributionsLibrary = new Dictionary<string, SceneAsteroidDistributionConfigSO>();
+    [SerializeField]
+    private AsteroidSpawnLayersConfigSO AsteroidSpawnLayersConfigSO;
 
     private Dictionary<string, GameObject> asteroidMap = new Dictionary<string, GameObject>();
 
     private FastNoise _fastNoise = new FastNoise();
-
-    public void Awake()
-    {
-        SceneAsteroidDistributionConfigSO[] asteroidDistributionConfigSOs = Resources.LoadAll<SceneAsteroidDistributionConfigSO>("SceneAsteroidDistributionConfigs");
-        foreach (SceneAsteroidDistributionConfigSO asteroidDistributionConfig in asteroidDistributionConfigSOs)
-        {
-            asteroidDistributionsLibrary.Add(asteroidDistributionConfig.DistributionId, asteroidDistributionConfig);
-        }
-    }
 
     public void SpawnAsteroidProcedural(Vector2 position, int xCellIndex, int yCellIndex)
     {
@@ -46,14 +35,14 @@ public class AsteroidProceduralSpawner : MonoBehaviour
         }
         switch (DiffManager.GetAsteroidDiffType(asteroidId))
         {
-            case AsteroidDiffSO.DiffType.NONE:
+            case DiffType.NONE:
                 {
-                    SceneAsteroidDistributionConfigSO.AsteroidLayer layer = RandomizeAsteroidLayer(position);
+                    AsteroidSpawnLayersConfigSO.Layer layer = randomizeAsteroidLayer(position);
                     if (layer == null || !RandomizeAsteroidSpawnChance(position, layer))
                     {
                         return;
                     }
-                    AsteroidConfigSO.AsteroidType type = layer.AsteroidType;
+                    AsteroidType type = layer.LayerObject;
                     int asteroidTypeVariant = RandomizeAsteroidTypeVariant(type, position);
                     GameObject asteroid = AsteroidFactory.CreateAsteroid(type, position, UnityEngine.Random.Range(0.0f, 360.0f), asteroidTypeVariant);
                     asteroidMap.Add(asteroidId, asteroid);
@@ -61,10 +50,10 @@ public class AsteroidProceduralSpawner : MonoBehaviour
                     asteroidBehaviour.AsteroidId = asteroidId;
                     break;
                 }
-            case AsteroidDiffSO.DiffType.UPDATED:
+            case DiffType.UPDATED:
                 {
-                    SceneAsteroidDistributionConfigSO.AsteroidLayer layer = RandomizeAsteroidLayer(position);
-                    AsteroidConfigSO.AsteroidType type = layer.AsteroidType;
+                    AsteroidSpawnLayersConfigSO.Layer layer = randomizeAsteroidLayer(position);
+                    AsteroidType type = layer.LayerObject;
                     int asteroidTypeVariant = RandomizeAsteroidTypeVariant(type, position);
                     GameObject asteroid = AsteroidFactory.CreateAsteroid(type, position, UnityEngine.Random.Range(0.0f, 360.0f), asteroidTypeVariant);
                     DiffManager.LoadDiffToAsteroid(asteroidId, asteroid);
@@ -81,7 +70,7 @@ public class AsteroidProceduralSpawner : MonoBehaviour
     {
         string asteroidId = xCellIndex + "_" + yCellIndex;
         //Debug.Log("Deleting y asteroid " + asteroidId + " " + asteroidMap.ContainsKey(asteroidId));
-        if (asteroidMap.ContainsKey(asteroidId) && (DiffManager.GetAsteroidDiffType(asteroidId) != AsteroidDiffSO.DiffType.DESTROYED))
+        if (asteroidMap.ContainsKey(asteroidId) && (DiffManager.GetAsteroidDiffType(asteroidId) != DiffType.DESTROYED))
         {
             GameObject asteroid = asteroidMap[asteroidId];
             //Debug.Log("Asteroid despawn is null " + (asteroid == null));
@@ -91,13 +80,12 @@ public class AsteroidProceduralSpawner : MonoBehaviour
         }
     }
 
-    private SceneAsteroidDistributionConfigSO.AsteroidLayer RandomizeAsteroidLayer(Vector2 position)
+    private AsteroidSpawnLayersConfigSO.Layer randomizeAsteroidLayer(Vector2 position)
     {
-        SceneAsteroidDistributionConfigSO distributionConfig = asteroidDistributionsLibrary[AsteroidDistributionId];
         float distanceFromCenter = position.magnitude;
         float totalWeights = 0.0f;
-        Dictionary<SceneAsteroidDistributionConfigSO.AsteroidLayer, float> candidateLayers = new Dictionary<SceneAsteroidDistributionConfigSO.AsteroidLayer, float>();
-        foreach (SceneAsteroidDistributionConfigSO.AsteroidLayer layer in distributionConfig.AsteroidDistributionLayers)
+        Dictionary<AsteroidSpawnLayersConfigSO.Layer, float> candidateLayers = new Dictionary<AsteroidSpawnLayersConfigSO.Layer, float>();
+        foreach (AsteroidSpawnLayersConfigSO.Layer layer in AsteroidSpawnLayersConfigSO.Layers)
         {
             if ((distanceFromCenter >= layer.MinDistance) && (distanceFromCenter <= layer.MaxDistance))
             {
@@ -112,7 +100,7 @@ public class AsteroidProceduralSpawner : MonoBehaviour
         _fastNoise.SetFrequency(1.0f);
         float randomValue = Utility.RemapRangeTo01(_fastNoise.GetValue(position.x - 4000.0f, position.y + 4000.0f), -1.0f, 1.0f);
         float currentInteravalMin = 0.0f;
-        foreach (SceneAsteroidDistributionConfigSO.AsteroidLayer layer in candidateLayers.Keys)
+        foreach (AsteroidSpawnLayersConfigSO.Layer layer in candidateLayers.Keys)
         {
             float currentWeightNorm = candidateLayers[layer] / totalWeights;
             float currentIntervalMax = currentInteravalMin + currentWeightNorm;
@@ -127,7 +115,7 @@ public class AsteroidProceduralSpawner : MonoBehaviour
         return null;
     }
 
-    private int RandomizeAsteroidTypeVariant(AsteroidConfigSO.AsteroidType type, Vector2 position)
+    private int RandomizeAsteroidTypeVariant(AsteroidType type, Vector2 position)
     {
         int variantCount = AsteroidFactory.GetVariantCountByAsteroidType(type);
         _fastNoise.SetNoiseType(FastNoise.NoiseType.WhiteNoise);
@@ -136,7 +124,7 @@ public class AsteroidProceduralSpawner : MonoBehaviour
         return randomValue % variantCount;
     }
 
-    private bool RandomizeAsteroidSpawnChance(Vector2 position, SceneAsteroidDistributionConfigSO.AsteroidLayer layer)
+    private bool RandomizeAsteroidSpawnChance(Vector2 position, AsteroidSpawnLayersConfigSO.Layer layer)
     {
         float distanceFromCenter = position.magnitude;
         if ((distanceFromCenter >= layer.MinDistance) && (distanceFromCenter <= layer.MaxDistance))

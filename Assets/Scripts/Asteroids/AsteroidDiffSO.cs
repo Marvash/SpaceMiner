@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DiffType
+    {
+        NONE,
+        UPDATED,
+        DESTROYED
+    }
+
 [CreateAssetMenu(fileName = "AsteroidDiffSO", menuName = "ScriptableObjects/AsteroidDiffSO", order = 1)]
 public class AsteroidDiffSO : ScriptableObject
 {
@@ -11,13 +18,6 @@ public class AsteroidDiffSO : ScriptableObject
         public int health;
         public int[] dropTimings;
         public int dropTimingIndex;
-    }
-
-    public enum DiffType
-    {
-        NONE,
-        UPDATED,
-        DESTROYED
     }
 
     private Dictionary<string, AsteroidDiff> asteroidDiffMap = new Dictionary<string, AsteroidDiff>();

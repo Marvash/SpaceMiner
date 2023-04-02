@@ -2,23 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NautolanFighterBehaviour : IDamageable
+public class NautolanFighterEnemy : ISimpleEnemy
 {
-    [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
-
     [SerializeField]
     private SimpleMovementBT SimpleMovementBT;
 
     [SerializeField]
     private NautolanFighterCombatBT NautolanFighterCombatBT;
-
-    private GameObject _target;
-
-    private void Awake()
-    {
-        SetTarget(PlayershipManagerSO.Player);
-    }
 
     private void _setTargetVariables()
     {
@@ -26,10 +16,21 @@ public class NautolanFighterBehaviour : IDamageable
         NautolanFighterCombatBT.Target = _target;
     }
 
-    public void SetTarget(GameObject target)
+    public override void SetTarget(GameObject target)
     {
         _target = target;
         _setTargetVariables();
-        Debug.Log("Set target " + _target);
+    }
+
+    public override void ActivateEnemy()
+    {
+        SimpleMovementBT.enabled = true;
+        NautolanFighterCombatBT.enabled = true;
+    }
+
+    public override void DeactivateEnemy()
+    {
+        SimpleMovementBT.enabled = false;
+        NautolanFighterCombatBT.enabled = false;
     }
 }

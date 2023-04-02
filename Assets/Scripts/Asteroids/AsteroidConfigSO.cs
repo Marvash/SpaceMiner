@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AsteroidType
+{
+    NONE,
+    COMMON,
+    UNCOMMON,
+    RARE
+}
+
 [CreateAssetMenu(fileName = "AsteroidConfigSO", menuName = "ScriptableObjects/AsteroidConfigSO", order = 3)]
 public class AsteroidConfigSO : ScriptableObject
 {
-    public enum AsteroidType
-    {
-        COMMON,
-        UNCOMMON,
-        RARE
-    }
-
     [SerializeField]
     public AsteroidType Type;
     [SerializeField]

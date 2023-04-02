@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c464be8feeba14f97aa18e6c649c05, type: 3}
   m_Name: RareAsteroidConfig
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 3
   DisplayName: Rare Asteroid
   VariantPrefabs:
   - {fileID: 4906208686634096070, guid: 38a77b17e778e2149907824d456575a3, type: 3}

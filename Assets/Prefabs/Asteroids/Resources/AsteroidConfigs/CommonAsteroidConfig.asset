@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c464be8feeba14f97aa18e6c649c05, type: 3}
   m_Name: CommonAsteroidConfig
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   DisplayName: Common Asteroid
   VariantPrefabs:
   - {fileID: 4906208686634096070, guid: 2ee013aa294f9124cb6408bdf1eae65e, type: 3}

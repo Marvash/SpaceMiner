@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AsteroidFactory : MonoBehaviour
 {
-    private Dictionary<AsteroidConfigSO.AsteroidType, AsteroidConfigSO> asteroidConfigLibrary = new Dictionary<AsteroidConfigSO.AsteroidType, AsteroidConfigSO>();
+    private Dictionary<AsteroidType, AsteroidConfigSO> asteroidConfigLibrary = new Dictionary<AsteroidType, AsteroidConfigSO>();
 
     private void Awake()
     {
@@ -15,30 +15,30 @@ public class AsteroidFactory : MonoBehaviour
         }
     }
 
-    public GameObject CreateAsteroid(AsteroidConfigSO.AsteroidType type)
+    public GameObject CreateAsteroid(AsteroidType type)
     {
         return CreateAsteroid(type, Vector2.zero, 0.0f);
     }
 
-    public GameObject CreateAsteroid(AsteroidConfigSO.AsteroidType type, Vector2 position)
+    public GameObject CreateAsteroid(AsteroidType type, Vector2 position)
     {
         return CreateAsteroid(type, position, 0.0f);
     }
 
-    public GameObject CreateAsteroid(AsteroidConfigSO.AsteroidType type, Vector2 position, float angle)
+    public GameObject CreateAsteroid(AsteroidType type, Vector2 position, float angle)
     {
         return CreateAsteroid(type, position, angle, 0);
     }
 
-    public GameObject CreateAsteroid(AsteroidConfigSO.AsteroidType type, Vector2 position, float angle, int asteroidVariant)
+    public GameObject CreateAsteroid(AsteroidType type, Vector2 position, float angle, int asteroidVariant)
     {
         switch (type)
         {
-            case AsteroidConfigSO.AsteroidType.COMMON:
+            case AsteroidType.COMMON:
                 return CreateCommonAsteroid(position, angle, asteroidVariant);
-            case AsteroidConfigSO.AsteroidType.UNCOMMON:
+            case AsteroidType.UNCOMMON:
                 return CreateUncommonAsteroid(position, angle, asteroidVariant);
-            case AsteroidConfigSO.AsteroidType.RARE:
+            case AsteroidType.RARE:
                 return CreateRareAsteroid(position, angle, asteroidVariant);
             default:
                 return null;
@@ -47,26 +47,26 @@ public class AsteroidFactory : MonoBehaviour
 
     private GameObject CreateCommonAsteroid(Vector2 position, float angle, int asteroidVariant)
     {
-        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidConfigSO.AsteroidType.COMMON].VariantPrefabs[asteroidVariant];
+        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidType.COMMON].VariantPrefabs[asteroidVariant];
         GameObject go = Instantiate(asteroidPrefab, position, Quaternion.Euler(0.0f, 0.0f, angle));
         return go;
     }
 
     private GameObject CreateUncommonAsteroid(Vector2 position, float angle, int asteroidVariant)
     {
-        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidConfigSO.AsteroidType.UNCOMMON].VariantPrefabs[asteroidVariant];
+        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidType.UNCOMMON].VariantPrefabs[asteroidVariant];
         GameObject go = Instantiate(asteroidPrefab, position, Quaternion.Euler(0.0f, 0.0f, angle));
         return go;
     }
 
     private GameObject CreateRareAsteroid(Vector2 position, float angle, int asteroidVariant)
     {
-        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidConfigSO.AsteroidType.RARE].VariantPrefabs[asteroidVariant];
+        GameObject asteroidPrefab = asteroidConfigLibrary[AsteroidType.RARE].VariantPrefabs[asteroidVariant];
         GameObject go = Instantiate(asteroidPrefab, position, Quaternion.Euler(0.0f, 0.0f, angle));
         return go;
     }
 
-    public int GetVariantCountByAsteroidType(AsteroidConfigSO.AsteroidType type)
+    public int GetVariantCountByAsteroidType(AsteroidType type)
     {
         return asteroidConfigLibrary[type].VariantPrefabs.Count;
     }

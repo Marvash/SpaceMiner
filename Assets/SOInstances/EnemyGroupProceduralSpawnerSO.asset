@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44662b530f9f5bb4a9504ab81c653a8b, type: 3}
+  m_Name: EnemyGroupProceduralSpawnerSO
+  m_EditorClassIdentifier: 
+  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
+  EnemyFactorySO: {fileID: 11400000, guid: 430e4d77c32882e479ce1affe7566285, type: 2}
+  EnemyGroupSpawnLayersConfigSO: {fileID: 11400000, guid: a8ffcfc725290294ea42e9600f3bbb47, type: 2}
+  EnemyMinSpawnRange: 10
+  EnemyMaxSpawnRange: 15

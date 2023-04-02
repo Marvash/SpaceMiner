@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NautolanSniperBehaviour : IDamageable
+public class NautolanSniperEnemy : ISimpleEnemy
 {
-    [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
 
     [SerializeField]
     private SimpleMovementBT SimpleMovementBT;
 
     [SerializeField]
     private NautolanSniperCombatBT NautolanSniperCombatBT;
-
-    private GameObject _target;
 
     [SerializeField]
     private ChargedLaserCannonArray ChargedLaserCannonArray;
@@ -27,10 +23,6 @@ public class NautolanSniperBehaviour : IDamageable
     [SerializeField]
     private ParticleSystem PsChargeLaser;
 
-    private void Awake()
-    {
-        SetTarget(PlayershipManagerSO.Player);
-    }
     protected override void Start()
     {
         base.Start();
@@ -71,9 +63,21 @@ public class NautolanSniperBehaviour : IDamageable
         NautolanSniperCombatBT.Target = _target;
     }
 
-    public void SetTarget(GameObject target)
+    public override void SetTarget(GameObject target)
     {
         _target = target;
         _setTargetVariables();
+    }
+
+    public override void ActivateEnemy()
+    {
+        SimpleMovementBT.enabled = true;
+        NautolanSniperCombatBT.enabled = true;
+    }
+
+    public override void DeactivateEnemy()
+    {
+        SimpleMovementBT.enabled = false;
+        NautolanSniperCombatBT.enabled = false;
     }
 }
