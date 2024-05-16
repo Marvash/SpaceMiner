@@ -15,4 +15,5 @@ MonoBehaviour:
   pickupId: 1
   pickupName: Nickel
   value: 150
+  weight: 4
   sprite: {fileID: 21300000, guid: ea9a3aed199b0b04fb52b1efaca4c5d7, type: 3}

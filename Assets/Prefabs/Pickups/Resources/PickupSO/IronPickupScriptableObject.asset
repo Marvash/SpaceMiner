@@ -15,4 +15,5 @@ MonoBehaviour:
   pickupId: 0
   pickupName: Iron
   value: 50
+  weight: 3
   sprite: {fileID: 21300000, guid: d4f9c8b4795af20498c3dcb6f03f4d94, type: 3}

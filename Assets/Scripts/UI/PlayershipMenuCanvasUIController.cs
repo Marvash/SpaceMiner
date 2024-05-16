@@ -16,6 +16,13 @@ public class PlayershipMenuCanvasUIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI MoneyText;
 
+    [SerializeField]
+    private float ExtremeEncumbermentMultiplier = 0.2f;
+    [SerializeField]
+    private float OverEncumbermentMultiplier = 0.4f;
+    [SerializeField]
+    private float MaxEncumbermentMultiplier = 0.6f;
+
     void Awake()
     {
         _canvas = GetComponent<Canvas>();

@@ -1,50 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CargoPanelUIController : MonoBehaviour
 {
-    [SerializeField]
-    private PickupCargoSO PickupCargoSO;
-
+    [SerializeField] 
+    CargoChangeEventChannelSO cargoChangeEvent;
     [SerializeField]
     private GameObject CargoSlotGO;
 
-    private GameObject[] _cargoSlots;
+    private List<GameObject> _cargoSlots = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        resizeCargo(PickupCargoSO.cargoSlotCount);
-        resetCargo();
-        PickupCargoSO.cargoSlotChangeEvent.AddListener(onCargoSlotChangeEvent);
+
+    void Awake()
+    { 
+        cargoChangeEvent.OnCargoChanged.AddListener(OnCargoSlotChangeEvent);
     }
 
-    void onCargoSlotChangeEvent(int index, PickupStack pickup)
+    void OnCargoSlotChangeEvent(PickupStack[] pickups)
     {
-        if (pickup != null)
-        {
-            _cargoSlots[index].GetComponent<CargoSlotUIController>().setSlotByPickup(pickup);
-        } else
-        {
-            _cargoSlots[index].GetComponent<CargoSlotUIController>().resetSlot();
+        int currentUISlotsCount = _cargoSlots.Count;
+        for(int i = 0; i < pickups.Length; i++) {
+            if(i >= currentUISlotsCount) {
+                _cargoSlots.Add(Instantiate(CargoSlotGO, transform));
+            }
+            CargoSlotUIController cargoSlotUIController = _cargoSlots[i].GetComponent<CargoSlotUIController>();
+            if(pickups[i] != null) {
+                cargoSlotUIController.setSlotByPickup(pickups[i]);
+            } else {
+                cargoSlotUIController.resetSlot();
+            }
         }
-    }
-
-    void resizeCargo(int slotCount)
-    {
-        _cargoSlots = new GameObject[slotCount];
-        for (int i = 0; i < slotCount; i++)
-        {
-            _cargoSlots[i] = Instantiate(CargoSlotGO, transform);
-        }
-    }
-    
-    void resetCargo()
-    {
-        for (int i = 0; i < _cargoSlots.Length; i++)
-        {
-            _cargoSlots[i].GetComponent<CargoSlotUIController>().resetSlot();
+        while(pickups.Length < _cargoSlots.Count) {
+            _cargoSlots.RemoveAt(_cargoSlots.Count - 1);
         }
     }
 }

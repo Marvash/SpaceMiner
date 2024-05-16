@@ -16,5 +16,6 @@ public class PickupSO : ScriptableObject
     public PickupId pickupId;
     public string pickupName;
     public int value;
+    public float weight;
     public Sprite sprite;
 }

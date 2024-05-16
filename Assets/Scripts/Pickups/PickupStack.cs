@@ -19,5 +19,7 @@ public class PickupStack
         return new PickupStack(pickupSO, stackCount);
     }
 
-
+    public float GetStackWeight() {
+        return stackCount * pickupSO.weight;
+    }
 }

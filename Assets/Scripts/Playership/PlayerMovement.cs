@@ -58,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private IDamageable InvulnerabilityTarget;
 
+    [SerializeField]
+    private FloatEventChannelSO WeightMultiplierSO;
+
     private bool _engineOn = false;
 
     private bool _shouldBoost = false;
@@ -68,13 +71,17 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _isBoosting = false;
 
+    private float currentWeightMultiplier = 1f;
+
     private void Awake()
     {
         InputDispatcherSO.Movement += movementActionHandler;
         InputDispatcherSO.MousePosition += mousePositionUpdateHandler;
         InputDispatcherSO.GamepadDirection += directionActionHandler;
         InputDispatcherSO.Boost += boostActionHandler;
+        WeightMultiplierSO.OnFloatChanged.AddListener(HandleWeightMovementMultiplier);
     }
+
     void Start()
     {
         _movementVector = new Vector2(0, 0);
@@ -95,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     InvokeRepeating("consumeMovementEnergy", EnergyConsumptionTickRate, EnergyConsumptionTickRate);
                     float boost = 1.0f;
-                    playerRigidBody.AddForce(_movementVector * Time.fixedDeltaTime * AccelerationFactor * boost);
+                    playerRigidBody.AddForce(_movementVector * Time.fixedDeltaTime * AccelerationFactor * boost * currentWeightMultiplier);
                     Vector2 playerVelocity = playerRigidBody.velocity;
                     if (playerVelocity.magnitude > MaxVelocity)
                     {
@@ -135,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (_currentBoostCycle > 0)
                     {
-                        boost = BoostForceMultiplier;
+                        boost = BoostForceMultiplier * currentWeightMultiplier;
                         _currentBoostCycle--;
                     } else
                     {
@@ -143,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
 
-                playerRigidBody.AddForce(_movementVector * Time.fixedDeltaTime * AccelerationFactor * boost);
+                playerRigidBody.AddForce(_movementVector * Time.fixedDeltaTime * AccelerationFactor * boost * currentWeightMultiplier);
                 Vector2 playerVelocity = playerRigidBody.velocity;
                 if (playerVelocity.magnitude > MaxVelocity)
                 {
@@ -164,6 +171,10 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateLineRenderers();
 
+    }
+
+    private void HandleWeightMovementMultiplier(float multiplier) {
+        currentWeightMultiplier = multiplier;
     }
 
     private void mousePositionUpdateHandler(Vector2 mousePos)
@@ -234,4 +245,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookTargetPoint = _desiredLookVector + new Vector2(spaceShipPos.x, spaceShipPos.y);
         LookLineRenderer.SetPosition(1, new Vector3(lookTargetPoint.x, lookTargetPoint.y, 0));
     }
+
+    
 }

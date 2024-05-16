@@ -15,4 +15,5 @@ MonoBehaviour:
   pickupId: 3
   pickupName: Gold
   value: 500
+  weight: 10
   sprite: {fileID: 21300000, guid: 482cfdd9fd270094a8cdf4f277fefc86, type: 3}

@@ -14,19 +14,19 @@ public class GameplayMenuControllerSO : ScriptableObject
     [HideInInspector]
     public UnityEvent ClosePlayershipMenuEvent = new UnityEvent();
     [HideInInspector]
-    public UnityEvent OpenMineralShopEvent = new UnityEvent();
+    public UnityEvent<PlayershipCargo> OpenMineralShopEvent = new UnityEvent<PlayershipCargo>();
     [HideInInspector]
     public UnityEvent CloseMineralShopEvent = new UnityEvent();
 
     private bool _playershipMenuOpen = false;
 
-    public void OpenMineralShop()
+    public void OpenMineralShop(PlayershipCargo cargo)
     {
         if(_playershipMenuOpen)
         {
             TogglePlayershipMenu();
         }
-        OpenMineralShopEvent.Invoke();
+        OpenMineralShopEvent.Invoke(cargo);
         InputDispatcherSO.EnableShopMenuControls();
     }
 

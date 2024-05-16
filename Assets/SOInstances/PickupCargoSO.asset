@@ -19,3 +19,7 @@ MonoBehaviour:
   infoWindowOpenCloseEvent:
     m_PersistentCalls:
       m_Calls: []
+  cargoChange:
+    m_PersistentCalls:
+      m_Calls: []
+  MaxWeight: 40

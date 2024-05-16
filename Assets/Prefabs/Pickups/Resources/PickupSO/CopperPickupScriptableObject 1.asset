@@ -15,4 +15,5 @@ MonoBehaviour:
   pickupId: 2
   pickupName: Copper
   value: 250
+  weight: 6
   sprite: {fileID: 21300000, guid: 104cb19a4665f63409f6eeb20e1fcc17, type: 3}

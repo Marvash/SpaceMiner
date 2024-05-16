@@ -8,9 +8,6 @@ public class MineralShopBehaviour : MonoBehaviour
     private InputDispatcherSO InputDispatcherSO;
 
     [SerializeField]
-    private PickupCargoSO PickupCargoSO;
-
-    [SerializeField]
     private GameplayMenuControllerSO GameplayMenuControllerSO;
 
     [SerializeField]
@@ -20,32 +17,24 @@ public class MineralShopBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        InputDispatcherSO.CloseShopMenu += closeMineralShop;
+        InputDispatcherSO.CloseShopMenu += CloseMineralShop;
     }
 
-    public void SellMinerals(List<PickupStack> minerals)
+    public void SellMinerals(PlayershipCargo cargo)
     {
-        Debug.Log("Selling minerals " + minerals.Count);
-        if (minerals.Count > 0)
-        {
-            _sellableMinerals = minerals;
-            foreach (PickupStack ps in _sellableMinerals)
-            {
-                Debug.Log("Mineral: x" + ps.stackCount + " " + ps.pickupSO.name);
-            }
-        }
-        GameplayMenuControllerSO.OpenMineralShop();
+        GameplayMenuControllerSO.OpenMineralShop(cargo);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == playerLayer && !collision.isTrigger)
         {
-            SellMinerals(PickupCargoSO.GetPickups());
+            PlayershipCargo cargo = collision.GetComponent<PlayershipCargo>();
+            SellMinerals(cargo);
         }
     }
     
-    private void closeMineralShop()
+    private void CloseMineralShop()
     {
         GameplayMenuControllerSO.CloseMineralShop();
     }

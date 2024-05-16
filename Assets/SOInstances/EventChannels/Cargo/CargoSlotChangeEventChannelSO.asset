@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82531ec71ff21045aed78e6b772af1e, type: 3}
-  m_Name: PlatinumPickupSO
+  m_Script: {fileID: 11500000, guid: eb195f06d9e3b7943961cf4435692762, type: 3}
+  m_Name: CargoSlotChangeEventChannelSO
   m_EditorClassIdentifier: 
-  pickupId: 4
-  pickupName: Platinum
-  value: 1000
-  weight: 15
-  sprite: {fileID: 21300000, guid: 5d7c14a8f2466ed419cd4c4b49cfaa4d, type: 3}
+  OnCargoSlotChanged:
+    m_PersistentCalls:
+      m_Calls: []

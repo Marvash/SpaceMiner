@@ -20,58 +20,58 @@ public class MineralShopUIController : MonoBehaviour
     private GameplayMenuControllerSO GameplayMenuControllerSO;
 
     [SerializeField]
-    private PickupCargoSO PickupCargoSO;
-
-    [SerializeField]
     private PlayershipManagerSO PlayershipManagerSO;
 
     private List<GameObject> _mineralItemList = new List<GameObject>();
 
+    private PlayershipCargo _loadedCargo;
+
     private void Awake()
     {
         _mineralShopCanvas = GetComponent<Canvas>();
-        GameplayMenuControllerSO.OpenMineralShopEvent.AddListener(openMineralShopHandler);
-        GameplayMenuControllerSO.CloseMineralShopEvent.AddListener(closeMineralShopHandler);
+        GameplayMenuControllerSO.OpenMineralShopEvent.AddListener(OpenMineralShopHandler);
+        GameplayMenuControllerSO.CloseMineralShopEvent.AddListener(CloseMineralShopHandler);
     }
 
-    private void openMineralShopHandler()
+    private void OpenMineralShopHandler(PlayershipCargo cargo)
     {
         _mineralShopCanvas.enabled = true;
-        populateMineralList();
+        _loadedCargo = cargo;
+        PopulateMineralList();
     }
 
-    private void closeMineralShopHandler()
+    private void CloseMineralShopHandler()
     {
         _mineralShopCanvas.enabled = false;
-        clearMineralList();
+        ClearMineralList();
     }
     
-    private void handleItemSold(GameObject soldGO) {
+    private void HandleItemSold(GameObject soldGO) {
         if (soldGO != null) {
             PickupStack soldPickup = soldGO.GetComponent<MineralItemUI>().GetCurrentPickupStack();
             _mineralItemList.Remove(soldGO);
             Destroy(soldGO);
             PlayershipManagerSO.AddMoney(soldPickup.stackCount * soldPickup.pickupSO.value);
             updateTotalPrice();
-            saveCargoChanges();
+            SaveCargoChanges();
         }
     }
 
-    private void populateMineralList()
+    private void PopulateMineralList()
     {
-        List<PickupStack> pickups = PickupCargoSO.GetPickups();
+        List<PickupStack> pickups = _loadedCargo.GetPickups();
         for(int i = 0; i < pickups.Count; i++)
         {
             GameObject mineralItem = Instantiate(MineralItem, MineralListPanel.transform);
             _mineralItemList.Add(mineralItem);
             MineralItemUI mineralItemUI = mineralItem.GetComponent<MineralItemUI>();
-            mineralItemUI.SoldSignal.AddListener(handleItemSold);
+            mineralItemUI.SoldSignal.AddListener(HandleItemSold);
             mineralItemUI.SetPickupStack(pickups[i]);
         }
         updateTotalPrice();
     }
 
-    private void clearMineralList()
+    private void ClearMineralList()
     {
         for (int i = 0; i < _mineralItemList.Count; i++)
         {
@@ -81,7 +81,7 @@ public class MineralShopUIController : MonoBehaviour
         _mineralItemList.Clear();
     }
 
-    private void saveCargoChanges()
+    private void SaveCargoChanges()
     {
         List<PickupStack> psList = new List<PickupStack>();
         for (int i = 0; i < _mineralItemList.Count; i++)
@@ -89,7 +89,7 @@ public class MineralShopUIController : MonoBehaviour
             GameObject go = _mineralItemList[i];
             psList.Add(go.GetComponent<MineralItemUI>().GetCurrentPickupStack());
         }
-        PickupCargoSO.SetPickups(psList);
+        _loadedCargo.SetPickups(psList);
     }
 
     public void CloseMineralShopUISignal()
@@ -119,6 +119,6 @@ public class MineralShopUIController : MonoBehaviour
         }
         _mineralItemList.Clear();
         updateTotalPrice();
-        saveCargoChanges();
+        SaveCargoChanges();
     }
 }
