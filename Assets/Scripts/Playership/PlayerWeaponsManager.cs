@@ -9,10 +9,13 @@ public class PlayerWeaponsManager : MonoBehaviour
     private InputDispatcherSO InputDispatcherSO;
 
     [SerializeField]
+    private GameObject WeaponsGO;
+
+    [SerializeField]
     private LaserCannonArray LaserCannonArray;
 
     [SerializeField]
-    private MissileLauncherArray MissileLauncherArray;
+    private RocketLauncherArray MissileLauncherArray;
 
     [SerializeField]
     private List<IWeapon> Weapons = new List<IWeapon>();

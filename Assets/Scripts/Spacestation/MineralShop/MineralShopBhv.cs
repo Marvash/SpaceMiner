@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineralShopBehaviour : MonoBehaviour
+public class MineralShopBhv : MonoBehaviour
 {
     [SerializeField]
     private InputDispatcherSO InputDispatcherSO;
@@ -11,7 +11,7 @@ public class MineralShopBehaviour : MonoBehaviour
     private GameplayMenuControllerSO GameplayMenuControllerSO;
 
     [SerializeField]
-    private int playerLayer;
+    LayerMask playerLayer;
 
     private List<PickupStack> _sellableMinerals;
 
@@ -27,7 +27,8 @@ public class MineralShopBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == playerLayer && !collision.isTrigger)
+        bool isPlayerLayer = ((1 << collision.gameObject.layer) & playerLayer) > 0;
+        if(isPlayerLayer && !collision.isTrigger)
         {
             PlayershipCargo cargo = collision.GetComponent<PlayershipCargo>();
             SellMinerals(cargo);

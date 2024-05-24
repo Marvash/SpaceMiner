@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissileLauncherArray : IWeapon
+public class RocketLauncherArray : IWeapon
 {
     [SerializeField]
     private List<GameObject> MissileLaunchers;
