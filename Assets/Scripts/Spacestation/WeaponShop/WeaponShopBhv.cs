@@ -6,25 +6,16 @@ public class WeaponShopBhv : MonoBehaviour
 {
     [SerializeField]
     LayerMask playerLayer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    GameplayMenuControllerSO gameplayMenuController;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isPlayerLayer = ((1 << collision.gameObject.layer) & playerLayer) > 0;
         if(isPlayerLayer && !collision.isTrigger)
         {
-            Debug.Log("Player hit");
+            PlayerWeaponsManager weapons = collision.GetComponent<PlayerWeaponsManager>();
+            gameplayMenuController.OpenWeaponShop(weapons);
         }
     }
 }

@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public class WeaponInitializer {
+    GameObject playerShipGO;
+    public WeaponInitializer(GameObject playerShipGO) {
+        this.playerShipGO = playerShipGO;
+    }
+    public void InitializeWeapon(LaserCannonArray laserCannonArray) {
+        EnergyBehaviour energyBehaviour = playerShipGO.GetComponent<EnergyBehaviour>();
+        laserCannonArray.SetEnergyBehaviour(energyBehaviour);
+    }
+
+    public void InitializeWeapon(ChargedLaserCannonArray chargedLaserCannonArray) {
+        EnergyBehaviour energyBehaviour = playerShipGO.GetComponent<EnergyBehaviour>();
+        chargedLaserCannonArray.SetEnergyBehaviour(energyBehaviour);
+    }
+}
+
 public class PlayerWeaponsManager : MonoBehaviour
 {
     [SerializeField]
@@ -11,44 +27,69 @@ public class PlayerWeaponsManager : MonoBehaviour
     [SerializeField]
     private GameObject WeaponsGO;
 
-    [SerializeField]
-    private LaserCannonArray LaserCannonArray;
+    public List<IWeapon> weapons {get; private set;}
 
-    [SerializeField]
-    private RocketLauncherArray MissileLauncherArray;
+    private int weaponSlotsCount = 4;
 
-    [SerializeField]
-    private List<IWeapon> Weapons = new List<IWeapon>();
+    private int selectedWeaponIndex;
 
-    private int _weaponSlotsCount = 4;
+    private bool shooting;
 
-    private int _selectedWeaponIndex;
+    private WeaponInitializer weaponInitializer;
 
-    private bool _shooting;
+    [field:SerializeField]
+    public List<WeaponDescriptorBaseSO> AvailableWeaponDescriptors {get; set;}
 
-    private void Awake()
+    public Dictionary<int, WeaponConfigBaseSO> OwnedWeaponConfigs {get; private set;}
+
+    private void Start()
     {
-        _selectedWeaponIndex = 0;
+        weaponInitializer = new WeaponInitializer(gameObject);
+        OwnedWeaponConfigs = new Dictionary<int, WeaponConfigBaseSO>();
+        weapons = new List<IWeapon>();
+        selectedWeaponIndex = 0;
         InputDispatcherSO.SelectWeaponSlot += selectWeaponHandler;
         InputDispatcherSO.FirePrimaryStart += shootStartHandler;
         InputDispatcherSO.FirePrimaryStop += shootStopHandler;
         InputDispatcherSO.IncDecWeaponSlot += incDecWeaponHandler;
-        Weapons.Add(LaserCannonArray);
-        Weapons.Add(MissileLauncherArray);
-        Weapons.Add(null);
-        Weapons.Add(null);
+        int weaponCount = WeaponsGO.transform.childCount;
+        for(int i = 0; i < weaponCount && weapons.Count < weaponSlotsCount; i++) {
+            RegisterWeapon(WeaponsGO.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public bool RegisterWeapon(GameObject weaponGO) {
+        if(weaponGO.TryGetComponent(out IWeapon weapon)) {
+            if(weapons.Contains(weapon)) {
+                return false;
+            }
+            if(weaponGO.transform.parent != WeaponsGO) {
+                weaponGO.transform.SetParent(WeaponsGO.transform, false);
+            }
+            weapon.InitWeapon(weaponInitializer);
+            WeaponConfigBaseSO weaponConfig = weapon.WeaponConfig;
+            if(!AvailableWeaponDescriptors.Contains(weaponConfig.WeaponDescriptor)) {
+                AvailableWeaponDescriptors.Add(weaponConfig.WeaponDescriptor);
+            }
+            OwnedWeaponConfigs.Add(weaponConfig.WeaponDescriptor.WeaponId, weaponConfig);
+            Debug.Log("Found weapon " + weaponConfig.WeaponDescriptor.WeaponName);
+            weapons.Add(weapon);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void shootStartHandler()
     {
-        Weapons[_selectedWeaponIndex]?.ShootBegin();
-        _shooting = true;
+        weapons[selectedWeaponIndex]?.ShootBegin();
+        shooting = true;
     }
 
     private void shootStopHandler()
     {
-        Weapons[_selectedWeaponIndex]?.ShootEnd();
-        _shooting = false;
+        weapons[selectedWeaponIndex]?.ShootEnd();
+        shooting = false;
     }
 
     private void selectWeaponHandler(int slot)
@@ -69,29 +110,29 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private void increaseWeaponIndex()
     {
-        int newIndex = (_selectedWeaponIndex + 1) % _weaponSlotsCount;
+        int newIndex = (selectedWeaponIndex + 1) % weapons.Count;
         SwapWeapon(newIndex);
     }
 
     private void decreaseWeaponIndex()
     {
-        int newIndex = (_selectedWeaponIndex - 1) % _weaponSlotsCount;
+        int newIndex = (selectedWeaponIndex - 1) % weapons.Count;
         if(newIndex < 0)
         {
-            newIndex = _weaponSlotsCount - 1;
+            newIndex = weapons.Count - 1;
         }
         SwapWeapon(newIndex);
     }
 
     private void SwapWeapon(int newWeaponIndex)
     {
-        if (newWeaponIndex != _selectedWeaponIndex)
+        if (newWeaponIndex % weapons.Count != selectedWeaponIndex)
         {
-            Weapons[_selectedWeaponIndex]?.ShootInterrupt();
-            _selectedWeaponIndex = newWeaponIndex;
-            if (_shooting)
+            weapons[selectedWeaponIndex]?.ShootInterrupt();
+            selectedWeaponIndex = newWeaponIndex;
+            if (shooting)
             {
-                Weapons[_selectedWeaponIndex]?.ShootBegin();
+                weapons[selectedWeaponIndex]?.ShootBegin();
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserCannonArray : IWeapon
+public class LaserCannonArray : MonoBehaviour, IWeapon
 {
     [SerializeField]
     private List<GameObject> LaserCannons;
@@ -19,7 +19,6 @@ public class LaserCannonArray : IWeapon
     [SerializeField]
     public float LaserShotInterval;
 
-    [SerializeField]
     private EnergyBehaviour EnergyBehaviour;
 
     [SerializeField]
@@ -28,6 +27,21 @@ public class LaserCannonArray : IWeapon
     private bool _shootingLaser;
 
     private float _lastLaserShot;
+
+    [SerializeField]
+    EnergyWeaponConfigSO energyWeaponConfig;
+
+    [SerializeField]
+    EnergyWeaponDescriptorSO energyWeaponDescriptor;
+    public GameObject PlayershipGO { get; set; }
+
+    public WeaponConfigBaseSO WeaponConfig => energyWeaponConfig;
+
+    void Awake() {
+        if(energyWeaponConfig == null) {
+            energyWeaponConfig = energyWeaponDescriptor.GetDefaultEnergyWeaponConfig();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -61,17 +75,17 @@ public class LaserCannonArray : IWeapon
         }
     }
 
-    public override void ShootBegin()
+    public void ShootBegin()
     {
         _shootingLaser = true;
     }
 
-    public override void ShootEnd()
+    public void ShootEnd()
     {
         _shootingLaser = false;
     }
 
-    public override void ShootInterrupt()
+    public void ShootInterrupt()
     {
         ShootEnd();
     }
@@ -85,8 +99,17 @@ public class LaserCannonArray : IWeapon
         projectileImpact.ProjectileDamage = LaserDamage;
     }
 
-    public override bool IsActive()
+    public bool IsActive()
     {
         return _shootingLaser;
+    }
+
+    public void InitWeapon(WeaponInitializer initializer)
+    {
+        initializer.InitializeWeapon(this);
+    }
+
+    public void SetEnergyBehaviour(EnergyBehaviour energyBehaviour) {
+        this.EnergyBehaviour = energyBehaviour;
     }
 }

@@ -66,7 +66,7 @@ Transform:
   - {fileID: 1520166405153951190}
   - {fileID: 1044713200134624771}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4983497623324069923
 MonoBehaviour:
@@ -90,8 +90,9 @@ MonoBehaviour:
   LaserDamage: 10
   LaserProjectile: {fileID: 4373572196716076429, guid: cd32819d11030f84d98a0207f2e88aa6, type: 3}
   LaserShotInterval: 0.3
-  EnergyBehaviour: {fileID: 0}
   EnergyCostPerShot: 1
+  energyWeaponConfig: {fileID: 0}
+  energyWeaponDescriptor: {fileID: 11400000, guid: 1ec4c3ed4c5203e4994622380d395024, type: 2}
 --- !u!1 &2886121424633946505
 GameObject:
   m_ObjectHideFlags: 0

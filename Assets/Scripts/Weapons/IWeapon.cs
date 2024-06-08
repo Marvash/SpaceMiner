@@ -7,14 +7,16 @@ public enum WeaponAmmoType {
     Ammo
 }
 
-public abstract class IWeapon : MonoBehaviour
+public interface IWeapon
 {
-    public WeaponAmmoType WeaponAmmoType { get; private set; }
+    public WeaponConfigBaseSO WeaponConfig { get; }
     public GameObject PlayershipGO { get; set;}
-    public abstract void ShootBegin();
+    public void ShootBegin();
 
-    public abstract void ShootInterrupt();
-    public abstract void ShootEnd();
+    public void ShootInterrupt();
+    public void ShootEnd();
 
-    public abstract bool IsActive();
+    public bool IsActive();
+    
+    public void InitWeapon(WeaponInitializer initializer);
 }

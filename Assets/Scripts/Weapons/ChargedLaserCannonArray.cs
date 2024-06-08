@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ChargedLaserCannonArray : IWeapon
+public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
 {
     [SerializeField]
     private List<GameObject> LaserCannons;
@@ -32,7 +32,6 @@ public class ChargedLaserCannonArray : IWeapon
     [SerializeField]
     public float LaserShotEnergyAllocationRate = 0.05f;
 
-    [SerializeField]
     private EnergyBehaviour EnergyBehaviour;
 
     [SerializeField]
@@ -50,6 +49,22 @@ public class ChargedLaserCannonArray : IWeapon
     public UnityEvent ChargingStop = new UnityEvent();
     public UnityEvent ChargingComplete = new UnityEvent();
     public UnityEvent LaserShot = new UnityEvent();
+
+    [SerializeField]
+    EnergyWeaponConfigSO energyWeaponConfig;
+
+    [SerializeField]
+    EnergyWeaponDescriptorSO energyWeaponDescriptor;
+
+    public GameObject PlayershipGO { get; set; }
+
+    public WeaponConfigBaseSO WeaponConfig => energyWeaponConfig;
+
+    void Awake() {
+        if(energyWeaponConfig == null) {
+            energyWeaponConfig = energyWeaponDescriptor.GetDefaultEnergyWeaponConfig();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -112,17 +127,17 @@ public class ChargedLaserCannonArray : IWeapon
         }
     }
 
-    public override void ShootBegin()
+    public void ShootBegin()
     {
         _shootingLaser = true;
     }
 
-    public override void ShootEnd()
+    public void ShootEnd()
     {
         _shootingLaser = false;
     }
 
-    public override void ShootInterrupt()
+    public void ShootInterrupt()
     {
         ShootEnd();
     }
@@ -162,8 +177,17 @@ public class ChargedLaserCannonArray : IWeapon
         projectileImpact.ProjectileDamage = LaserMinDamage + (LaserMaxDamage - LaserMinDamage) * chargePercentage;
     }
 
-    public override bool IsActive()
+    public bool IsActive()
     {
         return _shootingLaser;
+    }
+
+    public void InitWeapon(WeaponInitializer initializer)
+    {
+        initializer.InitializeWeapon(this);
+    }
+
+    public void SetEnergyBehaviour(EnergyBehaviour energyBehaviour) {
+        this.EnergyBehaviour = energyBehaviour;
     }
 }

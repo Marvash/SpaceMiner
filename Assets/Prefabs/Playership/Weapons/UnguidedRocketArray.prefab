@@ -84,6 +84,8 @@ MonoBehaviour:
   MissileDamage: 50
   MissileProjectile: {fileID: 5678407571635919242, guid: 7473767347f30e540b296647e44795cc, type: 3}
   LaserShotInterval: 0.5
+  ammoWeaponConfig: {fileID: 0}
+  ammoWeaponDescriptor: {fileID: 11400000, guid: aa04c0c98c1e5bb469c3dcaf3b4cacb7, type: 2}
 --- !u!1 &5455223738091746645
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,10 @@ public class GameplayMenuControllerSO : ScriptableObject
     public UnityEvent<PlayershipCargo> OpenMineralShopEvent = new UnityEvent<PlayershipCargo>();
     [HideInInspector]
     public UnityEvent CloseMineralShopEvent = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent<PlayerWeaponsManager> OpenWeaponsShopEvent = new UnityEvent<PlayerWeaponsManager>();
+    [HideInInspector]
+    public UnityEvent CloseWeaponsShopEvent = new UnityEvent();
 
     private bool _playershipMenuOpen = false;
 
@@ -33,6 +37,20 @@ public class GameplayMenuControllerSO : ScriptableObject
     public void CloseMineralShop()
     {
         CloseMineralShopEvent.Invoke();
+        InputDispatcherSO.EnableBaseGameplayControls();
+    }
+    
+    public void OpenWeaponShop(PlayerWeaponsManager playerWeaponsManager) {
+        if(_playershipMenuOpen)
+        {
+            TogglePlayershipMenu();
+        }
+        OpenWeaponsShopEvent.Invoke(playerWeaponsManager);
+        InputDispatcherSO.EnableShopMenuControls();
+    }
+
+    public void CloseWeaponShop() {
+        CloseWeaponsShopEvent.Invoke();
         InputDispatcherSO.EnableBaseGameplayControls();
     }
 

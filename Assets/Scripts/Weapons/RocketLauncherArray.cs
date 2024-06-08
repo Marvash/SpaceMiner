@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketLauncherArray : IWeapon
+public class RocketLauncherArray : MonoBehaviour, IWeapon
 {
     [SerializeField]
     private List<GameObject> MissileLaunchers;
@@ -22,6 +22,20 @@ public class RocketLauncherArray : IWeapon
     private bool _shootingMissiles;
 
     private float _lastMissileShot;
+
+    [SerializeField]
+    AmmoWeaponConfigSO ammoWeaponConfig;
+    [SerializeField]
+    AmmoWeaponDescriptorSO ammoWeaponDescriptor;
+
+    public WeaponConfigBaseSO WeaponConfig { get => ammoWeaponConfig; }
+    public GameObject PlayershipGO { get; set; }
+
+    void Awake() {
+        if(ammoWeaponConfig == null) {
+            ammoWeaponConfig = ammoWeaponDescriptor.GetDefaultAmmoWeaponConfig();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,17 +65,17 @@ public class RocketLauncherArray : IWeapon
         }
     }
 
-    public override void ShootBegin()
+    public void ShootBegin()
     {
         _shootingMissiles = true;
     }
 
-    public override void ShootEnd()
+    public void ShootEnd()
     {
         _shootingMissiles = false;
     }
 
-    public override void ShootInterrupt()
+    public void ShootInterrupt()
     {
         ShootEnd();
     }
@@ -75,8 +89,12 @@ public class RocketLauncherArray : IWeapon
         projectileImpact.ProjectileAreaDamage = MissileDamage;
     }
 
-    public override bool IsActive()
+    public bool IsActive()
     {
         return _shootingMissiles;
+    }
+
+    public void InitWeapon(WeaponInitializer initializer)
+    {
     }
 }
