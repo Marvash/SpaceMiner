@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameEventsManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     [SerializeField]
     private GameEventsLayersSO GameEventsLayersSO;
@@ -44,7 +44,7 @@ public class GameEventsManager : MonoBehaviour
 
     private void selectNextEvent() {
         Debug.Log("Selecting next event");
-        Vector2 playershipPos = PlayershipManagerSO.Player.transform.position;
+        Vector2 playershipPos = gameManager.Player.transform.position;
         GameEventsLayersSO.Layer layer = pickGameEventLayer(playershipPos);
         if(layer == null) {
             return;

@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public struct WeaponShopListItemData {
-    public WeaponShopListItemData(WeaponDescriptorBaseSO weaponDescriptorBase, bool locked) {
+    public WeaponShopListItemData(WeaponConfigBaseSO weaponDescriptorBase, bool locked) {
         WeaponName = weaponDescriptorBase.WeaponName;
         WeaponImage = weaponDescriptorBase.WeaponIcon;
         WeaponLevel = 0;
         this.locked = locked;
     }
 
-    public WeaponShopListItemData(WeaponDescriptorBaseSO weaponDescriptorBase, bool locked, int weaponLevel) {
+    public WeaponShopListItemData(WeaponConfigBaseSO weaponDescriptorBase, bool locked, int weaponLevel) {
         WeaponName = weaponDescriptorBase.WeaponName;
         WeaponImage = weaponDescriptorBase.WeaponIcon;
         WeaponLevel = weaponLevel;

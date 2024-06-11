@@ -28,20 +28,9 @@ public class LaserCannonArray : MonoBehaviour, IWeapon
 
     private float _lastLaserShot;
 
-    [SerializeField]
-    EnergyWeaponConfigSO energyWeaponConfig;
+    public LaserCannonArrayConfigSO WeaponConfig { get; set;}
 
-    [SerializeField]
-    EnergyWeaponDescriptorSO energyWeaponDescriptor;
     public GameObject PlayershipGO { get; set; }
-
-    public WeaponConfigBaseSO WeaponConfig => energyWeaponConfig;
-
-    void Awake() {
-        if(energyWeaponConfig == null) {
-            energyWeaponConfig = energyWeaponDescriptor.GetDefaultEnergyWeaponConfig();
-        }
-    }
 
     // Start is called before the first frame update
     void Start()

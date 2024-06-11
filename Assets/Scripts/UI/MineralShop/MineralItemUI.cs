@@ -8,7 +8,7 @@ using TMPro;
 public class MineralItemUI : MonoBehaviour
 {
     [HideInInspector]
-    public UnityEvent<GameObject> SoldSignal = new UnityEvent<GameObject>();
+    public UnityEvent<MineralItemUI> SoldSignal = new UnityEvent<MineralItemUI>();
 
     [SerializeField]
     private Image PickupImage;
@@ -27,6 +27,8 @@ public class MineralItemUI : MonoBehaviour
 
     private PickupStack _currentPickupStack = null;
 
+    public int ItemIndex { get; set;}
+
     public void SetPickupStack(PickupStack ps)
     {
         PickupImage.sprite = ps.pickupSO.sprite;
@@ -39,7 +41,7 @@ public class MineralItemUI : MonoBehaviour
 
     public void SellItemHandler()
     {
-        SoldSignal.Invoke(gameObject);
+        SoldSignal.Invoke(this);
     }
 
     public PickupStack GetCurrentPickupStack()

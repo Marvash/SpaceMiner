@@ -27,9 +27,9 @@ public class PlayerWeaponsManager : MonoBehaviour
     [SerializeField]
     private GameObject WeaponsGO;
 
-    public List<IWeapon> weapons {get; private set;}
+    public IWeapon[] weapons {get; private set;}
 
-    private int weaponSlotsCount = 4;
+    private Dictionary<IWeapon, GameObject> weaponsGOMap = new Dictionary<IWeapon, GameObject>();
 
     private int selectedWeaponIndex;
 
@@ -37,102 +37,148 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private WeaponInitializer weaponInitializer;
 
-    [field:SerializeField]
-    public List<WeaponDescriptorBaseSO> AvailableWeaponDescriptors {get; set;}
-
-    public Dictionary<int, WeaponConfigBaseSO> OwnedWeaponConfigs {get; private set;}
+    [SerializeField]
+    WeaponsPlayerDataSO weaponPlayerData;
 
     private void Start()
     {
         weaponInitializer = new WeaponInitializer(gameObject);
-        OwnedWeaponConfigs = new Dictionary<int, WeaponConfigBaseSO>();
-        weapons = new List<IWeapon>();
         selectedWeaponIndex = 0;
-        InputDispatcherSO.SelectWeaponSlot += selectWeaponHandler;
-        InputDispatcherSO.FirePrimaryStart += shootStartHandler;
-        InputDispatcherSO.FirePrimaryStop += shootStopHandler;
-        InputDispatcherSO.IncDecWeaponSlot += incDecWeaponHandler;
+        InputDispatcherSO.SelectWeaponSlot += SelectWeaponHandler;
+        InputDispatcherSO.FirePrimaryStart += ShootStartHandler;
+        InputDispatcherSO.FirePrimaryStop += ShootStopHandler;
+        InputDispatcherSO.IncDecWeaponSlot += IncDecWeaponHandler;
+        weaponPlayerData.OnWeaponSlotSet.AddListener(HandleWeaponSlotSet);
+        weaponPlayerData.OnWeaponSlotsCountChange.AddListener(ResizeWeaponsArray);
         int weaponCount = WeaponsGO.transform.childCount;
-        for(int i = 0; i < weaponCount && weapons.Count < weaponSlotsCount; i++) {
-            RegisterWeapon(WeaponsGO.transform.GetChild(i).gameObject);
+        while(WeaponsGO.transform.childCount > 0) {
+            Destroy(WeaponsGO.transform.GetChild(0).gameObject);
+        }
+        InitializeWeaponSystem();
+    }
+
+    void OnDestroy() {
+        InputDispatcherSO.SelectWeaponSlot -= SelectWeaponHandler;
+        InputDispatcherSO.FirePrimaryStart -= ShootStartHandler;
+        InputDispatcherSO.FirePrimaryStop -= ShootStopHandler;
+        InputDispatcherSO.IncDecWeaponSlot -= IncDecWeaponHandler;
+        weaponPlayerData.OnWeaponSlotSet.RemoveListener(HandleWeaponSlotSet);
+    }
+
+    private void InitializeWeaponSystem() {
+        WeaponConfigBaseSO[] weaponSlots = weaponPlayerData.GetWeaponSlots();
+        weapons = new IWeapon[weaponPlayerData.GetWeaponSlotsCount()];
+        for(int i = 0; i < weaponSlots.Length; i++) {
+            SetWeaponBySlot(i, weaponSlots[i]);
         }
     }
 
-    public bool RegisterWeapon(GameObject weaponGO) {
+    public bool SetWeaponBySlot(int weaponSlot, WeaponConfigBaseSO weaponConfig) {
+        if(weaponConfig == null) {
+            Debug.Log("Removing weapon");
+            RemoveWeaponBySlot(weaponSlot);
+            return true;
+        }
+        GameObject weaponGO = weaponConfig.InstantiateWeapon();
         if(weaponGO.TryGetComponent(out IWeapon weapon)) {
-            if(weapons.Contains(weapon)) {
-                return false;
-            }
             if(weaponGO.transform.parent != WeaponsGO) {
                 weaponGO.transform.SetParent(WeaponsGO.transform, false);
             }
             weapon.InitWeapon(weaponInitializer);
-            WeaponConfigBaseSO weaponConfig = weapon.WeaponConfig;
-            if(!AvailableWeaponDescriptors.Contains(weaponConfig.WeaponDescriptor)) {
-                AvailableWeaponDescriptors.Add(weaponConfig.WeaponDescriptor);
-            }
-            OwnedWeaponConfigs.Add(weaponConfig.WeaponDescriptor.WeaponId, weaponConfig);
-            Debug.Log("Found weapon " + weaponConfig.WeaponDescriptor.WeaponName);
-            weapons.Add(weapon);
+            weapons[weaponSlot] = weapon;
             return true;
         } else {
             return false;
         }
     }
 
-    private void shootStartHandler()
+    private void RemoveWeaponBySlot(int weaponSlot) {
+        if(weapons[weaponSlot] != null) {
+            GameObject toDestroy = weaponsGOMap[weapons[weaponSlot]];
+            weaponsGOMap.Remove(weapons[weaponSlot]);
+            Destroy(toDestroy);
+            weapons[weaponSlot] = null;
+        }
+    }
+
+    private void HandleWeaponSlotSet(int slotIndex, WeaponConfigBaseSO weapon) {
+        SetWeaponBySlot(slotIndex, weapon);
+    }
+
+    private void ShootStartHandler()
     {
         weapons[selectedWeaponIndex]?.ShootBegin();
         shooting = true;
     }
 
-    private void shootStopHandler()
+    private void ShootStopHandler()
     {
         weapons[selectedWeaponIndex]?.ShootEnd();
         shooting = false;
     }
 
-    private void selectWeaponHandler(int slot)
+    private void SelectWeaponHandler(int slot)
     {
         SwapWeapon(slot - 1);
     }
 
-    private void incDecWeaponHandler(float value)
+    private void IncDecWeaponHandler(float value)
     {
         if(value > 0.0f)
         {
-            increaseWeaponIndex();
+            IncreaseWeaponIndex();
         } else if(value < 0.0f)
         {
-            decreaseWeaponIndex();
+            DecreaseWeaponIndex();
         }
     }
 
-    private void increaseWeaponIndex()
+    private void IncreaseWeaponIndex()
     {
-        int newIndex = (selectedWeaponIndex + 1) % weapons.Count;
+        int newIndex = (selectedWeaponIndex + 1) % weapons.Length;
         SwapWeapon(newIndex);
     }
 
-    private void decreaseWeaponIndex()
+    private void DecreaseWeaponIndex()
     {
-        int newIndex = (selectedWeaponIndex - 1) % weapons.Count;
+        int newIndex = (selectedWeaponIndex - 1) % weapons.Length;
         if(newIndex < 0)
         {
-            newIndex = weapons.Count - 1;
+            newIndex = weapons.Length - 1;
         }
         SwapWeapon(newIndex);
     }
 
     private void SwapWeapon(int newWeaponIndex)
     {
-        if (newWeaponIndex % weapons.Count != selectedWeaponIndex)
+        if (newWeaponIndex % weapons.Length != selectedWeaponIndex)
         {
             weapons[selectedWeaponIndex]?.ShootInterrupt();
             selectedWeaponIndex = newWeaponIndex;
             if (shooting)
             {
                 weapons[selectedWeaponIndex]?.ShootBegin();
+            }
+        }
+    }
+
+    private void ResizeWeaponsArray(int weaponSlotsCount) {
+        int currentLength = weapons.Length;
+        if(currentLength < weaponSlotsCount) {
+            IWeapon[] weaponsTmp = weapons;
+            weapons = new IWeapon[weaponSlotsCount];
+            for(int i = 0; i < weaponsTmp.Length; i++) {
+                weapons[i] = weaponsTmp[i];
+            }
+        } else if(currentLength > weaponSlotsCount) {
+            int slotsDelta = currentLength - weaponSlotsCount;
+            for(int i = 0; i < slotsDelta; i++) {
+                RemoveWeaponBySlot(currentLength - 1 - i);
+            }
+            IWeapon[] weaponsTmp = weapons;
+            weapons = new IWeapon[weaponSlotsCount];
+            for(int i = 0; i < weaponSlotsCount; i++) {
+                weapons[i] = weaponsTmp[i];
             }
         }
     }

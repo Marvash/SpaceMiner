@@ -4,8 +4,12 @@ using UnityEngine;
 
 public interface IWeaponConfig
 {
-    WeaponDescriptorBaseSO WeaponDescriptor {get; set;}
+    int WeaponId {get;}
+    string WeaponName {get; set;}
+    WeaponAmmoType WeaponAmmoType {get; set;}
+    List<float> WeaponDamage {get; set;}
+    string WeaponDescription {get; set;}
+    Sprite WeaponIcon {get; set;}
     int CurrentWeaponLevel {get; set;}
-    public void AcceptWeaponDetailUIBuilder();
-
+    GameObject InstantiateWeapon();
 }

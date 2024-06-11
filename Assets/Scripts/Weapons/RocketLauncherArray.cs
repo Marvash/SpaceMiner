@@ -23,19 +23,9 @@ public class RocketLauncherArray : MonoBehaviour, IWeapon
 
     private float _lastMissileShot;
 
-    [SerializeField]
-    AmmoWeaponConfigSO ammoWeaponConfig;
-    [SerializeField]
-    AmmoWeaponDescriptorSO ammoWeaponDescriptor;
+    public RocketLauncherArrayConfigSO WeaponConfig {get; set;}
 
-    public WeaponConfigBaseSO WeaponConfig { get => ammoWeaponConfig; }
     public GameObject PlayershipGO { get; set; }
-
-    void Awake() {
-        if(ammoWeaponConfig == null) {
-            ammoWeaponConfig = ammoWeaponDescriptor.GetDefaultAmmoWeaponConfig();
-        }
-    }
 
     // Start is called before the first frame update
     void Start()

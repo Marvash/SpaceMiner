@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     private IDamageable InvulnerabilityTarget;
 
     [SerializeField]
-    private FloatEventChannelSO WeightMultiplierSO;
+    private WeightPlayerDataSO weightPlayerData;
 
     private bool _engineOn = false;
 
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         InputDispatcherSO.MousePosition += mousePositionUpdateHandler;
         InputDispatcherSO.GamepadDirection += directionActionHandler;
         InputDispatcherSO.Boost += boostActionHandler;
-        WeightMultiplierSO.OnFloatChanged.AddListener(HandleWeightMovementMultiplier);
+        weightPlayerData.OnCurrentWeightUpdate.AddListener(HandleWeightUpdate);
     }
 
     void Start()
@@ -173,8 +173,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void HandleWeightMovementMultiplier(float multiplier) {
-        currentWeightMultiplier = multiplier;
+    private void HandleWeightUpdate(float weight) {
+        currentWeightMultiplier = weightPlayerData.CurrentWeightMultiplier;
     }
 
     private void mousePositionUpdateHandler(Vector2 mousePos)

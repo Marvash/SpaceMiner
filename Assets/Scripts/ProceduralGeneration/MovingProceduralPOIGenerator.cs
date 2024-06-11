@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class MovingProceduralPOIGenerator : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     [SerializeField]
     private float GridCellSize;
@@ -54,7 +54,7 @@ public class MovingProceduralPOIGenerator : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        _target = PlayershipManagerSO.Player.transform;
+        _target = gameManager.Player.transform;
         CurrentSpawnXIndex = Mathf.FloorToInt(_target.position.x / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
         CurrentSpawnYIndex = Mathf.FloorToInt(_target.position.y / GridCellSize) - Mathf.CeilToInt((SpawnRadius / GridCellSize) * 2.0f);
         if (_shouldRandomizeSeedAtStart)

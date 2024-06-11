@@ -51,21 +51,12 @@ public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
     public UnityEvent LaserShot = new UnityEvent();
 
     [SerializeField]
-    EnergyWeaponConfigSO energyWeaponConfig;
-
-    [SerializeField]
-    EnergyWeaponDescriptorSO energyWeaponDescriptor;
+    LaserCannonArrayConfigSO config;
 
     public GameObject PlayershipGO { get; set; }
 
-    public WeaponConfigBaseSO WeaponConfig => energyWeaponConfig;
-
-    void Awake() {
-        if(energyWeaponConfig == null) {
-            energyWeaponConfig = energyWeaponDescriptor.GetDefaultEnergyWeaponConfig();
-        }
-    }
-
+    public WeaponConfigBaseSO WeaponConfig => config;
+    
     // Start is called before the first frame update
     void Start()
     {

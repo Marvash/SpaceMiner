@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+public enum GameInputControls {
+    BaseGameplay,
+    ShopMenu,
+    PlayershipMenu
+}
+
 [CreateAssetMenu(fileName = "InputDispatcherSO", menuName = "ScriptableObjects/InputDispatcherSO", order = 1)]
 public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayActions, GameInput.IPlayershipMenuActions, GameInput.IShopMenuActions
 {
@@ -17,12 +23,13 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
     public UnityAction FirePrimaryStop;
     public UnityAction FireSecondaryStart;
     public UnityAction FireSecondaryStop;
-    public UnityAction ToggleShipMenu;
+    public UnityAction OpenPlayershipMenu;
     public UnityAction<int> SelectWeaponSlot;
     public UnityAction CycleWeaponSlotForward;
     public UnityAction CycleWeaponSlotBackward;
     public UnityAction Boost;
     public UnityAction<float> IncDecWeaponSlot;
+    public UnityAction ClosePlayershipMenu;
     public UnityAction CloseShopMenu;
 
     public void OnEnable()
@@ -44,25 +51,21 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
         GameInput.ShopMenu.Disable();
     }
 
-    public void EnableBaseGameplayControls()
-    {
-        DisableAllControls();
-        GameInput.BaseGameplay.Enable();
-        Debug.Log("Enabled gameplay");
-    }
-
-    public void EnablePlayerShipMenuControls()
-    {
-        DisableAllControls();
-        GameInput.PlayershipMenu.Enable();
-        Debug.Log("Enabled ship menu");
-    }
-
-    public void EnableShopMenuControls()
-    {
-        DisableAllControls();
-        GameInput.ShopMenu.Enable();
-        Debug.Log("Enabled shop");
+    public void EnableControls(GameInputControls controls, bool exclusiveInput = true) {
+        if(exclusiveInput) {
+            DisableAllControls();
+        }
+        switch(controls) {
+            case GameInputControls.BaseGameplay:
+                GameInput.BaseGameplay.Enable();
+            break;
+            case GameInputControls.PlayershipMenu:
+                GameInput.PlayershipMenu.Enable();
+            break;
+            case GameInputControls.ShopMenu:
+                GameInput.ShopMenu.Enable();
+            break;
+        }
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -121,17 +124,17 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
     public void OnOpenShipMenu(InputAction.CallbackContext context)
     {
 
-        if (ToggleShipMenu != null && context.performed)
+        if (OpenPlayershipMenu != null && context.performed)
         {
-            ToggleShipMenu.Invoke();
+            OpenPlayershipMenu.Invoke();
         }
     }
 
     public void OnCloseShipMenu(InputAction.CallbackContext context)
     {
-        if (ToggleShipMenu != null && context.performed)
+        if (OpenPlayershipMenu != null && context.performed)
         {
-            ToggleShipMenu.Invoke();
+            OpenPlayershipMenu.Invoke();
         }
     }
 
@@ -196,6 +199,14 @@ public class InputDispatcherSO : ScriptableObject, GameInput.IBaseGameplayAction
         if(IncDecWeaponSlot != null && context.performed)
         {
             IncDecWeaponSlot.Invoke(context.ReadValue<float>());
+        }
+    }
+
+    public void OnClosePlayershipMenu(InputAction.CallbackContext context)
+    {
+        if(ClosePlayershipMenu != null && context.performed)
+        {
+            ClosePlayershipMenu.Invoke();
         }
     }
 

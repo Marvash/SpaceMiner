@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 8224124148739245743, guid: 741640632371aae4ca616e5898ee9527, type: 3}
   - {fileID: 2765345273476693826, guid: d7df229188040234d8ee2333dd1e7da9, type: 3}
   - {fileID: 859645446262561341, guid: fc3a344e0cb7ac7448866a8227ce5f2c, type: 3}
-  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
+  gameManager: {fileID: 11400000, guid: 9b5fd3e51bfd065439dd70df6f604d68, type: 2}

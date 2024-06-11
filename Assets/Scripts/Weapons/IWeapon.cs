@@ -9,7 +9,6 @@ public enum WeaponAmmoType {
 
 public interface IWeapon
 {
-    public WeaponConfigBaseSO WeaponConfig { get; }
     public GameObject PlayershipGO { get; set;}
     public void ShootBegin();
 

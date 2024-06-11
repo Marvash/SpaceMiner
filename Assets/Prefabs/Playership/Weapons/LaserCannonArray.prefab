@@ -91,8 +91,7 @@ MonoBehaviour:
   LaserProjectile: {fileID: 4373572196716076429, guid: cd32819d11030f84d98a0207f2e88aa6, type: 3}
   LaserShotInterval: 0.3
   EnergyCostPerShot: 1
-  energyWeaponConfig: {fileID: 0}
-  energyWeaponDescriptor: {fileID: 11400000, guid: 1ec4c3ed4c5203e4994622380d395024, type: 2}
+  config: {fileID: 0}
 --- !u!1 &2886121424633946505
 GameObject:
   m_ObjectHideFlags: 0

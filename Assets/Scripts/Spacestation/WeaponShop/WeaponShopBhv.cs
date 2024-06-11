@@ -7,15 +7,20 @@ public class WeaponShopBhv : MonoBehaviour
     [SerializeField]
     LayerMask playerLayer;
     [SerializeField]
-    GameplayMenuControllerSO gameplayMenuController;
+    GameUIManagerSO gameUIManager;
+    [SerializeField]
+    WeaponShopUI weaponShopUI;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isPlayerLayer = ((1 << collision.gameObject.layer) & playerLayer) > 0;
         if(isPlayerLayer && !collision.isTrigger)
         {
-            PlayerWeaponsManager weapons = collision.GetComponent<PlayerWeaponsManager>();
-            gameplayMenuController.OpenWeaponShop(weapons);
+            if(weaponShopUI != null) {
+                gameUIManager.ActivateUIWithPriority(weaponShopUI);
+            } else {
+                Debug.Log("Weapon shop UI is not set");
+            }
         }
     }
 }

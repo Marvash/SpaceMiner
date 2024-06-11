@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundMovement : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     [SerializeField]
     float maxTargetRange;
@@ -20,7 +20,7 @@ public class BackgroundMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _target = PlayershipManagerSO.Player.transform;
+        _target = gameManager.Player.transform;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
         maxBackgroundRange = maxTargetRange * scale;
     }
 

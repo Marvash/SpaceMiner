@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 61
+  controlID: 49
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +139,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1921
+    width: 1957
     height: 1299
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 62
+  controlID: 50
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1921
+    width: 1957
     height: 809
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
@@ -187,7 +187,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 526
+    width: 534
     height: 809
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
@@ -211,9 +211,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 526
+    x: 534
     y: 0
-    width: 1395
+    width: 1423
     height: 809
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -247,7 +247,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 809
-    width: 1921
+    width: 1957
     height: 490
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
@@ -270,7 +270,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1243
+    width: 1268
     height: 490
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
@@ -294,9 +294,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1243
+    x: 1268
     y: 0
-    width: 678
+    width: 689
     height: 490
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
@@ -320,9 +320,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1921
+    x: 1957
     y: 0
-    width: 639
+    width: 603
     height: 1299
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
@@ -407,9 +407,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3086
+    x: 3094
     y: 75
-    width: 1393
+    width: 1421
     height: 788
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1393, y: 767}
+  m_TargetSize: {x: 1421, y: 767}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -442,8 +442,8 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -696.5
-    m_HBaseRangeMax: 696.5
+    m_HBaseRangeMin: -710.5
+    m_HBaseRangeMax: 710.5
     m_VBaseRangeMin: -383.5
     m_VBaseRangeMax: 383.5
     m_HAllowExceedBaseRangeMin: 1
@@ -463,23 +463,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1393
+      width: 1421
       height: 767
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 696.5, y: 383.5}
+    m_Translation: {x: 710.5, y: 383.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -696.5
+      x: -710.5
       y: -383.5
-      width: 1393
+      width: 1421
       height: 767
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1393, y: 788}
+  m_LastWindowPixelSize: {x: 1421, y: 788}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -507,7 +507,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2560
     y: 75
-    width: 525
+    width: 533
     height: 788
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -522,9 +522,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 32270000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 18fbffff
+      m_SelectedIDs: 7ef2fdff
+      m_LastClickedID: -134530
+      m_ExpandedIDs: a8f2fdfff4f2fdff30f6ffff38f6ffff40f6ffff5cf6ffff7ef6ffff44f7ffff64f7ffff6ef7ffff78f7ffff7ef9ffff88f9ffff94f9ffffa0f9ffffbef9ffffdef9ffffe8f9fffff2f9ffff18fbffff1a7300002673000038730000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -568,9 +568,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3086
+    x: 3094
     y: 75
-    width: 1393
+    width: 1421
     height: 788
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -891,9 +891,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 751.1876, y: 408.2236, z: -10.455345}
+    m_Target: {x: 467.08273, y: 578.8708, z: 7.1816254}
     speed: 2
-    m_Value: {x: 751.1876, y: 408.2236, z: -10.455345}
+    m_Value: {x: 473.28485, y: 578.52576, z: 7.11903}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -943,9 +943,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 366.5569
+    m_Target: 132.84274
     speed: 2
-    m_Value: 366.5569
+    m_Value: 139.10236
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1835,10 +1835,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 458
-    y: 73
-    width: 1461
-    height: 789
+    x: 3094
+    y: 75
+    width: 1421
+    height: 788
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1851,8 +1851,8 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ActionMapsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7f3cd3e8
-    m_LastClickedID: -388809601
+    m_SelectedIDs: 0e466128
+    m_LastClickedID: 677463566
     m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1869,13 +1869,13 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a78a90ae
-    m_LastClickedID: -1366259033
-    m_ExpandedIDs: 
+    m_SelectedIDs: 4e7cfe0a
+    m_LastClickedID: 184450126
+    m_ExpandedIDs: 2a770ede4e7cfe0ae165d96d
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1891,11 +1891,17 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ControlPickerViewState:
     m_AdvancedDropdownState:
-      states: []
+      states:
+      - itemId: 371857150
+        selectedIndex: -1
+        scroll: {x: 0, y: 0}
+      - itemId: 656259478
+        selectedIndex: 0
+        scroll: {x: 0, y: 0}
     m_ManualPathEditMode: 0
   m_ActionAssetManager:
     m_AssetObjectForEditing: {fileID: 0}
@@ -2092,7 +2098,7 @@ MonoBehaviour:
       \"action\": \"IncDecWeaponSlot\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": true\n                }\n            ]\n        },\n       
       {\n            \"name\": \"PlayershipMenu\",\n            \"id\": \"c0d88006-03e3-42a9-9241-e3f87984f352\",\n           
-      \"actions\": [\n                {\n                    \"name\": \"CloseShipMenu\",\n                   
+      \"actions\": [\n                {\n                    \"name\": \"ClosePlayershipMenu\",\n                   
       \"type\": \"Button\",\n                    \"id\": \"af4042bb-3743-4dae-a155-111d175c01f5\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
@@ -2100,22 +2106,28 @@ MonoBehaviour:
       \"name\": \"\",\n                    \"id\": \"2a40132b-f2fc-4ee1-9ba6-a0fcfc52208c\",\n                   
       \"path\": \"<Keyboard>/tab\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"Keyboard&Mouse\",\n                   
-      \"action\": \"CloseShipMenu\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"078ca752-00ea-4b20-a9c3-574dfe37049a\",\n                   
+      \"action\": \"ClosePlayershipMenu\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"078ca752-00ea-4b20-a9c3-574dfe37049a\",\n                   
       \"path\": \"<Gamepad>/select\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"Gamepad\",\n                   
-      \"action\": \"CloseShipMenu\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                }\n            ]\n        },\n       
-      {\n            \"name\": \"ShopMenu\",\n            \"id\": \"773ac078-1e7e-422e-b8ef-db171860ec8f\",\n           
-      \"actions\": [\n                {\n                    \"name\": \"CloseShopMenu\",\n                   
-      \"type\": \"Button\",\n                    \"id\": \"f99d17a7-7aab-47a5-a08c-d8f93670a33d\",\n                   
+      \"action\": \"ClosePlayershipMenu\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                }\n           
+      ]\n        },\n        {\n            \"name\": \"ShopMenu\",\n           
+      \"id\": \"a5f140f5-4237-42b5-b8b9-ab70b99fc260\",\n            \"actions\":
+      [\n                {\n                    \"name\": \"CloseShopMenu\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"8f6b4931-4203-4d72-9732-3b1e8f4e2c02\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
       }\n            ],\n            \"bindings\": [\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"13312e1e-d3e7-4619-9184-d276d6e73086\",\n                   
+      \"name\": \"\",\n                    \"id\": \"41d3deef-b963-47e9-9223-409d24cf1ab2\",\n                   
       \"path\": \"<Keyboard>/escape\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"Keyboard&Mouse\",\n                   
+      \"action\": \"CloseShopMenu\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"018963ac-e870-4ad1-8fa1-f09cb180e2b4\",\n                   
+      \"path\": \"<Gamepad>/select\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"Gamepad\",\n                   
       \"action\": \"CloseShopMenu\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                }\n            ]\n        }\n   
       ],\n    \"controlSchemes\": [\n        {\n            \"name\": \"Keyboard&Mouse\",\n           
@@ -2178,7 +2190,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2560
     y: 884
-    width: 1242
+    width: 1267
     height: 469
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2203,22 +2215,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI/WeaponShop
+    - Assets/Prefabs/Playership/Weapons
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/Scripts/UI/WeaponShop
+  - Assets/Prefabs/Playership/Weapons
   m_LastFoldersGridSize: 67
   m_LastProjectPath: E:\Source\UnityProjects\SpaceMiner
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 927}
-    m_SelectedIDs: 927e0000
-    m_LastClickedID: 32402
+    scrollPos: {x: 0, y: 239}
+    m_SelectedIDs: f27d0000
+    m_LastClickedID: 32242
     m_ExpandedIDs: 00000000667d0000687d00006a7d00006c7d00006e7d0000707d0000727d0000747d0000767d0000787d00007a7d00007c7d00007e7d0000807d0000827d0000847d0000867d0000887d00008a7d00008c7d00008e7d0000907d0000927d0000947d0000967d00002a7e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -2323,9 +2335,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3803
+    x: 3828
     y: 884
-    width: 676
+    width: 687
     height: 469
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2357,9 +2369,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 4481
+    x: 4517
     y: 75
-    width: 638
+    width: 602
     height: 1278
   m_SerializedDataModeController:
     m_DataMode: 0
