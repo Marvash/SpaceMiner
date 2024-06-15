@@ -21,7 +21,7 @@ public class PlayershipPresenter : MonoBehaviour
     void HandleUIActivation(IGameUI ui) {
         playershipUI.UpdateCargo(cargoPlayerData.GetCargo());
         playershipUI.UpdateWeight(weightPlayerData.CurrentWeight, weightPlayerData.MaxWeight, weightPlayerData.CurrentWeightColor);
-        playershipUI.UpdateMoney(moneyPlayerData.GetMoney());
+        playershipUI.UpdateMoney(moneyPlayerData.GetCurrentBalance());
     }
 
     void HandleUIDeactivation(IGameUI ui) {

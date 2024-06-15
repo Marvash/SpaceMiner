@@ -2,89 +2,97 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketLauncherArray : MonoBehaviour, IWeapon
+public class RocketLauncherArray : AWeapon
 {
     [SerializeField]
-    private List<GameObject> MissileLaunchers;
+    private List<GameObject> rocketLaunchers;
+
+    private float rocketSpeed;
+
+    private float rocketDamage;
 
     [SerializeField]
-    public float MissileSpeed;
+    private GameObject rocketProjectilePrefab;
+
+    private float rocketShotInterval;
+
+    private bool shooting;
+
+    private float lastRocketShotTime;
 
     [SerializeField]
-    public float MissileDamage;
+    private RocketLauncherArrayConfigSO rocketLauncherConfig;
 
-    [SerializeField]
-    public GameObject MissileProjectile;
+    public RocketLauncherArrayConfigSO RocketLauncherConfig { get => rocketLauncherConfig; set {
+        rocketLauncherConfig = value;
+        rocketLauncherConfig.OnCurrentWeaponLevelChange.AddListener(UpdateWeaponConfig);
+        UpdateWeaponConfig();
+    }}
 
-    [SerializeField]
-    public float LaserShotInterval;
+    public override WeaponConfigBaseSO WeaponConfig { get => RocketLauncherConfig; }
 
-    private bool _shootingMissiles;
-
-    private float _lastMissileShot;
-
-    public RocketLauncherArrayConfigSO WeaponConfig {get; set;}
-
-    public GameObject PlayershipGO { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        _lastMissileShot = 0.0f;
+        lastRocketShotTime = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_shootingMissiles)
+        if (shooting)
         {
-            _attemptShootLasers();
+            AttemptShootRocket();
         }
     }
 
-    private void _attemptShootLasers()
+    private void AttemptShootRocket()
     {
         float currentTime = Time.time;
-        if ((currentTime - _lastMissileShot) >= LaserShotInterval)
+        if ((currentTime - lastRocketShotTime) >= rocketShotInterval)
         {
-            foreach (GameObject missileLauncher in MissileLaunchers)
+            foreach (GameObject missileLauncher in rocketLaunchers)
             {
-                _shootLaser(missileLauncher);
+                ShootRocket(missileLauncher);
             }
-            _lastMissileShot = currentTime;
+            lastRocketShotTime = currentTime;
         }
     }
 
-    public void ShootBegin()
+    public override void ShootBegin()
     {
-        _shootingMissiles = true;
+        shooting = true;
     }
 
-    public void ShootEnd()
+    public override void ShootEnd()
     {
-        _shootingMissiles = false;
+        shooting = false;
     }
 
-    public void ShootInterrupt()
+    public override void ShootInterrupt()
     {
         ShootEnd();
     }
 
-    private void _shootLaser(GameObject missileLauncher)
+    private void ShootRocket(GameObject missileLauncher)
     {
-        GameObject projectile = Instantiate(MissileProjectile, missileLauncher.transform.position, missileLauncher.transform.rotation);
+        GameObject projectile = Instantiate(rocketProjectilePrefab, missileLauncher.transform.position, missileLauncher.transform.rotation);
         SimpleProjectileMovement projectileMovement = projectile.GetComponent<SimpleProjectileMovement>();
         ExplosiveProjectileDamager projectileImpact = projectile.GetComponent<ExplosiveProjectileDamager>();
-        projectileMovement.ProjectileSpeed = MissileSpeed;
-        projectileImpact.ProjectileAreaDamage = MissileDamage;
+        projectileMovement.ProjectileSpeed = rocketSpeed;
+        projectileImpact.ProjectileAreaDamage = rocketDamage;
     }
 
-    public bool IsActive()
+    public override bool IsActive()
     {
-        return _shootingMissiles;
+        return shooting;
     }
 
-    public void InitWeapon(WeaponInitializer initializer)
-    {
+    public override void UpdateWeaponConfig() {
+        RocketLauncherArrayLevelConfig levelConfig = rocketLauncherConfig.RocketLauncherArrayLevelConfigs[rocketLauncherConfig.CurrentWeaponLevel-1];
+        rocketDamage = levelConfig.WeaponDamage;
+        rocketSpeed = levelConfig.ProjectileSpeed;
+        rocketShotInterval = levelConfig.RocketShotCooldown;
     }
 }

@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7227b3ab990067843a84ffa36c6bff52, type: 3}
   m_Name: MoneyPlayerDataSO
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  money: 1100000
+  MoneyUpdateEvent:
+    m_PersistentCalls:
+      m_Calls: []

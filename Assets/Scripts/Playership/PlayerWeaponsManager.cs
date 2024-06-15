@@ -3,22 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WeaponInitializer {
-    GameObject playerShipGO;
-    public WeaponInitializer(GameObject playerShipGO) {
-        this.playerShipGO = playerShipGO;
-    }
-    public void InitializeWeapon(LaserCannonArray laserCannonArray) {
-        EnergyBehaviour energyBehaviour = playerShipGO.GetComponent<EnergyBehaviour>();
-        laserCannonArray.SetEnergyBehaviour(energyBehaviour);
-    }
-
-    public void InitializeWeapon(ChargedLaserCannonArray chargedLaserCannonArray) {
-        EnergyBehaviour energyBehaviour = playerShipGO.GetComponent<EnergyBehaviour>();
-        chargedLaserCannonArray.SetEnergyBehaviour(energyBehaviour);
-    }
-}
-
 public class PlayerWeaponsManager : MonoBehaviour
 {
     [SerializeField]
@@ -27,22 +11,17 @@ public class PlayerWeaponsManager : MonoBehaviour
     [SerializeField]
     private GameObject WeaponsGO;
 
-    public IWeapon[] weapons {get; private set;}
-
-    private Dictionary<IWeapon, GameObject> weaponsGOMap = new Dictionary<IWeapon, GameObject>();
+    public AWeapon[] weapons {get; private set;}
 
     private int selectedWeaponIndex;
 
     private bool shooting;
-
-    private WeaponInitializer weaponInitializer;
 
     [SerializeField]
     WeaponsPlayerDataSO weaponPlayerData;
 
     private void Start()
     {
-        weaponInitializer = new WeaponInitializer(gameObject);
         selectedWeaponIndex = 0;
         InputDispatcherSO.SelectWeaponSlot += SelectWeaponHandler;
         InputDispatcherSO.FirePrimaryStart += ShootStartHandler;
@@ -66,8 +45,8 @@ public class PlayerWeaponsManager : MonoBehaviour
     }
 
     private void InitializeWeaponSystem() {
-        WeaponConfigBaseSO[] weaponSlots = weaponPlayerData.GetWeaponSlots();
-        weapons = new IWeapon[weaponPlayerData.GetWeaponSlotsCount()];
+        WeaponConfigBaseSO[] weaponSlots = weaponPlayerData.WeaponSlots;
+        weapons = new AWeapon[weaponPlayerData.WeaponSlotsCount];
         for(int i = 0; i < weaponSlots.Length; i++) {
             SetWeaponBySlot(i, weaponSlots[i]);
         }
@@ -75,27 +54,21 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     public bool SetWeaponBySlot(int weaponSlot, WeaponConfigBaseSO weaponConfig) {
         if(weaponConfig == null) {
-            Debug.Log("Removing weapon");
             RemoveWeaponBySlot(weaponSlot);
             return true;
         }
-        GameObject weaponGO = weaponConfig.InstantiateWeapon();
-        if(weaponGO.TryGetComponent(out IWeapon weapon)) {
-            if(weaponGO.transform.parent != WeaponsGO) {
-                weaponGO.transform.SetParent(WeaponsGO.transform, false);
-            }
-            weapon.InitWeapon(weaponInitializer);
-            weapons[weaponSlot] = weapon;
-            return true;
-        } else {
-            return false;
+        IWeaponFactory weaponFactory = weaponConfig.WeaponFactory;
+        AWeapon weapon = weaponFactory.InstantiateWeapon(gameObject);
+        if(weapon.transform.parent != WeaponsGO) {
+            weapon.transform.SetParent(WeaponsGO.transform, false);
         }
+        weapons[weaponSlot] = weapon;
+        return true;
     }
 
     private void RemoveWeaponBySlot(int weaponSlot) {
         if(weapons[weaponSlot] != null) {
-            GameObject toDestroy = weaponsGOMap[weapons[weaponSlot]];
-            weaponsGOMap.Remove(weapons[weaponSlot]);
+            GameObject toDestroy = weapons[weaponSlot].gameObject;
             Destroy(toDestroy);
             weapons[weaponSlot] = null;
         }
@@ -165,8 +138,8 @@ public class PlayerWeaponsManager : MonoBehaviour
     private void ResizeWeaponsArray(int weaponSlotsCount) {
         int currentLength = weapons.Length;
         if(currentLength < weaponSlotsCount) {
-            IWeapon[] weaponsTmp = weapons;
-            weapons = new IWeapon[weaponSlotsCount];
+            AWeapon[] weaponsTmp = weapons;
+            weapons = new AWeapon[weaponSlotsCount];
             for(int i = 0; i < weaponsTmp.Length; i++) {
                 weapons[i] = weaponsTmp[i];
             }
@@ -175,8 +148,8 @@ public class PlayerWeaponsManager : MonoBehaviour
             for(int i = 0; i < slotsDelta; i++) {
                 RemoveWeaponBySlot(currentLength - 1 - i);
             }
-            IWeapon[] weaponsTmp = weapons;
-            weapons = new IWeapon[weaponSlotsCount];
+            AWeapon[] weaponsTmp = weapons;
+            weapons = new AWeapon[weaponSlotsCount];
             for(int i = 0; i < weaponSlotsCount; i++) {
                 weapons[i] = weaponsTmp[i];
             }

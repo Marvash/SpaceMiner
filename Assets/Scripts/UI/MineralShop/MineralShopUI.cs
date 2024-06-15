@@ -10,13 +10,15 @@ public class MineralShopUI : MonoBehaviour, IGameUI
     private Canvas mineralShopCanvas;
 
     [SerializeField]
-    private GameObject MineralListPanel;
+    private GameObject mineralListPanel;
 
     [SerializeField]
-    private GameObject MineralItem;
+    private GameObject mineralItemPrefab;
 
     [SerializeField]
-    private TextMeshProUGUI TotalText;
+    private TextMeshProUGUI totalText;
+    [SerializeField]
+    private TextMeshProUGUI playerBalanceText;
 
     private List<MineralItemUI> mineralItemList = new List<MineralItemUI>();
 
@@ -25,6 +27,8 @@ public class MineralShopUI : MonoBehaviour, IGameUI
     public UnityEvent<IGameUI> OnDeactivateUI { get; private set;}
 
     public GameInputControls InputControls { get; private set;}
+
+    private int currentPlayerCash = 999999999;
 
     public bool IsActive { get; private set;}
     [field:SerializeField]
@@ -48,7 +52,7 @@ public class MineralShopUI : MonoBehaviour, IGameUI
         }
     }
 
-    public void UpdateMineralList(PickupStack[] cargo)
+    public void UpdateMineralShop(PickupStack[] cargo, int playerCash)
     {
         ResetUI();
         for(int i = 0; i < cargo.Length; i++)
@@ -56,14 +60,16 @@ public class MineralShopUI : MonoBehaviour, IGameUI
             if(cargo[i] == null) {
                 continue;
             }
-            GameObject mineralItem = Instantiate(MineralItem, MineralListPanel.transform);
-            MineralItemUI mineralItemUI = mineralItem.GetComponent<MineralItemUI>();
+            GameObject mineralItemGO = Instantiate(mineralItemPrefab, mineralListPanel.transform);
+            MineralItemUI mineralItemUI = mineralItemGO.GetComponent<MineralItemUI>();
             mineralItemList.Add(mineralItemUI);
             mineralItemUI.SoldSignal.AddListener(HandleItemSold);
             mineralItemUI.ItemIndex = i;
             mineralItemUI.SetPickupStack(cargo[i]);
         }
         UpdateTotalPrice();
+        currentPlayerCash = playerCash;
+        UpdatePlayerBalance();
     }
 
     private void ResetUI()
@@ -84,7 +90,11 @@ public class MineralShopUI : MonoBehaviour, IGameUI
             PickupStack ps = mineralItemUI.GetCurrentPickupStack();
             total += ps.stackCount * ps.pickupSO.value;
         }
-        TotalText.text = total + " $";
+        totalText.text = total + " $";
+    }
+
+    private void UpdatePlayerBalance() {
+        playerBalanceText.text = currentPlayerCash + " $";
     }
 
     public void HandleSellAllItems()

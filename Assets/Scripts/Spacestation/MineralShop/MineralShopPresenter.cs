@@ -17,7 +17,7 @@ public class MineralShopPresenter : MonoBehaviour
     }
 
     void HandleUIActivation(IGameUI ui) {
-        mineralShopUI.UpdateMineralList(cargoPlayerData.GetCargo());
+        mineralShopUI.UpdateMineralShop(cargoPlayerData.GetCargo(), moneyPlayerData.GetCurrentBalance());
         mineralShopUI.OnItemSell.AddListener(HandleItemSold);
         mineralShopUI.OnSellAllItems.AddListener(HandleSellAllItems);
     }
@@ -31,7 +31,7 @@ public class MineralShopPresenter : MonoBehaviour
         PickupStack soldStack = cargoPlayerData.GetCargo()[index];
         moneyPlayerData.SellItem(soldStack);
         cargoPlayerData.RemoveCargoItemByIndex(index);
-        mineralShopUI.UpdateMineralList(cargoPlayerData.GetCargo());
+        mineralShopUI.UpdateMineralShop(cargoPlayerData.GetCargo(), moneyPlayerData.GetCurrentBalance());
     }
 
     void HandleSellAllItems() {
@@ -41,6 +41,6 @@ public class MineralShopPresenter : MonoBehaviour
             }
         }
             cargoPlayerData.ResetCargo();
-            mineralShopUI.UpdateMineralList(cargoPlayerData.GetCargo());
+            mineralShopUI.UpdateMineralShop(cargoPlayerData.GetCargo(), moneyPlayerData.GetCurrentBalance());
     }
 }

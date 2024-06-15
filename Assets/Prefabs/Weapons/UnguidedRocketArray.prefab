@@ -63,7 +63,7 @@ Transform:
   - {fileID: 5071294464826113398}
   - {fileID: 4479341420425837902}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &555804772778719961
 MonoBehaviour:
@@ -77,15 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4265832f29b24154c8b71a834a6673b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissileLaunchers:
+  rocketLaunchers:
   - {fileID: 5455223738091746645}
   - {fileID: 5184893127852767222}
-  MissileSpeed: 5
-  MissileDamage: 50
-  MissileProjectile: {fileID: 5678407571635919242, guid: 7473767347f30e540b296647e44795cc, type: 3}
-  LaserShotInterval: 0.5
-  ammoWeaponConfig: {fileID: 0}
-  ammoWeaponDescriptor: {fileID: 11400000, guid: aa04c0c98c1e5bb469c3dcaf3b4cacb7, type: 2}
+  rocketProjectilePrefab: {fileID: 5678407571635919242, guid: 7473767347f30e540b296647e44795cc, type: 3}
+  rocketLauncherConfig: {fileID: 0}
 --- !u!1 &5455223738091746645
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,55 +9,81 @@ public class WeaponsPlayerDataSO : ScriptableObject
 {
     public UnityEvent<int, WeaponConfigBaseSO> OnWeaponSlotSet = new UnityEvent<int, WeaponConfigBaseSO>();
     public UnityEvent<int> OnWeaponSlotsCountChange = new UnityEvent<int>();
-    [SerializeField]
-    List<WeaponConfigBaseSO> CompleteWeaponConfigList = new List<WeaponConfigBaseSO>();
-    [SerializeField]
-    List<WeaponConfigBaseSO> OwnedWeaponsList = new List<WeaponConfigBaseSO>();
-    [SerializeField]
-    WeaponConfigBaseSO[] WeaponSlots;
-    [SerializeField]
-    private int MaxWeaponSlotsCount = 4;
-    [SerializeField]
-    private int WeaponSlotsCount = 1;
-
-    public List<WeaponConfigBaseSO> GetCompleteWeaponConfigList() {
-        return CompleteWeaponConfigList;
-    }
-
-    public List<WeaponConfigBaseSO> GetOwnedWeaponList() {
-        return OwnedWeaponsList;
-    }
-
-    public WeaponConfigBaseSO[] GetWeaponSlots() {
-        return WeaponSlots;
-    }
+    [field:SerializeField]
+    public List<WeaponConfigBaseSO> CompleteWeaponConfigList { get; set; }
+    [field:SerializeField]
+    public WeaponConfigBaseSO[] WeaponSlots { get; set;} = new WeaponConfigBaseSO[0];
+    [field:SerializeField]
+    public int MaxWeaponSlotsCount { get; set; } = 4;
+    [field:SerializeField]
+    public int WeaponSlotsCount { get; set; } = 1;
 
     void OnEnable() {
-        int weaponSlotsCount = WeaponSlots.Length;
-        WeaponSlotsCount = weaponSlotsCount;
+        WeaponSlotsCount = Mathf.Max(WeaponSlots.Length, WeaponSlotsCount);
         MaxWeaponSlotsCount = Mathf.Max(MaxWeaponSlotsCount, WeaponSlotsCount);
+        if(WeaponSlots.Length < WeaponSlotsCount) {
+            WeaponConfigBaseSO[] tmp = WeaponSlots;
+            WeaponSlots = new WeaponConfigBaseSO[WeaponSlotsCount];
+            for(int i = 0; i < tmp.Length; i++) {
+                WeaponSlots[i] = tmp[i];
+            }
+        }
         foreach(WeaponConfigBaseSO config in WeaponSlots) {
-            if(!OwnedWeaponsList.Contains(config)) {
-                OwnedWeaponsList.Add(config);
-            }
-        }
-        foreach(WeaponConfigBaseSO config in OwnedWeaponsList) {
-            if(!CompleteWeaponConfigList.Contains(config)) {
-                CompleteWeaponConfigList.Add(config);
+            if(config != null) {
+                if(!CompleteWeaponConfigList.Contains(config))
+                    CompleteWeaponConfigList.Add(config);
+                if(config.CurrentUnlockedWeaponLevel == 0) {
+                    config.CurrentUnlockedWeaponLevel = 1;
+                    config.CurrentWeaponLevel = 1;
+                }
             }
         }
     }
 
-    public int GetWeaponSlotsCount() {
-        return WeaponSlotsCount;
+    public void UnlockWeapon(WeaponConfigBaseSO weaponConfig, int weaponLevel) {
+        weaponConfig.CurrentUnlockedWeaponLevel = weaponLevel;
+        int existingIndex = -1;
+        for(int i = 0; i < WeaponSlots.Length; i++) {
+            if(WeaponSlots[i] == weaponConfig) {
+                existingIndex = i;
+                break;
+            }
+        }
+        if(existingIndex >= 0) {
+            weaponConfig.CurrentWeaponLevel = weaponLevel;
+        }
     }
 
-    public void SetWeaponSlot(int slotIndex, WeaponConfigBaseSO weapon) {
-        if(OwnedWeaponsList.Contains(weapon)) {
+    public void SetWeaponSlot(WeaponConfigBaseSO weapon, int weaponLevel, int slotIndex) {
+        if(weapon.CurrentUnlockedWeaponLevel >= weaponLevel) {
+            int existingIndex = -1;
+            for(int i = 0; i < WeaponSlots.Length; i++) {
+                if(WeaponSlots[i] == weapon) {
+                    existingIndex = i;
+                    break;
+                }
+            }
+            if(existingIndex == slotIndex) {
+                if(weapon.CurrentWeaponLevel != weaponLevel) {
+                    weapon.CurrentWeaponLevel = weaponLevel;
+                }
+                return;
+            } else if(existingIndex >= 0) {
+                RemoveWeaponFromSlot(existingIndex);
+            }
+            RemoveWeaponFromSlot(slotIndex);
+            weapon.CurrentWeaponLevel = weaponLevel;
             WeaponSlots[slotIndex] = weapon;
             OnWeaponSlotSet.Invoke(slotIndex, weapon);
         } else {
             Debug.LogWarning("Trying to set weapon slot for non owned weapon");
+        }
+    }
+
+    public void RemoveWeaponFromSlot(int slotIndex) {
+        if(WeaponSlots[slotIndex] != null) {
+            WeaponSlots[slotIndex] = null;
+            OnWeaponSlotSet.Invoke(slotIndex, null);
         }
     }
 

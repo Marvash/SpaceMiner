@@ -18,13 +18,10 @@ MonoBehaviour:
   OnWeaponSlotsCountChange:
     m_PersistentCalls:
       m_Calls: []
-  CompleteWeaponConfigList:
+  <CompleteWeaponConfigList>k__BackingField:
   - {fileID: 11400000, guid: 732566f67a3997540bd2dec3df1c76ba, type: 2}
-  - {fileID: 11400000, guid: 02814347cea9aa549a8939af8a2dc5b9, type: 2}
-  OwnedWeaponsList:
-  - {fileID: 11400000, guid: 732566f67a3997540bd2dec3df1c76ba, type: 2}
-  - {fileID: 11400000, guid: 02814347cea9aa549a8939af8a2dc5b9, type: 2}
-  WeaponSlots:
-  - {fileID: 11400000, guid: 732566f67a3997540bd2dec3df1c76ba, type: 2}
-  - {fileID: 11400000, guid: 02814347cea9aa549a8939af8a2dc5b9, type: 2}
-  MaxWeaponSlotsCount: 4
+  - {fileID: 11400000, guid: 1f6ee70b6c08872408370e917abeb464, type: 2}
+  <WeaponSlots>k__BackingField:
+  - {fileID: 11400000, guid: 1f6ee70b6c08872408370e917abeb464, type: 2}
+  <MaxWeaponSlotsCount>k__BackingField: 4
+  <WeaponSlotsCount>k__BackingField: 2

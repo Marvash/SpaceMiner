@@ -1,0 +1,132 @@
+# Details
+
+Date : 2024-06-14 21:45:22
+
+Directory e:\\Source\\UnityProjects\\SpaceMiner\\Assets\\Scripts
+
+Total : 117 files,  7623 codes, 144 comments, 1342 blanks, all 9109 lines
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [Assets/Scripts/AI/BehaviourTree/AlwaysSucceedNode.cs](/Assets/Scripts/AI/BehaviourTree/AlwaysSucceedNode.cs) | C# | 19 | 0 | 2 | 21 |
+| [Assets/Scripts/AI/BehaviourTree/BBVarSetter.cs](/Assets/Scripts/AI/BehaviourTree/BBVarSetter.cs) | C# | 23 | 0 | 3 | 26 |
+| [Assets/Scripts/AI/BehaviourTree/ChaseTargetNode.cs](/Assets/Scripts/AI/BehaviourTree/ChaseTargetNode.cs) | C# | 91 | 0 | 9 | 100 |
+| [Assets/Scripts/AI/BehaviourTree/ChaseTargetToRangeSmoothNode.cs](/Assets/Scripts/AI/BehaviourTree/ChaseTargetToRangeSmoothNode.cs) | C# | 121 | 0 | 8 | 129 |
+| [Assets/Scripts/AI/BehaviourTree/ComputeTargetPredictedImpactPosition.cs](/Assets/Scripts/AI/BehaviourTree/ComputeTargetPredictedImpactPosition.cs) | C# | 75 | 3 | 10 | 88 |
+| [Assets/Scripts/AI/BehaviourTree/FacePositionSmoothNode.cs](/Assets/Scripts/AI/BehaviourTree/FacePositionSmoothNode.cs) | C# | 50 | 0 | 7 | 57 |
+| [Assets/Scripts/AI/BehaviourTree/GenericTrees/SimpleMovementBT.cs](/Assets/Scripts/AI/BehaviourTree/GenericTrees/SimpleMovementBT.cs) | C# | 133 | 0 | 28 | 161 |
+| [Assets/Scripts/AI/BehaviourTree/HasLOSOnTargetPositionNode.cs](/Assets/Scripts/AI/BehaviourTree/HasLOSOnTargetPositionNode.cs) | C# | 47 | 0 | 5 | 52 |
+| [Assets/Scripts/AI/BehaviourTree/IsChargedLaserReadyNode.cs](/Assets/Scripts/AI/BehaviourTree/IsChargedLaserReadyNode.cs) | C# | 28 | 0 | 4 | 32 |
+| [Assets/Scripts/AI/BehaviourTree/IsFacingPositionApproximateNode.cs](/Assets/Scripts/AI/BehaviourTree/IsFacingPositionApproximateNode.cs) | C# | 48 | 0 | 5 | 53 |
+| [Assets/Scripts/AI/BehaviourTree/IsWeaponActiveNode.cs](/Assets/Scripts/AI/BehaviourTree/IsWeaponActiveNode.cs) | C# | 28 | 0 | 5 | 33 |
+| [Assets/Scripts/AI/BehaviourTree/Node.cs](/Assets/Scripts/AI/BehaviourTree/Node.cs) | C# | 93 | 0 | 16 | 109 |
+| [Assets/Scripts/AI/BehaviourTree/ResultInverterNode.cs](/Assets/Scripts/AI/BehaviourTree/ResultInverterNode.cs) | C# | 30 | 0 | 3 | 33 |
+| [Assets/Scripts/AI/BehaviourTree/SelectorNode.cs](/Assets/Scripts/AI/BehaviourTree/SelectorNode.cs) | C# | 30 | 0 | 3 | 33 |
+| [Assets/Scripts/AI/BehaviourTree/SequenceNode.cs](/Assets/Scripts/AI/BehaviourTree/SequenceNode.cs) | C# | 38 | 0 | 4 | 42 |
+| [Assets/Scripts/AI/BehaviourTree/StartFireChargedLaserCannonNode.cs](/Assets/Scripts/AI/BehaviourTree/StartFireChargedLaserCannonNode.cs) | C# | 23 | 0 | 4 | 27 |
+| [Assets/Scripts/AI/BehaviourTree/StartFireLaserCannonNode.cs](/Assets/Scripts/AI/BehaviourTree/StartFireLaserCannonNode.cs) | C# | 26 | 0 | 3 | 29 |
+| [Assets/Scripts/AI/BehaviourTree/StopFireChargedLaserCannonNode.cs](/Assets/Scripts/AI/BehaviourTree/StopFireChargedLaserCannonNode.cs) | C# | 23 | 0 | 4 | 27 |
+| [Assets/Scripts/AI/BehaviourTree/StopFireLaserCannonArrayNode.cs](/Assets/Scripts/AI/BehaviourTree/StopFireLaserCannonArrayNode.cs) | C# | 23 | 0 | 4 | 27 |
+| [Assets/Scripts/AI/BehaviourTree/TargetInRangeNode.cs](/Assets/Scripts/AI/BehaviourTree/TargetInRangeNode.cs) | C# | 46 | 0 | 5 | 51 |
+| [Assets/Scripts/AI/BehaviourTree/TimerGateNode.cs](/Assets/Scripts/AI/BehaviourTree/TimerGateNode.cs) | C# | 39 | 0 | 7 | 46 |
+| [Assets/Scripts/AI/BehaviourTree/Tree.cs](/Assets/Scripts/AI/BehaviourTree/Tree.cs) | C# | 27 | 0 | 6 | 33 |
+| [Assets/Scripts/Asteroids/AsteroidBehaviour.cs](/Assets/Scripts/Asteroids/AsteroidBehaviour.cs) | C# | 140 | 2 | 25 | 167 |
+| [Assets/Scripts/Asteroids/AsteroidConfigSO.cs](/Assets/Scripts/Asteroids/AsteroidConfigSO.cs) | C# | 32 | 0 | 3 | 35 |
+| [Assets/Scripts/Asteroids/AsteroidDiffSO.cs](/Assets/Scripts/Asteroids/AsteroidDiffSO.cs) | C# | 72 | 0 | 8 | 80 |
+| [Assets/Scripts/Asteroids/AsteroidFactory.cs](/Assets/Scripts/Asteroids/AsteroidFactory.cs) | C# | 63 | 0 | 11 | 74 |
+| [Assets/Scripts/Asteroids/AsteroidProceduralSpawner.cs](/Assets/Scripts/Asteroids/AsteroidProceduralSpawner.cs) | C# | 126 | 6 | 14 | 146 |
+| [Assets/Scripts/Asteroids/AsteroidSpawnLayersConfigSO.cs](/Assets/Scripts/Asteroids/AsteroidSpawnLayersConfigSO.cs) | C# | 5 | 0 | 1 | 6 |
+| [Assets/Scripts/Background/BackgroundMovement.cs](/Assets/Scripts/Background/BackgroundMovement.cs) | C# | 25 | 2 | 8 | 35 |
+| [Assets/Scripts/Camera/CameraMovement.cs](/Assets/Scripts/Camera/CameraMovement.cs) | C# | 20 | 1 | 6 | 27 |
+| [Assets/Scripts/Combat/IDamageable.cs](/Assets/Scripts/Combat/IDamageable.cs) | C# | 39 | 0 | 10 | 49 |
+| [Assets/Scripts/Combat/IDamager.cs](/Assets/Scripts/Combat/IDamager.cs) | C# | 26 | 0 | 4 | 30 |
+| [Assets/Scripts/DropTable/DropPickupStack.cs](/Assets/Scripts/DropTable/DropPickupStack.cs) | C# | 17 | 0 | 3 | 20 |
+| [Assets/Scripts/DropTable/DropTable.cs](/Assets/Scripts/DropTable/DropTable.cs) | C# | 30 | 0 | 4 | 34 |
+| [Assets/Scripts/DropTable/DropTableLibrarySO.cs](/Assets/Scripts/DropTable/DropTableLibrarySO.cs) | C# | 34 | 0 | 5 | 39 |
+| [Assets/Scripts/DropTable/Droppable.cs](/Assets/Scripts/DropTable/Droppable.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/Scripts/Enemies/EnemyBehaviourInitializer.cs](/Assets/Scripts/Enemies/EnemyBehaviourInitializer.cs) | C# | 10 | 0 | 0 | 10 |
+| [Assets/Scripts/Enemies/EnemyFactorySO.cs](/Assets/Scripts/Enemies/EnemyFactorySO.cs) | C# | 40 | 0 | 10 | 50 |
+| [Assets/Scripts/Enemies/EnemyGroupSpawnLayersConfigSO.cs](/Assets/Scripts/Enemies/EnemyGroupSpawnLayersConfigSO.cs) | C# | 5 | 0 | 2 | 7 |
+| [Assets/Scripts/Enemies/EnemyGroup/EnemyGroupProceduralSpawnerSO.cs](/Assets/Scripts/Enemies/EnemyGroup/EnemyGroupProceduralSpawnerSO.cs) | C# | 58 | 1 | 10 | 69 |
+| [Assets/Scripts/Enemies/EnemyGroup/EnemyGroupSO.cs](/Assets/Scripts/Enemies/EnemyGroup/EnemyGroupSO.cs) | C# | 17 | 0 | 3 | 20 |
+| [Assets/Scripts/Enemies/EnemyGroup/IEnemyGroup.cs](/Assets/Scripts/Enemies/EnemyGroup/IEnemyGroup.cs) | C# | 8 | 0 | 3 | 11 |
+| [Assets/Scripts/Enemies/IEnemy.cs](/Assets/Scripts/Enemies/IEnemy.cs) | C# | 19 | 0 | 3 | 22 |
+| [Assets/Scripts/Enemies/ISimpleEnemy.cs](/Assets/Scripts/Enemies/ISimpleEnemy.cs) | C# | 11 | 0 | 2 | 13 |
+| [Assets/Scripts/Enemies/Nautolan/Fighter/BT/NautolanFighterCombatBT.cs](/Assets/Scripts/Enemies/Nautolan/Fighter/BT/NautolanFighterCombatBT.cs) | C# | 59 | 0 | 10 | 69 |
+| [Assets/Scripts/Enemies/Nautolan/Fighter/NautolanFighterEnemy.cs](/Assets/Scripts/Enemies/Nautolan/Fighter/NautolanFighterEnemy.cs) | C# | 30 | 0 | 7 | 37 |
+| [Assets/Scripts/Enemies/Nautolan/Scout/BT/NautolanScoutCombatBT.cs](/Assets/Scripts/Enemies/Nautolan/Scout/BT/NautolanScoutCombatBT.cs) | C# | 58 | 0 | 10 | 68 |
+| [Assets/Scripts/Enemies/Nautolan/Scout/NautolanScoutEnemy.cs](/Assets/Scripts/Enemies/Nautolan/Scout/NautolanScoutEnemy.cs) | C# | 46 | 0 | 12 | 58 |
+| [Assets/Scripts/Enemies/Nautolan/Sniper/BT/NautolanSniperCombatBT.cs](/Assets/Scripts/Enemies/Nautolan/Sniper/BT/NautolanSniperCombatBT.cs) | C# | 70 | 0 | 11 | 81 |
+| [Assets/Scripts/Enemies/Nautolan/Sniper/NautolanSniperEnemy.cs](/Assets/Scripts/Enemies/Nautolan/Sniper/NautolanSniperEnemy.cs) | C# | 65 | 2 | 17 | 84 |
+| [Assets/Scripts/EventChannels/FloatEventChannelSO.cs](/Assets/Scripts/EventChannels/FloatEventChannelSO.cs) | C# | 13 | 0 | 3 | 16 |
+| [Assets/Scripts/GameEventsSystem/GameEventSO.cs](/Assets/Scripts/GameEventsSystem/GameEventSO.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/Scripts/GameEventsSystem/GameEventsLayersSO.cs](/Assets/Scripts/GameEventsSystem/GameEventsLayersSO.cs) | C# | 5 | 0 | 2 | 7 |
+| [Assets/Scripts/GameEventsSystem/GameEventsManager.cs](/Assets/Scripts/GameEventsSystem/GameEventsManager.cs) | C# | 92 | 1 | 16 | 109 |
+| [Assets/Scripts/GameManagerSO.cs](/Assets/Scripts/GameManagerSO.cs) | C# | 14 | 0 | 3 | 17 |
+| [Assets/Scripts/GameSystems/GameplayController.cs](/Assets/Scripts/GameSystems/GameplayController.cs) | C# | 25 | 1 | 7 | 33 |
+| [Assets/Scripts/GameSystems/PickupSpawnerSO.cs](/Assets/Scripts/GameSystems/PickupSpawnerSO.cs) | C# | 33 | 0 | 4 | 37 |
+| [Assets/Scripts/GameSystems/ScriptableObjectInitializer.cs](/Assets/Scripts/GameSystems/ScriptableObjectInitializer.cs) | C# | 16 | 0 | 4 | 20 |
+| [Assets/Scripts/Input/InputDispatcherSO.cs](/Assets/Scripts/Input/InputDispatcherSO.cs) | C# | 191 | 3 | 27 | 221 |
+| [Assets/Scripts/Pickups/PickupLibrarySO.cs](/Assets/Scripts/Pickups/PickupLibrarySO.cs) | C# | 21 | 0 | 6 | 27 |
+| [Assets/Scripts/Pickups/PickupSO.cs](/Assets/Scripts/Pickups/PickupSO.cs) | C# | 19 | 0 | 3 | 22 |
+| [Assets/Scripts/Pickups/PickupStack.cs](/Assets/Scripts/Pickups/PickupStack.cs) | C# | 22 | 0 | 3 | 25 |
+| [Assets/Scripts/Pickups/PickupStackScript.cs](/Assets/Scripts/Pickups/PickupStackScript.cs) | C# | 36 | 2 | 7 | 45 |
+| [Assets/Scripts/Playership/CargoPlayerDataSO.cs](/Assets/Scripts/Playership/CargoPlayerDataSO.cs) | C# | 102 | 0 | 13 | 115 |
+| [Assets/Scripts/Playership/Energy/EnergyBehaviour.cs](/Assets/Scripts/Playership/Energy/EnergyBehaviour.cs) | C# | 126 | 2 | 27 | 155 |
+| [Assets/Scripts/Playership/MiningLaser/PlayerMiningLaser.cs](/Assets/Scripts/Playership/MiningLaser/PlayerMiningLaser.cs) | C# | 122 | 1 | 18 | 141 |
+| [Assets/Scripts/Playership/MoneyPlayerDataSO.cs](/Assets/Scripts/Playership/MoneyPlayerDataSO.cs) | C# | 40 | 0 | 9 | 49 |
+| [Assets/Scripts/Playership/PlayerCombatBehaviour.cs](/Assets/Scripts/Playership/PlayerCombatBehaviour.cs) | C# | 13 | 0 | 3 | 16 |
+| [Assets/Scripts/Playership/PlayerMovement.cs](/Assets/Scripts/Playership/PlayerMovement.cs) | C# | 207 | 1 | 43 | 251 |
+| [Assets/Scripts/Playership/PlayerWeaponsManager.cs](/Assets/Scripts/Playership/PlayerWeaponsManager.cs) | C# | 139 | 0 | 22 | 161 |
+| [Assets/Scripts/Playership/PlayershipBhv.cs](/Assets/Scripts/Playership/PlayershipBhv.cs) | C# | 55 | 0 | 10 | 65 |
+| [Assets/Scripts/Playership/PlayershipPresenter.cs](/Assets/Scripts/Playership/PlayershipPresenter.cs) | C# | 26 | 0 | 5 | 31 |
+| [Assets/Scripts/Playership/PlayershipWeight.cs](/Assets/Scripts/Playership/PlayershipWeight.cs) | C# | 29 | 0 | 6 | 35 |
+| [Assets/Scripts/Playership/WeightPlayerDataSO.cs](/Assets/Scripts/Playership/WeightPlayerDataSO.cs) | C# | 80 | 0 | 9 | 89 |
+| [Assets/Scripts/ProceduralGeneration/MovingProceduralPOIGenerator.cs](/Assets/Scripts/ProceduralGeneration/MovingProceduralPOIGenerator.cs) | C# | 215 | 20 | 29 | 264 |
+| [Assets/Scripts/Projectiles/ExplosiveProjectileDamager.cs](/Assets/Scripts/Projectiles/ExplosiveProjectileDamager.cs) | C# | 37 | 0 | 4 | 41 |
+| [Assets/Scripts/Projectiles/SimpleProjectileDamager.cs](/Assets/Scripts/Projectiles/SimpleProjectileDamager.cs) | C# | 30 | 0 | 3 | 33 |
+| [Assets/Scripts/Projectiles/SimpleProjectileMovement.cs](/Assets/Scripts/Projectiles/SimpleProjectileMovement.cs) | C# | 37 | 0 | 11 | 48 |
+| [Assets/Scripts/Spacestation/MineralShop/MineralShopBhv.cs](/Assets/Scripts/Spacestation/MineralShop/MineralShopBhv.cs) | C# | 26 | 0 | 5 | 31 |
+| [Assets/Scripts/Spacestation/MineralShop/MineralShopPresenter.cs](/Assets/Scripts/Spacestation/MineralShop/MineralShopPresenter.cs) | C# | 40 | 0 | 7 | 47 |
+| [Assets/Scripts/Spacestation/WeaponShop/WeaponShopBhv.cs](/Assets/Scripts/Spacestation/WeaponShop/WeaponShopBhv.cs) | C# | 24 | 0 | 3 | 27 |
+| [Assets/Scripts/Spacestation/WeaponShop/WeaponShopPresenter.cs](/Assets/Scripts/Spacestation/WeaponShop/WeaponShopPresenter.cs) | C# | 36 | 0 | 7 | 43 |
+| [Assets/Scripts/UI/GameUIManagerSO.cs](/Assets/Scripts/UI/GameUIManagerSO.cs) | C# | 50 | 0 | 6 | 56 |
+| [Assets/Scripts/UI/GameplayCanvasControllerSO.cs](/Assets/Scripts/UI/GameplayCanvasControllerSO.cs) | C# | 33 | 0 | 7 | 40 |
+| [Assets/Scripts/UI/IGameUI.cs](/Assets/Scripts/UI/IGameUI.cs) | C# | 14 | 0 | 2 | 16 |
+| [Assets/Scripts/UI/MineralShop/MineralItemUI.cs](/Assets/Scripts/UI/MineralShop/MineralItemUI.cs) | C# | 40 | 0 | 12 | 52 |
+| [Assets/Scripts/UI/MineralShop/MineralShopUI.cs](/Assets/Scripts/UI/MineralShop/MineralShopUI.cs) | C# | 98 | 0 | 21 | 119 |
+| [Assets/Scripts/UI/Playership/CargoSlotUI.cs](/Assets/Scripts/UI/Playership/CargoSlotUI.cs) | C# | 29 | 0 | 5 | 34 |
+| [Assets/Scripts/UI/Playership/PlayerStatusUIController.cs](/Assets/Scripts/UI/Playership/PlayerStatusUIController.cs) | C# | 123 | 0 | 27 | 150 |
+| [Assets/Scripts/UI/Playership/PlayershipUI.cs](/Assets/Scripts/UI/Playership/PlayershipUI.cs) | C# | 69 | 0 | 18 | 87 |
+| [Assets/Scripts/UI/WeaponShop/AssignToWeaponSlotButtonUI.cs](/Assets/Scripts/UI/WeaponShop/AssignToWeaponSlotButtonUI.cs) | C# | 19 | 0 | 5 | 24 |
+| [Assets/Scripts/UI/WeaponShop/WeaponDetailUI/AWeaponDetailUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponDetailUI/AWeaponDetailUI.cs) | C# | 44 | 0 | 4 | 48 |
+| [Assets/Scripts/UI/WeaponShop/WeaponDetailUI/LaserCannonArrayDetailUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponDetailUI/LaserCannonArrayDetailUI.cs) | C# | 24 | 0 | 3 | 27 |
+| [Assets/Scripts/UI/WeaponShop/WeaponDetailUI/RocketLauncherArrayDetailUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponDetailUI/RocketLauncherArrayDetailUI.cs) | C# | 18 | 0 | 3 | 21 |
+| [Assets/Scripts/UI/WeaponShop/WeaponShopListItemUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponShopListItemUI.cs) | C# | 43 | 0 | 7 | 50 |
+| [Assets/Scripts/UI/WeaponShop/WeaponShopUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponShopUI.cs) | C# | 261 | 0 | 33 | 294 |
+| [Assets/Scripts/UI/WeaponShop/WeaponSlotUI.cs](/Assets/Scripts/UI/WeaponShop/WeaponSlotUI.cs) | C# | 23 | 0 | 7 | 30 |
+| [Assets/Scripts/Utility/3rdparty/FastNoise.cs](/Assets/Scripts/Utility/3rdparty/FastNoise.cs) | C# | 1,935 | 77 | 361 | 2,373 |
+| [Assets/Scripts/Utility/CircularDistributionLayersConfigSO.cs](/Assets/Scripts/Utility/CircularDistributionLayersConfigSO.cs) | C# | 19 | 1 | 3 | 23 |
+| [Assets/Scripts/Utility/Singleton.cs](/Assets/Scripts/Utility/Singleton.cs) | C# | 42 | 6 | 4 | 52 |
+| [Assets/Scripts/Utility/SingletonPersistent.cs](/Assets/Scripts/Utility/SingletonPersistent.cs) | C# | 43 | 6 | 4 | 53 |
+| [Assets/Scripts/Utility/Utility.cs](/Assets/Scripts/Utility/Utility.cs) | C# | 10 | 0 | 2 | 12 |
+| [Assets/Scripts/Weapons/AWeapon.cs](/Assets/Scripts/Weapons/AWeapon.cs) | C# | 16 | 0 | 6 | 22 |
+| [Assets/Scripts/Weapons/ChargedLaserCannonArray.cs](/Assets/Scripts/Weapons/ChargedLaserCannonArray.cs) | C# | 143 | 2 | 36 | 181 |
+| [Assets/Scripts/Weapons/LaserCannonArray.cs](/Assets/Scripts/Weapons/LaserCannonArray.cs) | C# | 77 | 2 | 23 | 102 |
+| [Assets/Scripts/Weapons/RocketLauncherArray.cs](/Assets/Scripts/Weapons/RocketLauncherArray.cs) | C# | 68 | 2 | 19 | 89 |
+| [Assets/Scripts/Weapons/WeaponConfigs/IWeaponConfig.cs](/Assets/Scripts/Weapons/WeaponConfigs/IWeaponConfig.cs) | C# | 26 | 0 | 3 | 29 |
+| [Assets/Scripts/Weapons/WeaponConfigs/LaserCannonArrayConfigSO.cs](/Assets/Scripts/Weapons/WeaponConfigs/LaserCannonArrayConfigSO.cs) | C# | 26 | 0 | 5 | 31 |
+| [Assets/Scripts/Weapons/WeaponConfigs/RocketLauncherArrayConfigSO.cs](/Assets/Scripts/Weapons/WeaponConfigs/RocketLauncherArrayConfigSO.cs) | C# | 22 | 0 | 5 | 27 |
+| [Assets/Scripts/Weapons/WeaponConfigs/WeaponConfigBaseSO.cs](/Assets/Scripts/Weapons/WeaponConfigs/WeaponConfigBaseSO.cs) | C# | 30 | 0 | 9 | 39 |
+| [Assets/Scripts/Weapons/WeaponDetailPanelFactories/IWeaponDetailPanelFactory.cs](/Assets/Scripts/Weapons/WeaponDetailPanelFactories/IWeaponDetailPanelFactory.cs) | C# | 9 | 0 | 2 | 11 |
+| [Assets/Scripts/Weapons/WeaponDetailPanelFactories/LaserCannonArrayDetailPanelFactory.cs](/Assets/Scripts/Weapons/WeaponDetailPanelFactories/LaserCannonArrayDetailPanelFactory.cs) | C# | 26 | 0 | 5 | 31 |
+| [Assets/Scripts/Weapons/WeaponDetailPanelFactories/RocketLauncherArrayDetailPanelFactory1.cs](/Assets/Scripts/Weapons/WeaponDetailPanelFactories/RocketLauncherArrayDetailPanelFactory1.cs) | C# | 26 | 0 | 5 | 31 |
+| [Assets/Scripts/Weapons/WeaponFactories/IWeaponFactory.cs](/Assets/Scripts/Weapons/WeaponFactories/IWeaponFactory.cs) | C# | 7 | 0 | 2 | 9 |
+| [Assets/Scripts/Weapons/WeaponFactories/LaserCannonArrayWeaponFactory.cs](/Assets/Scripts/Weapons/WeaponFactories/LaserCannonArrayWeaponFactory.cs) | C# | 19 | 0 | 5 | 24 |
+| [Assets/Scripts/Weapons/WeaponFactories/RocketLauncherArrayWeaponFactory.cs](/Assets/Scripts/Weapons/WeaponFactories/RocketLauncherArrayWeaponFactory.cs) | C# | 19 | 0 | 4 | 23 |
+| [Assets/Scripts/Weapons/WeaponsPlayerDataSO.cs](/Assets/Scripts/Weapons/WeaponsPlayerDataSO.cs) | C# | 83 | 0 | 7 | 90 |
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

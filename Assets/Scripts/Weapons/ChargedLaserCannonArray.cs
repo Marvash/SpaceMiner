@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
+public class ChargedLaserCannonArray : AWeapon
 {
     [SerializeField]
     private List<GameObject> LaserCannons;
@@ -53,15 +53,8 @@ public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
     [SerializeField]
     LaserCannonArrayConfigSO config;
 
-    public GameObject PlayershipGO { get; set; }
-
-    public WeaponConfigBaseSO WeaponConfig => config;
+    public override WeaponConfigBaseSO WeaponConfig { get => config; }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -118,17 +111,17 @@ public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
         }
     }
 
-    public void ShootBegin()
+    public override void ShootBegin()
     {
         _shootingLaser = true;
     }
 
-    public void ShootEnd()
+    public override void ShootEnd()
     {
         _shootingLaser = false;
     }
 
-    public void ShootInterrupt()
+    public override void ShootInterrupt()
     {
         ShootEnd();
     }
@@ -168,17 +161,15 @@ public class ChargedLaserCannonArray : MonoBehaviour, IWeapon
         projectileImpact.ProjectileDamage = LaserMinDamage + (LaserMaxDamage - LaserMinDamage) * chargePercentage;
     }
 
-    public bool IsActive()
+    public override bool IsActive()
     {
         return _shootingLaser;
     }
 
-    public void InitWeapon(WeaponInitializer initializer)
-    {
-        initializer.InitializeWeapon(this);
-    }
-
     public void SetEnergyBehaviour(EnergyBehaviour energyBehaviour) {
         this.EnergyBehaviour = energyBehaviour;
+    }
+    public override void UpdateWeaponConfig() {
+
     }
 }

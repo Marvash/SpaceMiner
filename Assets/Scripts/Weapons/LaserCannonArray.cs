@@ -2,103 +2,150 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserCannonArray : MonoBehaviour, IWeapon
+public class LaserCannonArray : AWeapon
 {
     [SerializeField]
     private List<GameObject> LaserCannons;
 
-    [SerializeField]
-    public float LaserSpeed;
+    private float laserSpeed;
+
+    private float laserDamage;
 
     [SerializeField]
-    public float LaserDamage;
+    private GameObject LaserProjectile;
 
-    [SerializeField]
-    public GameObject LaserProjectile;
-
-    [SerializeField]
-    public float LaserShotInterval;
+    private float laserShotInterval;
 
     private EnergyBehaviour EnergyBehaviour;
 
+    private float energyCostPerShot;
+
+    private bool shootingLaser;
+
+    private float lastLaserShotTime;
+
     [SerializeField]
-    private float EnergyCostPerShot = 1.0f;
+    private LaserCannonArrayConfigSO laserCannonConfig;
 
-    private bool _shootingLaser;
+    public LaserCannonArrayConfigSO LaserCannonConfig { get => laserCannonConfig; set {
+        laserCannonConfig = value;
+        laserCannonConfig.OnCurrentWeaponLevelChange.AddListener(UpdateWeaponConfig);
+        UpdateWeaponConfig();
+    }}
 
-    private float _lastLaserShot;
+    public override WeaponConfigBaseSO WeaponConfig { get => LaserCannonConfig; }
 
-    public LaserCannonArrayConfigSO WeaponConfig { get; set;}
-
-    public GameObject PlayershipGO { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        _lastLaserShot = 0.0f;
+        lastLaserShotTime = 0.0f;
+        EnergyBehaviour = PlayershipGO.GetComponent<EnergyBehaviour>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_shootingLaser)
+        if (shootingLaser)
         {
-            _attemptShootLasers();
+            AttemptShootLasers();
         }
     }
 
-    private void _attemptShootLasers()
+    private void AttemptShootLasers()
     {
+        if(EnergyBehaviour == null) {
+            Debug.LogWarning("Attempting to shoot energy weapon with no energy behaviour set");
+        }
         float currentTime = Time.time;
-        if ((currentTime - _lastLaserShot) >= LaserShotInterval)
+        if ((currentTime - lastLaserShotTime) >= laserShotInterval)
         {
             foreach(GameObject laserCannon in LaserCannons)
             {
-                if (EnergyBehaviour == null || EnergyBehaviour.ConsumeEnergy(EnergyCostPerShot) > 0.0f)
+                if(!laserCannon.activeSelf)
+                    continue;
+                if (EnergyBehaviour.ConsumeEnergy(energyCostPerShot) > 0.0f)
                 {
-                    _shootLaser(laserCannon);
+                    ShootLaser(laserCannon);
                 }
             }
             
-            _lastLaserShot = currentTime;
+            lastLaserShotTime = currentTime;
         }
     }
 
-    public void ShootBegin()
+    public override void ShootBegin()
     {
-        _shootingLaser = true;
+        shootingLaser = true;
     }
 
-    public void ShootEnd()
+    public override void ShootEnd()
     {
-        _shootingLaser = false;
+        shootingLaser = false;
     }
 
-    public void ShootInterrupt()
+    public override void ShootInterrupt()
     {
         ShootEnd();
     }
 
-    private void _shootLaser(GameObject laserCannon)
+    private void ShootLaser(GameObject laserCannon)
     {
         GameObject projectile = Instantiate(LaserProjectile, laserCannon.transform.position, laserCannon.transform.rotation);
         SimpleProjectileMovement projectileMovement = projectile.GetComponent<SimpleProjectileMovement>();
         SimpleProjectileDamager projectileImpact = projectile.GetComponent<SimpleProjectileDamager>();
-        projectileMovement.ProjectileSpeed = LaserSpeed;
-        projectileImpact.ProjectileDamage = LaserDamage;
+        projectileMovement.ProjectileSpeed = laserSpeed;
+        projectileImpact.ProjectileDamage = laserDamage;
     }
 
-    public bool IsActive()
+    public override bool IsActive()
     {
-        return _shootingLaser;
-    }
-
-    public void InitWeapon(WeaponInitializer initializer)
-    {
-        initializer.InitializeWeapon(this);
+        return shootingLaser;
     }
 
     public void SetEnergyBehaviour(EnergyBehaviour energyBehaviour) {
         this.EnergyBehaviour = energyBehaviour;
+    }
+
+    public override void UpdateWeaponConfig() {
+        LaserCannonArrayLevelConfig levelConfig = laserCannonConfig.LaserCannonArrayLevelConfigs[laserCannonConfig.CurrentWeaponLevel-1];
+        laserDamage = levelConfig.WeaponDamage;
+        laserSpeed = levelConfig.ProjectileSpeed;
+        energyCostPerShot = levelConfig.EnergyCost;
+        laserShotInterval = levelConfig.LaserShotCooldown;
+        SetActiveCannonsByCount(levelConfig.NumCannons);
+    }
+
+    private void SetActiveCannonsByCount(int cannonCount) {
+        foreach(GameObject cannon in LaserCannons) {
+            cannon.SetActive(false);
+        }
+        switch(cannonCount) {
+            case 1:
+                LaserCannons[4].SetActive(true);
+            break;
+            case 2:
+                LaserCannons[0].SetActive(true);
+                LaserCannons[1].SetActive(true);
+            break;
+            case 3:
+                LaserCannons[0].SetActive(true);
+                LaserCannons[1].SetActive(true);
+                LaserCannons[4].SetActive(true);
+            break;
+            case 4:
+                LaserCannons[0].SetActive(true);
+                LaserCannons[1].SetActive(true);
+                LaserCannons[2].SetActive(true);
+                LaserCannons[3].SetActive(true);
+            break;
+            default:
+                LaserCannons[0].SetActive(true);
+                LaserCannons[1].SetActive(true);
+                LaserCannons[2].SetActive(true);
+                LaserCannons[3].SetActive(true);
+                LaserCannons[4].SetActive(true);
+            break;
+        }
     }
 }

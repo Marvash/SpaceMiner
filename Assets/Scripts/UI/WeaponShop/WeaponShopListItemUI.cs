@@ -2,48 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
-
-public struct WeaponShopListItemData {
-    public WeaponShopListItemData(WeaponConfigBaseSO weaponDescriptorBase, bool locked) {
-        WeaponName = weaponDescriptorBase.WeaponName;
-        WeaponImage = weaponDescriptorBase.WeaponIcon;
-        WeaponLevel = 0;
-        this.locked = locked;
-    }
-
-    public WeaponShopListItemData(WeaponConfigBaseSO weaponDescriptorBase, bool locked, int weaponLevel) {
-        WeaponName = weaponDescriptorBase.WeaponName;
-        WeaponImage = weaponDescriptorBase.WeaponIcon;
-        WeaponLevel = weaponLevel;
-        this.locked = locked;
-    }
-    public string WeaponName;
-    public Sprite WeaponImage;
-    public int WeaponLevel;
-    public bool locked;
-} 
 
 public class WeaponShopListItemUI : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI WeaponNameText;
+    TextMeshProUGUI weaponNameText;
     [SerializeField]
-    Image WeaponImage;
+    Image weaponImage;
     [SerializeField]
-    Toggle LockToggle;
+    Toggle lockToggle;
+    [SerializeField]
+    Toggle itemToggle;
+    public WeaponConfigBaseSO weaponConfig { get; private set; }
+    public UnityEvent<WeaponConfigBaseSO> OnItemSelect = new UnityEvent<WeaponConfigBaseSO>();
 
-    public void UpdateWeaponListItemUI(WeaponShopListItemData weaponShopListItemData) {
-        if(!weaponShopListItemData.locked) {
-            WeaponNameText.text = BuildWeaponName(weaponShopListItemData.WeaponName, weaponShopListItemData.WeaponLevel);
+    public void UpdateWeaponListItemUI(WeaponConfigBaseSO config) {
+        weaponConfig = config;
+        if(weaponConfig.CurrentUnlockedWeaponLevel > 0) {
+            weaponNameText.text = BuildWeaponName(weaponConfig.WeaponName, weaponConfig.CurrentUnlockedWeaponLevel);
         } else {
-            WeaponNameText.text = weaponShopListItemData.WeaponName;
+            weaponNameText.text = weaponConfig.WeaponName;
         }
-        WeaponImage.sprite = weaponShopListItemData.WeaponImage;
-        LockToggle.SetIsOnWithoutNotify(weaponShopListItemData.locked);
+        weaponImage.sprite = weaponConfig.WeaponIcon;
+        lockToggle.SetIsOnWithoutNotify(weaponConfig.CurrentUnlockedWeaponLevel == 0);
     }
 
     private string BuildWeaponName(string weaponName, int weaponLevel) {
         return weaponName + " MK. " + weaponLevel.ToString();
+    }
+
+    public void HandleItemClick() {
+        OnItemSelect.Invoke(weaponConfig);
+    }
+
+    public void SetSelectedState(bool isSelected) {
+        itemToggle.SetIsOnWithoutNotify(isSelected);
+    }
+
+    public void SetToggleGroup(ToggleGroup group) {
+        itemToggle.group = group;
     }
 }

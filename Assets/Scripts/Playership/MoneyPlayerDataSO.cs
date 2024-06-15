@@ -8,15 +8,11 @@ using Utils;
 [CreateAssetMenu(fileName = "MoneyPlayerDataSO", menuName = "ScriptableObjects/MoneyPlayerDataSO", order = 1)]
 public class MoneyPlayerDataSO : ScriptableObject
 {
+    [SerializeField]
     private int money;
 
     [HideInInspector]
     public UnityEvent<int> MoneyUpdateEvent = new UnityEvent<int>();
-
-    private void OnEnable()
-    {
-        money = 0;
-    }
 
     public void ForceUpdateMoney()
     {
@@ -34,13 +30,18 @@ public class MoneyPlayerDataSO : ScriptableObject
         AddMoney(amount);
     }
 
-    public void SubtractMoney(int money)
+    public bool TrySubtractMoney(int money)
     {
-        this.money = Mathf.Max(0, this.money + money);
-        MoneyUpdateEvent.Invoke(this.money);
+        if(this.money >= money) {
+            this.money -= money;
+            MoneyUpdateEvent.Invoke(this.money);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public int GetMoney()
+    public int GetCurrentBalance()
     {
         return money;
     }
