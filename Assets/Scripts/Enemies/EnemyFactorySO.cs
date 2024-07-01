@@ -11,7 +11,7 @@ public class EnemyFactorySO : ScriptableObject
     private Dictionary<EnemyType, GameObject> _enemyPrefabsMap = new Dictionary<EnemyType, GameObject>();
 
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    GameManagerSO gameManager;
 
     private EnemyBehaviourInitializer _enemyBehaviourInitializer;
 
@@ -19,7 +19,7 @@ public class EnemyFactorySO : ScriptableObject
         foreach(GameObject enemy in EnemyPrefabs) {
             _enemyPrefabsMap.Add(enemy.GetComponent<IEnemy>().EnemyType, enemy);
         }
-        _enemyBehaviourInitializer = new EnemyBehaviourInitializer(PlayershipManagerSO);
+        _enemyBehaviourInitializer = new EnemyBehaviourInitializer(gameManager);
     }
 
     public GameObject SpawnEnemy(EnemyType enemyType) {

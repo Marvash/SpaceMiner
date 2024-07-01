@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleProjectileMovement : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     [SerializeField]
     public float ProjectileSpeed;
@@ -20,7 +20,7 @@ public class SimpleProjectileMovement : MonoBehaviour
 
     private void Start()
     {
-        _player = PlayershipManagerSO.Player;
+        _player = gameManager.Player;
         _rb = GetComponent<Rigidbody2D>();
     }
 

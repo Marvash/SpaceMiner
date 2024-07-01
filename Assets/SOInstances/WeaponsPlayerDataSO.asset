@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1e1dd6bdf31004693f48c91242b1c8, type: 3}
+  m_Name: WeaponsPlayerDataSO
+  m_EditorClassIdentifier: 
+  OnWeaponSlotSet:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponSlotsCountChange:
+    m_PersistentCalls:
+      m_Calls: []
+  <CompleteWeaponConfigList>k__BackingField:
+  - {fileID: 11400000, guid: 732566f67a3997540bd2dec3df1c76ba, type: 2}
+  - {fileID: 11400000, guid: 1f6ee70b6c08872408370e917abeb464, type: 2}
+  <WeaponSlots>k__BackingField:
+  - {fileID: 11400000, guid: 1f6ee70b6c08872408370e917abeb464, type: 2}
+  <MaxWeaponSlotsCount>k__BackingField: 4
+  <WeaponSlotsCount>k__BackingField: 1
+  <WeaponSlotsPrices>k__BackingField: 00000000e803000010270000a0860100

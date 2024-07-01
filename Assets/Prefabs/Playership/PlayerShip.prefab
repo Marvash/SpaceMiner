@@ -4828,68 +4828,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &6125575504872616989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575504872616990}
-  m_Layer: 7
-  m_Name: LaserCannon3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575504872616990
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575504872616989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: -0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6125575505031867717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575505031867718}
-  m_Layer: 7
-  m_Name: LaserCannon2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575505031867718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505031867717}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6125575505122190926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5041,16 +4979,12 @@ GameObject:
   - component: {fileID: 6125575506210005507}
   - component: {fileID: 6125575506210005506}
   - component: {fileID: 6125575506210005534}
-  - component: {fileID: 6125575506210005504}
-  - component: {fileID: 6125575506210005535}
   - component: {fileID: 2082491352}
   - component: {fileID: 2082491353}
   - component: {fileID: 2082491354}
   - component: {fileID: 2082491366}
-  - component: {fileID: 2082491342}
   - component: {fileID: 1876349195426373378}
   - component: {fileID: 4897389655698688050}
-  - component: {fileID: 8737138165948150463}
   m_Layer: 7
   m_Name: PlayerShip
   m_TagString: Player
@@ -5072,17 +5006,11 @@ Transform:
   m_Children:
   - {fileID: 6125575505950488010}
   - {fileID: 6125575505122190927}
-  - {fileID: 6125575505717743906}
-  - {fileID: 6125575505031867718}
-  - {fileID: 6125575504872616990}
-  - {fileID: 6125575506218731208}
-  - {fileID: 6125575506433106774}
   - {fileID: 6125575506411729180}
   - {fileID: 6125575506684954954}
-  - {fileID: 6125575506055598377}
-  - {fileID: 6125575506009048116}
+  - {fileID: 630010833657813881}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6125575506210005510
 SpriteRenderer:
@@ -5251,7 +5179,7 @@ MonoBehaviour:
   BoostEnergyConsumption: 8
   InvulnerabilityWindow: 0.5
   InvulnerabilityTarget: {fileID: 2082491354}
-  WeightMultiplierSO: {fileID: 11400000, guid: 57ebdc2481c95204ba1572adf517ad3b, type: 2}
+  weightPlayerData: {fileID: 11400000, guid: e9443ea7d657db440a4f7bd25e11a09b, type: 2}
 --- !u!114 &6125575506210005506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5286,52 +5214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputDispatcherSO: {fileID: 11400000, guid: 42c6211f9ae4c684daa10e33893a5391, type: 2}
-  LaserCannonArray: {fileID: 6125575506210005504}
-  MissileLauncherArray: {fileID: 6125575506210005535}
-  Weapons: []
---- !u!114 &6125575506210005504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505430707619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1404b684605a6f94296500973c63caad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LaserCannons:
-  - {fileID: 6125575505717743905}
-  - {fileID: 6125575505031867717}
-  - {fileID: 6125575504872616989}
-  - {fileID: 6125575506218731207}
-  - {fileID: 6125575506433106773}
-  LaserSpeed: 2
-  LaserDamage: 10
-  LaserProjectile: {fileID: 4373572196716076429, guid: cd32819d11030f84d98a0207f2e88aa6, type: 3}
-  LaserShotInterval: 0.3
-  EnergyBehaviour: {fileID: 2082491352}
-  EnergyCostPerShot: 1
---- !u!114 &6125575506210005535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505430707619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4265832f29b24154c8b71a834a6673b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MissileLaunchers:
-  - {fileID: 6125575506055598376}
-  - {fileID: 6125575506009048115}
-  MissileSpeed: 5
-  MissileDamage: 50
-  MissileProjectile: {fileID: 5678407571635919242, guid: 7473767347f30e540b296647e44795cc, type: 3}
-  LaserShotInterval: 0.5
+  WeaponsGO: {fileID: 6810700389045197566}
+  weaponPlayerData: {fileID: 11400000, guid: 0f3afef10332b044981dd46fc1e06bfa, type: 2}
 --- !u!114 &2082491352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5420,20 +5304,6 @@ MonoBehaviour:
   updateDistance: 1
   target: {fileID: 6125575506210005533}
   graphIndex: 0
---- !u!114 &2082491342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505430707619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d880f597b70a2854899c10f33a340fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputDispatcherSO: {fileID: 11400000, guid: 42c6211f9ae4c684daa10e33893a5391, type: 2}
-  GameplayMenuControllerSO: {fileID: 11400000, guid: 2ae4cc20627e7dc4ea43544b99dbaf0b, type: 2}
 --- !u!114 &1876349195426373378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5446,7 +5316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0470a96c56904345824b2139ddeb7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayershipManagerSO: {fileID: 11400000, guid: 38dc24bff24118849bdba7aacfbc734a, type: 2}
+  InputDispatcherSO: {fileID: 11400000, guid: 42c6211f9ae4c684daa10e33893a5391, type: 2}
+  gameUIManager: {fileID: 11400000, guid: 2ba17a1d04ec5394ea7bcfbf0974ba9f, type: 2}
+  gameManager: {fileID: 11400000, guid: 9b5fd3e51bfd065439dd70df6f604d68, type: 2}
+  playershipUI: {fileID: 0}
+  playerCargo: {fileID: 11400000, guid: 247428cae2d3c39408bcb63f4e725e5b, type: 2}
 --- !u!114 &4897389655698688050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5459,58 +5333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507aa5bd8944a348953cd91b5a30d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxWeight: 100
-  cargoChangeEventChannelSO: {fileID: 11400000, guid: 4e93f71d9f66b944aba8f89515e9a014, type: 2}
-  WeightMultiplierSO: {fileID: 11400000, guid: 57ebdc2481c95204ba1572adf517ad3b, type: 2}
-  WeightSO: {fileID: 11400000, guid: 45c21f4e55dca224ead74dab9c7c32fe, type: 2}
-  MaxWeightSO: {fileID: 11400000, guid: fcda78e24bcc7ce40812fbe0012cd94e, type: 2}
-  PlayershipWeightConfigSO: {fileID: 11400000, guid: e9443ea7d657db440a4f7bd25e11a09b, type: 2}
---- !u!114 &8737138165948150463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505430707619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b31a52a5fa8715488c3a67b8f618edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cargoSlotCount: 8
-  cargoSlotChangeEventChannelSO: {fileID: 11400000, guid: fbbe9c74983e2d046a7e55e6806e0131, type: 2}
-  cargoChangeEventChannelSO: {fileID: 11400000, guid: 4e93f71d9f66b944aba8f89515e9a014, type: 2}
---- !u!1 &6125575505717743905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575505717743906}
-  m_Layer: 7
-  m_Name: LaserCannon1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575505717743906
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575505717743905}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 0.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  cargoPlayerData: {fileID: 11400000, guid: 247428cae2d3c39408bcb63f4e725e5b, type: 2}
+  weightPlayerData: {fileID: 11400000, guid: e9443ea7d657db440a4f7bd25e11a09b, type: 2}
 --- !u!1 &6125575505950488009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,68 +5471,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
---- !u!1 &6125575506009048115
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575506009048116}
-  m_Layer: 7
-  m_Name: MissileLauncher2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575506009048116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575506009048115}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.095, y: -0.045, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6125575506055598376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575506055598377}
-  m_Layer: 7
-  m_Name: MissileLauncher1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575506055598377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575506055598376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.095, y: -0.045, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6125575506098341550
 GameObject:
   m_ObjectHideFlags: 0
@@ -10537,37 +10299,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &6125575506218731207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575506218731208}
-  m_Layer: 7
-  m_Name: LaserCannon4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575506218731208
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575506218731207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14, y: -0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6125575506411729179
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,37 +10444,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
---- !u!1 &6125575506433106773
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6125575506433106774}
-  m_Layer: 7
-  m_Name: LaserCannon5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6125575506433106774
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125575506433106773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6125575506210005533}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6125575506684954953
 GameObject:
   m_ObjectHideFlags: 0
@@ -10891,3 +10591,34 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
+--- !u!1 &6810700389045197566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630010833657813881}
+  m_Layer: 7
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &630010833657813881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810700389045197566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6125575506210005533}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

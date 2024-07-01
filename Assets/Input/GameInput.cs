@@ -437,7 +437,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             ""id"": ""c0d88006-03e3-42a9-9241-e3f87984f352"",
             ""actions"": [
                 {
-                    ""name"": ""CloseShipMenu"",
+                    ""name"": ""ClosePlayershipMenu"",
                     ""type"": ""Button"",
                     ""id"": ""af4042bb-3743-4dae-a155-111d175c01f5"",
                     ""expectedControlType"": ""Button"",
@@ -454,7 +454,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""CloseShipMenu"",
+                    ""action"": ""ClosePlayershipMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -465,7 +465,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""CloseShipMenu"",
+                    ""action"": ""ClosePlayershipMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -473,12 +473,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""ShopMenu"",
-            ""id"": ""773ac078-1e7e-422e-b8ef-db171860ec8f"",
+            ""id"": ""a5f140f5-4237-42b5-b8b9-ab70b99fc260"",
             ""actions"": [
                 {
                     ""name"": ""CloseShopMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""f99d17a7-7aab-47a5-a08c-d8f93670a33d"",
+                    ""id"": ""8f6b4931-4203-4d72-9732-3b1e8f4e2c02"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -488,11 +488,22 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""13312e1e-d3e7-4619-9184-d276d6e73086"",
+                    ""id"": ""41d3deef-b963-47e9-9223-409d24cf1ab2"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CloseShopMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""018963ac-e870-4ad1-8fa1-f09cb180e2b4"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""CloseShopMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -548,7 +559,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_BaseGameplay_IncDecWeaponSlot = m_BaseGameplay.FindAction("IncDecWeaponSlot", throwIfNotFound: true);
         // PlayershipMenu
         m_PlayershipMenu = asset.FindActionMap("PlayershipMenu", throwIfNotFound: true);
-        m_PlayershipMenu_CloseShipMenu = m_PlayershipMenu.FindAction("CloseShipMenu", throwIfNotFound: true);
+        m_PlayershipMenu_ClosePlayershipMenu = m_PlayershipMenu.FindAction("ClosePlayershipMenu", throwIfNotFound: true);
         // ShopMenu
         m_ShopMenu = asset.FindActionMap("ShopMenu", throwIfNotFound: true);
         m_ShopMenu_CloseShopMenu = m_ShopMenu.FindAction("CloseShopMenu", throwIfNotFound: true);
@@ -763,12 +774,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     // PlayershipMenu
     private readonly InputActionMap m_PlayershipMenu;
     private List<IPlayershipMenuActions> m_PlayershipMenuActionsCallbackInterfaces = new List<IPlayershipMenuActions>();
-    private readonly InputAction m_PlayershipMenu_CloseShipMenu;
+    private readonly InputAction m_PlayershipMenu_ClosePlayershipMenu;
     public struct PlayershipMenuActions
     {
         private @GameInput m_Wrapper;
         public PlayershipMenuActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CloseShipMenu => m_Wrapper.m_PlayershipMenu_CloseShipMenu;
+        public InputAction @ClosePlayershipMenu => m_Wrapper.m_PlayershipMenu_ClosePlayershipMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayershipMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -778,16 +789,16 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayershipMenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayershipMenuActionsCallbackInterfaces.Add(instance);
-            @CloseShipMenu.started += instance.OnCloseShipMenu;
-            @CloseShipMenu.performed += instance.OnCloseShipMenu;
-            @CloseShipMenu.canceled += instance.OnCloseShipMenu;
+            @ClosePlayershipMenu.started += instance.OnClosePlayershipMenu;
+            @ClosePlayershipMenu.performed += instance.OnClosePlayershipMenu;
+            @ClosePlayershipMenu.canceled += instance.OnClosePlayershipMenu;
         }
 
         private void UnregisterCallbacks(IPlayershipMenuActions instance)
         {
-            @CloseShipMenu.started -= instance.OnCloseShipMenu;
-            @CloseShipMenu.performed -= instance.OnCloseShipMenu;
-            @CloseShipMenu.canceled -= instance.OnCloseShipMenu;
+            @ClosePlayershipMenu.started -= instance.OnClosePlayershipMenu;
+            @ClosePlayershipMenu.performed -= instance.OnClosePlayershipMenu;
+            @ClosePlayershipMenu.canceled -= instance.OnClosePlayershipMenu;
         }
 
         public void RemoveCallbacks(IPlayershipMenuActions instance)
@@ -888,7 +899,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     }
     public interface IPlayershipMenuActions
     {
-        void OnCloseShipMenu(InputAction.CallbackContext context);
+        void OnClosePlayershipMenu(InputAction.CallbackContext context);
     }
     public interface IShopMenuActions
     {

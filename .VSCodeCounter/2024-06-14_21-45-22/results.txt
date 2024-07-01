@@ -1,0 +1,193 @@
+Date : 2024-06-14 21:45:22
+Directory : e:\Source\UnityProjects\SpaceMiner\Assets\Scripts
+Total : 117 files,  7623 codes, 144 comments, 1342 blanks, all 9109 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |        117 |      7,623 |        144 |      1,342 |      9,109 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                              |        117 |      7,623 |        144 |      1,342 |      9,109 |
+| . (Files)                                                                                                                      |          1 |         14 |          0 |          3 |         17 |
+| AI                                                                                                                             |         22 |      1,061 |          3 |        145 |      1,209 |
+| AI\BehaviourTree                                                                                                               |         22 |      1,061 |          3 |        145 |      1,209 |
+| AI\BehaviourTree (Files)                                                                                                       |         21 |        928 |          3 |        117 |      1,048 |
+| AI\BehaviourTree\GenericTrees                                                                                                  |          1 |        133 |          0 |         28 |        161 |
+| Asteroids                                                                                                                      |          6 |        438 |          8 |         62 |        508 |
+| Background                                                                                                                     |          1 |         25 |          2 |          8 |         35 |
+| Camera                                                                                                                         |          1 |         20 |          1 |          6 |         27 |
+| Combat                                                                                                                         |          2 |         65 |          0 |         14 |         79 |
+| DropTable                                                                                                                      |          4 |         97 |          0 |         15 |        112 |
+| Enemies                                                                                                                        |         14 |        496 |          3 |        100 |        599 |
+| Enemies (Files)                                                                                                                |          5 |         85 |          0 |         17 |        102 |
+| Enemies\EnemyGroup                                                                                                             |          3 |         83 |          1 |         16 |        100 |
+| Enemies\Nautolan                                                                                                               |          6 |        328 |          2 |         67 |        397 |
+| Enemies\Nautolan\Fighter                                                                                                       |          2 |         89 |          0 |         17 |        106 |
+| Enemies\Nautolan\Fighter (Files)                                                                                               |          1 |         30 |          0 |          7 |         37 |
+| Enemies\Nautolan\Fighter\BT                                                                                                    |          1 |         59 |          0 |         10 |         69 |
+| Enemies\Nautolan\Scout                                                                                                         |          2 |        104 |          0 |         22 |        126 |
+| Enemies\Nautolan\Scout (Files)                                                                                                 |          1 |         46 |          0 |         12 |         58 |
+| Enemies\Nautolan\Scout\BT                                                                                                      |          1 |         58 |          0 |         10 |         68 |
+| Enemies\Nautolan\Sniper                                                                                                        |          2 |        135 |          2 |         28 |        165 |
+| Enemies\Nautolan\Sniper (Files)                                                                                                |          1 |         65 |          2 |         17 |         84 |
+| Enemies\Nautolan\Sniper\BT                                                                                                     |          1 |         70 |          0 |         11 |         81 |
+| EventChannels                                                                                                                  |          1 |         13 |          0 |          3 |         16 |
+| GameEventsSystem                                                                                                               |          3 |        113 |          1 |         21 |        135 |
+| GameSystems                                                                                                                    |          3 |         74 |          1 |         15 |         90 |
+| Input                                                                                                                          |          1 |        191 |          3 |         27 |        221 |
+| Pickups                                                                                                                        |          4 |         98 |          2 |         19 |        119 |
+| Playership                                                                                                                     |         11 |        939 |          4 |        165 |      1,108 |
+| Playership (Files)                                                                                                             |          9 |        691 |          1 |        120 |        812 |
+| Playership\Energy                                                                                                              |          1 |        126 |          2 |         27 |        155 |
+| Playership\MiningLaser                                                                                                         |          1 |        122 |          1 |         18 |        141 |
+| ProceduralGeneration                                                                                                           |          1 |        215 |         20 |         29 |        264 |
+| Projectiles                                                                                                                    |          3 |        104 |          0 |         18 |        122 |
+| Spacestation                                                                                                                   |          4 |        126 |          0 |         22 |        148 |
+| Spacestation\MineralShop                                                                                                       |          2 |         66 |          0 |         12 |         78 |
+| Spacestation\WeaponShop                                                                                                        |          2 |         60 |          0 |         10 |         70 |
+| UI                                                                                                                             |         15 |        888 |          0 |        160 |      1,048 |
+| UI (Files)                                                                                                                     |          3 |         97 |          0 |         15 |        112 |
+| UI\MineralShop                                                                                                                 |          2 |        138 |          0 |         33 |        171 |
+| UI\Playership                                                                                                                  |          3 |        221 |          0 |         50 |        271 |
+| UI\WeaponShop                                                                                                                  |          7 |        432 |          0 |         62 |        494 |
+| UI\WeaponShop (Files)                                                                                                          |          4 |        346 |          0 |         52 |        398 |
+| UI\WeaponShop\WeaponDetailUI                                                                                                   |          3 |         86 |          0 |         10 |         96 |
+| Utility                                                                                                                        |          5 |      2,049 |         90 |        374 |      2,513 |
+| Utility (Files)                                                                                                                |          4 |        114 |         13 |         13 |        140 |
+| Utility\3rdparty                                                                                                               |          1 |      1,935 |         77 |        361 |      2,373 |
+| Weapons                                                                                                                        |         15 |        597 |          6 |        136 |        739 |
+| Weapons (Files)                                                                                                                |          5 |        387 |          6 |         91 |        484 |
+| Weapons\WeaponConfigs                                                                                                          |          4 |        104 |          0 |         22 |        126 |
+| Weapons\WeaponDetailPanelFactories                                                                                             |          3 |         61 |          0 |         12 |         73 |
+| Weapons\WeaponFactories                                                                                                        |          3 |         45 |          0 |         11 |         56 |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                       | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\AlwaysSucceedNode.cs                                        | C#       |         19 |          0 |          2 |         21 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\BBVarSetter.cs                                              | C#       |         23 |          0 |          3 |         26 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\ChaseTargetNode.cs                                          | C#       |         91 |          0 |          9 |        100 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\ChaseTargetToRangeSmoothNode.cs                             | C#       |        121 |          0 |          8 |        129 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\ComputeTargetPredictedImpactPosition.cs                     | C#       |         75 |          3 |         10 |         88 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\FacePositionSmoothNode.cs                                   | C#       |         50 |          0 |          7 |         57 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\GenericTrees\SimpleMovementBT.cs                            | C#       |        133 |          0 |         28 |        161 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\HasLOSOnTargetPositionNode.cs                               | C#       |         47 |          0 |          5 |         52 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\IsChargedLaserReadyNode.cs                                  | C#       |         28 |          0 |          4 |         32 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\IsFacingPositionApproximateNode.cs                          | C#       |         48 |          0 |          5 |         53 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\IsWeaponActiveNode.cs                                       | C#       |         28 |          0 |          5 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\Node.cs                                                     | C#       |         93 |          0 |         16 |        109 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\ResultInverterNode.cs                                       | C#       |         30 |          0 |          3 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\SelectorNode.cs                                             | C#       |         30 |          0 |          3 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\SequenceNode.cs                                             | C#       |         38 |          0 |          4 |         42 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\StartFireChargedLaserCannonNode.cs                          | C#       |         23 |          0 |          4 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\StartFireLaserCannonNode.cs                                 | C#       |         26 |          0 |          3 |         29 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\StopFireChargedLaserCannonNode.cs                           | C#       |         23 |          0 |          4 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\StopFireLaserCannonArrayNode.cs                             | C#       |         23 |          0 |          4 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\TargetInRangeNode.cs                                        | C#       |         46 |          0 |          5 |         51 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\TimerGateNode.cs                                            | C#       |         39 |          0 |          7 |         46 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\AI\BehaviourTree\Tree.cs                                                     | C#       |         27 |          0 |          6 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidBehaviour.cs                                               | C#       |        140 |          2 |         25 |        167 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidConfigSO.cs                                                | C#       |         32 |          0 |          3 |         35 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidDiffSO.cs                                                  | C#       |         72 |          0 |          8 |         80 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidFactory.cs                                                 | C#       |         63 |          0 |         11 |         74 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidProceduralSpawner.cs                                       | C#       |        126 |          6 |         14 |        146 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Asteroids\AsteroidSpawnLayersConfigSO.cs                                     | C#       |          5 |          0 |          1 |          6 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Background\BackgroundMovement.cs                                             | C#       |         25 |          2 |          8 |         35 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Camera\CameraMovement.cs                                                     | C#       |         20 |          1 |          6 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Combat\IDamageable.cs                                                        | C#       |         39 |          0 |         10 |         49 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Combat\IDamager.cs                                                           | C#       |         26 |          0 |          4 |         30 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\DropTable\DropPickupStack.cs                                                 | C#       |         17 |          0 |          3 |         20 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\DropTable\DropTable.cs                                                       | C#       |         30 |          0 |          4 |         34 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\DropTable\DropTableLibrarySO.cs                                              | C#       |         34 |          0 |          5 |         39 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\DropTable\Droppable.cs                                                       | C#       |         16 |          0 |          3 |         19 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyBehaviourInitializer.cs                                         | C#       |         10 |          0 |          0 |         10 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyFactorySO.cs                                                    | C#       |         40 |          0 |         10 |         50 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyGroupSpawnLayersConfigSO.cs                                     | C#       |          5 |          0 |          2 |          7 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyGroup\EnemyGroupProceduralSpawnerSO.cs                          | C#       |         58 |          1 |         10 |         69 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyGroup\EnemyGroupSO.cs                                           | C#       |         17 |          0 |          3 |         20 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\EnemyGroup\IEnemyGroup.cs                                            | C#       |          8 |          0 |          3 |         11 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\IEnemy.cs                                                            | C#       |         19 |          0 |          3 |         22 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\ISimpleEnemy.cs                                                      | C#       |         11 |          0 |          2 |         13 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Fighter\BT\NautolanFighterCombatBT.cs                       | C#       |         59 |          0 |         10 |         69 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Fighter\NautolanFighterEnemy.cs                             | C#       |         30 |          0 |          7 |         37 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Scout\BT\NautolanScoutCombatBT.cs                           | C#       |         58 |          0 |         10 |         68 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Scout\NautolanScoutEnemy.cs                                 | C#       |         46 |          0 |         12 |         58 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Sniper\BT\NautolanSniperCombatBT.cs                         | C#       |         70 |          0 |         11 |         81 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Enemies\Nautolan\Sniper\NautolanSniperEnemy.cs                               | C#       |         65 |          2 |         17 |         84 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\EventChannels\FloatEventChannelSO.cs                                         | C#       |         13 |          0 |          3 |         16 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameEventsSystem\GameEventSO.cs                                              | C#       |         16 |          0 |          3 |         19 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameEventsSystem\GameEventsLayersSO.cs                                       | C#       |          5 |          0 |          2 |          7 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameEventsSystem\GameEventsManager.cs                                        | C#       |         92 |          1 |         16 |        109 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameManagerSO.cs                                                             | C#       |         14 |          0 |          3 |         17 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameSystems\GameplayController.cs                                            | C#       |         25 |          1 |          7 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameSystems\PickupSpawnerSO.cs                                               | C#       |         33 |          0 |          4 |         37 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\GameSystems\ScriptableObjectInitializer.cs                                   | C#       |         16 |          0 |          4 |         20 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Input\InputDispatcherSO.cs                                                   | C#       |        191 |          3 |         27 |        221 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Pickups\PickupLibrarySO.cs                                                   | C#       |         21 |          0 |          6 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Pickups\PickupSO.cs                                                          | C#       |         19 |          0 |          3 |         22 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Pickups\PickupStack.cs                                                       | C#       |         22 |          0 |          3 |         25 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Pickups\PickupStackScript.cs                                                 | C#       |         36 |          2 |          7 |         45 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\CargoPlayerDataSO.cs                                              | C#       |        102 |          0 |         13 |        115 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\Energy\EnergyBehaviour.cs                                         | C#       |        126 |          2 |         27 |        155 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\MiningLaser\PlayerMiningLaser.cs                                  | C#       |        122 |          1 |         18 |        141 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\MoneyPlayerDataSO.cs                                              | C#       |         40 |          0 |          9 |         49 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayerCombatBehaviour.cs                                          | C#       |         13 |          0 |          3 |         16 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayerMovement.cs                                                 | C#       |        207 |          1 |         43 |        251 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayerWeaponsManager.cs                                           | C#       |        139 |          0 |         22 |        161 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayershipBhv.cs                                                  | C#       |         55 |          0 |         10 |         65 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayershipPresenter.cs                                            | C#       |         26 |          0 |          5 |         31 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\PlayershipWeight.cs                                               | C#       |         29 |          0 |          6 |         35 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Playership\WeightPlayerDataSO.cs                                             | C#       |         80 |          0 |          9 |         89 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\ProceduralGeneration\MovingProceduralPOIGenerator.cs                         | C#       |        215 |         20 |         29 |        264 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Projectiles\ExplosiveProjectileDamager.cs                                    | C#       |         37 |          0 |          4 |         41 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Projectiles\SimpleProjectileDamager.cs                                       | C#       |         30 |          0 |          3 |         33 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Projectiles\SimpleProjectileMovement.cs                                      | C#       |         37 |          0 |         11 |         48 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Spacestation\MineralShop\MineralShopBhv.cs                                   | C#       |         26 |          0 |          5 |         31 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Spacestation\MineralShop\MineralShopPresenter.cs                             | C#       |         40 |          0 |          7 |         47 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Spacestation\WeaponShop\WeaponShopBhv.cs                                     | C#       |         24 |          0 |          3 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Spacestation\WeaponShop\WeaponShopPresenter.cs                               | C#       |         36 |          0 |          7 |         43 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\GameUIManagerSO.cs                                                        | C#       |         50 |          0 |          6 |         56 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\GameplayCanvasControllerSO.cs                                             | C#       |         33 |          0 |          7 |         40 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\IGameUI.cs                                                                | C#       |         14 |          0 |          2 |         16 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\MineralShop\MineralItemUI.cs                                              | C#       |         40 |          0 |         12 |         52 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\MineralShop\MineralShopUI.cs                                              | C#       |         98 |          0 |         21 |        119 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\Playership\CargoSlotUI.cs                                                 | C#       |         29 |          0 |          5 |         34 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\Playership\PlayerStatusUIController.cs                                    | C#       |        123 |          0 |         27 |        150 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\Playership\PlayershipUI.cs                                                | C#       |         69 |          0 |         18 |         87 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\AssignToWeaponSlotButtonUI.cs                                  | C#       |         19 |          0 |          5 |         24 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponDetailUI\AWeaponDetailUI.cs                              | C#       |         44 |          0 |          4 |         48 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponDetailUI\LaserCannonArrayDetailUI.cs                     | C#       |         24 |          0 |          3 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponDetailUI\RocketLauncherArrayDetailUI.cs                  | C#       |         18 |          0 |          3 |         21 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponShopListItemUI.cs                                        | C#       |         43 |          0 |          7 |         50 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponShopUI.cs                                                | C#       |        261 |          0 |         33 |        294 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\UI\WeaponShop\WeaponSlotUI.cs                                                | C#       |         23 |          0 |          7 |         30 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Utility\3rdparty\FastNoise.cs                                                | C#       |      1,935 |         77 |        361 |      2,373 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Utility\CircularDistributionLayersConfigSO.cs                                | C#       |         19 |          1 |          3 |         23 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Utility\Singleton.cs                                                         | C#       |         42 |          6 |          4 |         52 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Utility\SingletonPersistent.cs                                               | C#       |         43 |          6 |          4 |         53 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Utility\Utility.cs                                                           | C#       |         10 |          0 |          2 |         12 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\AWeapon.cs                                                           | C#       |         16 |          0 |          6 |         22 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\ChargedLaserCannonArray.cs                                           | C#       |        143 |          2 |         36 |        181 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\LaserCannonArray.cs                                                  | C#       |         77 |          2 |         23 |        102 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\RocketLauncherArray.cs                                               | C#       |         68 |          2 |         19 |         89 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponConfigs\IWeaponConfig.cs                                       | C#       |         26 |          0 |          3 |         29 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponConfigs\LaserCannonArrayConfigSO.cs                            | C#       |         26 |          0 |          5 |         31 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponConfigs\RocketLauncherArrayConfigSO.cs                         | C#       |         22 |          0 |          5 |         27 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponConfigs\WeaponConfigBaseSO.cs                                  | C#       |         30 |          0 |          9 |         39 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponDetailPanelFactories\IWeaponDetailPanelFactory.cs              | C#       |          9 |          0 |          2 |         11 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponDetailPanelFactories\LaserCannonArrayDetailPanelFactory.cs     | C#       |         26 |          0 |          5 |         31 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponDetailPanelFactories\RocketLauncherArrayDetailPanelFactory1.cs | C#       |         26 |          0 |          5 |         31 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponFactories\IWeaponFactory.cs                                    | C#       |          7 |          0 |          2 |          9 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponFactories\LaserCannonArrayWeaponFactory.cs                     | C#       |         19 |          0 |          5 |         24 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponFactories\RocketLauncherArrayWeaponFactory.cs                  | C#       |         19 |          0 |          4 |         23 |
+| e:\Source\UnityProjects\SpaceMiner\Assets\Scripts\Weapons\WeaponsPlayerDataSO.cs                                               | C#       |         83 |          0 |          7 |         90 |
+| Total                                                                                                                          |          |      7,623 |        144 |      1,342 |      9,109 |
++--------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

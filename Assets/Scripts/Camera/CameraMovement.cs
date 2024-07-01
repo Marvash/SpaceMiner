@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     private Transform _target;
 
@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         _zCameraOffset = new Vector3(0.0f, 0.0f, transform.position.z);
-        _target = PlayershipManagerSO.Player.transform;
+        _target = gameManager.Player.transform;
     }
 
     private void LateUpdate()

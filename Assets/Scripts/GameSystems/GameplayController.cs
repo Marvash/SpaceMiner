@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameplayController : MonoBehaviour
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private GameManagerSO gameManager;
 
     [SerializeField]
     private GameEventsManager GameEventsManager;
@@ -22,10 +22,10 @@ public class GameplayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayershipManagerSO.Player.transform.position.magnitude > SafeZoneExitDistance && _isInSafeZone) {
+        if(gameManager.Player.transform.position.magnitude > SafeZoneExitDistance && _isInSafeZone) {
             _isInSafeZone = false;
             GameEventsManager.ActivateGameEvents();
-        } else if(PlayershipManagerSO.Player.transform.position.magnitude < SafeZoneEnterDistance && !_isInSafeZone) {
+        } else if(gameManager.Player.transform.position.magnitude < SafeZoneEnterDistance && !_isInSafeZone) {
             GameEventsManager.DeactivateGameEvents();
         }
     }

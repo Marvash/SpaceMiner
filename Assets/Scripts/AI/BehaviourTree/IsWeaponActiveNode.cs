@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class IsWeaponActiveNode : Node
 {
-    private IWeapon _weapon;
+    private AWeapon _weapon;
 
-    public IsWeaponActiveNode(IWeapon weapon)
+    public IsWeaponActiveNode(AWeapon weapon)
     {
         _weapon = weapon;
     }

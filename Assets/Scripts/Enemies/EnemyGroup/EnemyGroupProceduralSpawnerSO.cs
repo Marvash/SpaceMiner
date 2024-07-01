@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyGroupProceduralSpawnerSO : ScriptableObject
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private MoneyPlayerDataSO PlayershipManagerSO;
 
     [SerializeField]
     private EnemyFactorySO EnemyFactorySO;

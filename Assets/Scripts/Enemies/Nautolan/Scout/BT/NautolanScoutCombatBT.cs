@@ -56,7 +56,7 @@ public class NautolanScoutCombatBT : BehaviourTree.Tree
     {
         _root.SetData("targetPosition", (Vector2)Target.transform.position);
         _root.SetData("targetVelocity", _targetRb2d.velocity);
-        _root.SetData("projectileSpeed", LaserCannonArray.LaserSpeed);
+        _root.SetData("projectileSpeed", LaserCannonArray.LaserCannonConfig.LaserCannonArrayLevelConfigs[LaserCannonArray.LaserCannonConfig.CurrentWeaponLevel].ProjectileSpeed);
     }
 
     protected override void InitTree()

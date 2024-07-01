@@ -37,18 +37,18 @@ public class EnergyBehaviour : MonoBehaviour
 
     private UnityEvent FuelDepleted = new UnityEvent();
 
-    private bool _isEnergySystemShutdown = false;
+    private bool isEnergySystemShutdown = false;
 
-    private float _allocatedEnergy = 0.0f;
+    private float allocatedEnergy = 0.0f;
 
-    private bool _consumedEnergyThisTick = false;
+    private bool consumedEnergyThisTick = false;
 
     [SerializeField]
     private GameplayCanvasControllerSO gameplayCanvasControllerSO;
 
-    private void tickConversion()
+    private void TickConversion()
     {
-        if ((CurrentEnergy < EnergyCapacity) && CurrentFuel > 0.0f && !_consumedEnergyThisTick) {
+        if ((CurrentEnergy < EnergyCapacity) && CurrentFuel > 0.0f && !consumedEnergyThisTick) {
             CurrentEnergy += EnergyConvertedPerTick;
             if (!InfiniteFuel)
             {
@@ -66,28 +66,28 @@ public class EnergyBehaviour : MonoBehaviour
             gameplayCanvasControllerSO.UpdateEnergy(CurrentEnergy / EnergyCapacity);
             gameplayCanvasControllerSO.UpdateFuel(CurrentFuel / FuelCapacity);
         }
-        _consumedEnergyThisTick = false;
+        consumedEnergyThisTick = false;
     }
 
     public float ConsumeEnergy(float energy)
     {
         float energyConsumed = 0.0f;
-        if(!_isEnergySystemShutdown)
+        if(!isEnergySystemShutdown)
         {
             energyConsumed = energy;
             if (!InfiniteEnergy)
             {
                 CurrentEnergy -= energy;
-                _consumedEnergyThisTick = true;
+                consumedEnergyThisTick = true;
                 if (CurrentEnergy < 0.0f)
                 {
                     energyConsumed = energy + CurrentEnergy;
                     CurrentEnergy = 0.0f;
-                    _isEnergySystemShutdown = true;
+                    isEnergySystemShutdown = true;
                     gameplayCanvasControllerSO.EnableEnergyShutdown(SystemShutdownTime);
-                    Invoke("energySystemRestart", SystemShutdownTime);
+                    Invoke("EnergySystemRestart", SystemShutdownTime);
                 }
-                _allocatedEnergy = Mathf.Min(_allocatedEnergy, CurrentEnergy);
+                allocatedEnergy = Mathf.Min(allocatedEnergy, CurrentEnergy);
             }
             gameplayCanvasControllerSO.UpdateEnergy(CurrentEnergy / EnergyCapacity);
         }
@@ -96,37 +96,37 @@ public class EnergyBehaviour : MonoBehaviour
 
     public float AllocateEnergy(float energy)
     {
-        float availableEnergy = CurrentEnergy - _allocatedEnergy;
+        float availableEnergy = CurrentEnergy - allocatedEnergy;
         if(CurrentEnergy > 0.0f && availableEnergy > 0.0f)
         {
-            _allocatedEnergy += Mathf.Max(availableEnergy, energy);
+            allocatedEnergy += Mathf.Max(availableEnergy, energy);
         }
-        return _allocatedEnergy;
+        return allocatedEnergy;
     }
 
     public void ResetAllocatedEnergy()
     {
-        _allocatedEnergy = 0.0f;
+        allocatedEnergy = 0.0f;
     }
 
     public float ConsumeAllocatedEnergy()
     {
-        float consumableEnergy = Mathf.Min(CurrentEnergy, _allocatedEnergy);
+        float consumableEnergy = Mathf.Min(CurrentEnergy, allocatedEnergy);
         ConsumeEnergy(consumableEnergy);
-        _allocatedEnergy = 0.0f;
+        allocatedEnergy = 0.0f;
         return consumableEnergy;
     }
 
     public float GetAllocatedEnergy()
     {
-        return _allocatedEnergy;
+        return allocatedEnergy;
     }
 
-    private void energySystemRestart()
+    private void EnergySystemRestart()
     {
         if (CurrentEnergy > 0.0f)
         {
-            _isEnergySystemShutdown = false;
+            isEnergySystemShutdown = false;
             gameplayCanvasControllerSO.DisableEnergyShutdown();
         }
     }
@@ -143,12 +143,7 @@ public class EnergyBehaviour : MonoBehaviour
         CurrentFuel = FuelCapacity;
         gameplayCanvasControllerSO.UpdateEnergy(CurrentEnergy / EnergyCapacity);
         gameplayCanvasControllerSO.UpdateFuel(CurrentFuel / FuelCapacity);
-        InvokeRepeating("tickConversion", 0.0f, EnergyConversionTickRate);
+        InvokeRepeating("TickConversion", 0.0f, EnergyConversionTickRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

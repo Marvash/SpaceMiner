@@ -5,7 +5,7 @@ using UnityEngine;
 public class NautolanScoutEnemy : ISimpleEnemy
 {
     [SerializeField]
-    private PlayershipManagerSO PlayershipManagerSO;
+    private MoneyPlayerDataSO PlayershipManagerSO;
 
     [SerializeField]
     private SimpleMovementBT SimpleMovementBT;
