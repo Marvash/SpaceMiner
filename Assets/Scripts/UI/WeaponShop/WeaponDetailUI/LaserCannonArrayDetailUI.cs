@@ -11,6 +11,8 @@ public class LaserCannonArrayDetailUI : AWeaponDetailUI
     protected TextMeshProUGUI EnergyCostText;
     [SerializeField]
     protected TextMeshProUGUI ProjectileSpeedText;
+    [SerializeField]
+    protected TextMeshProUGUI FireRateText;
 
     public void PopulateDetailPanel(LaserCannonArrayConfigSO config, int weaponLevel) {
         base.PopulateDetailPanel(config, weaponLevel);
@@ -22,5 +24,6 @@ public class LaserCannonArrayDetailUI : AWeaponDetailUI
         NumCannonsText.text = levelConfig.NumCannons.ToString();
         EnergyCostText.text = Mathf.FloorToInt(levelConfig.EnergyCost).ToString();
         ProjectileSpeedText.text = Mathf.FloorToInt(levelConfig.ProjectileSpeed).ToString();
+        FireRateText.text = Mathf.FloorToInt(1.0f / levelConfig.LaserShotCooldown * 60.0f).ToString();
     }
 }

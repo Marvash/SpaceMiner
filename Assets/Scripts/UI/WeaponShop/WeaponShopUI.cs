@@ -33,6 +33,10 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
     GameObject weaponPurchasePanel;
     [SerializeField]
     GameObject weaponSlotAssignmentPanel;
+    [SerializeField]
+    GameObject weaponSlotPurchaseButton;
+    [SerializeField]
+    TextMeshProUGUI weaponSlotPurchasePriceText;
 
     private List<WeaponShopListItemUI> weaponShopListItems = new List<WeaponShopListItemUI>();
 
@@ -40,6 +44,8 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
 
     private int maxWeaponSlotsCount = 0;
     private int currentWeaponSlotsCount = 0;
+
+    private List<int> weaponSlotPrices = new List<int>();
 
     private List<WeaponConfigBaseSO> currentWeaponList = new List<WeaponConfigBaseSO>();
 
@@ -49,6 +55,8 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
 
     public UnityEvent<WeaponConfigBaseSO, int> OnWeaponPurchase { get; private set;}
     public UnityEvent<WeaponConfigBaseSO, int, int> OnWeaponSlotAssign { get; private set;}
+
+    public UnityEvent OnWeaponSlotPurchase { get; private set;}
 
     public GameInputControls InputControls { get; private set;}
 
@@ -66,6 +74,7 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
         OnDeactivateUI = new UnityEvent<IGameUI>();
         OnWeaponPurchase = new UnityEvent<WeaponConfigBaseSO, int>();
         OnWeaponSlotAssign = new UnityEvent<WeaponConfigBaseSO, int, int>();
+        OnWeaponSlotPurchase = new UnityEvent();
         InputControls = GameInputControls.ShopMenu;
         IsActive = false;
     }
@@ -193,10 +202,12 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
         }
         currentWeaponSlots = weaponsPlayerData.WeaponSlots;
         maxWeaponSlotsCount = weaponsPlayerData.MaxWeaponSlotsCount;
+        weaponSlotPrices = weaponsPlayerData.WeaponSlotsPrices;
         currentWeaponSlotsCount = weaponsPlayerData.WeaponSlotsCount;
         for(int i = 0; i < currentWeaponSlotsCount; i++) {
             GameObject weaponSlotGO = Instantiate(weaponSlotPrefab);
             weaponSlotGO.transform.SetParent(weaponSlotsContainer, false);
+            weaponSlotGO.transform.SetSiblingIndex(i);
             if(currentWeaponSlots[i] != null) {
                 WeaponSlotUI weaponSlot = weaponSlotGO.GetComponent<WeaponSlotUI>();
                 weaponSlot.UpdateSlot(currentWeaponSlots[i]);
@@ -207,6 +218,12 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
             AssignToWeaponSlotButtonUI assignToWeaponSlotUI = assignToSlotGO.GetComponent<AssignToWeaponSlotButtonUI>();
             assignToWeaponSlotUI.SetButtonText(i+1);
             assignToWeaponSlotUI.OnAssignToSlot.AddListener(HandleWeaponAssignToSlot);
+        }
+        if(currentWeaponSlotsCount == maxWeaponSlotsCount) {
+            weaponSlotPurchaseButton.SetActive(false);
+        } else {
+            weaponSlotPurchaseButton.SetActive(true);
+            weaponSlotPurchasePriceText.text = weaponSlotPrices[currentWeaponSlotsCount].ToString() + " $";
         }
     }
 
@@ -241,6 +258,10 @@ public class WeaponShopUI : MonoBehaviour, IGameUI
     public void HandlePreviousWeaponLevelSelected() {
         currentWeaponLevelSelected--;
         UpdateWeaponDetailPanel();
+    }
+
+    public void HandleWeaponSlotPurchase() {
+        OnWeaponSlotPurchase.Invoke();
     }
     
     public void HandleWeaponPurchase() {

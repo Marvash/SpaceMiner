@@ -5,23 +5,23 @@ using UnityEngine;
 public class RocketLauncherArray : AWeapon
 {
     [SerializeField]
-    private List<GameObject> rocketLaunchers;
+    List<GameObject> rocketLaunchers;
 
-    private float rocketSpeed;
+    float rocketSpeed;
 
-    private float rocketDamage;
-
-    [SerializeField]
-    private GameObject rocketProjectilePrefab;
-
-    private float rocketShotInterval;
-
-    private bool shooting;
-
-    private float lastRocketShotTime;
+    float rocketDamage;
 
     [SerializeField]
-    private RocketLauncherArrayConfigSO rocketLauncherConfig;
+    GameObject rocketProjectilePrefab;
+
+    float rocketShotInterval;
+
+    bool shooting;
+
+    float lastRocketShotTime;
+
+    [SerializeField]
+    RocketLauncherArrayConfigSO rocketLauncherConfig;
 
     public RocketLauncherArrayConfigSO RocketLauncherConfig { get => rocketLauncherConfig; set {
         rocketLauncherConfig = value;

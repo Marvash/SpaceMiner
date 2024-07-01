@@ -17,6 +17,8 @@ public class WeaponsPlayerDataSO : ScriptableObject
     public int MaxWeaponSlotsCount { get; set; } = 4;
     [field:SerializeField]
     public int WeaponSlotsCount { get; set; } = 1;
+    [field:SerializeField]
+    public List<int> WeaponSlotsPrices { get; set; }
 
     void OnEnable() {
         WeaponSlotsCount = Mathf.Max(WeaponSlots.Length, WeaponSlotsCount);

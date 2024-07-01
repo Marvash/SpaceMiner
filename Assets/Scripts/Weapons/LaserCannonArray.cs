@@ -5,27 +5,27 @@ using UnityEngine;
 public class LaserCannonArray : AWeapon
 {
     [SerializeField]
-    private List<GameObject> LaserCannons;
+    List<GameObject> LaserCannons;
 
-    private float laserSpeed;
+    float laserSpeed;
 
-    private float laserDamage;
-
-    [SerializeField]
-    private GameObject LaserProjectile;
-
-    private float laserShotInterval;
-
-    private EnergyBehaviour EnergyBehaviour;
-
-    private float energyCostPerShot;
-
-    private bool shootingLaser;
-
-    private float lastLaserShotTime;
+    float laserDamage;
 
     [SerializeField]
-    private LaserCannonArrayConfigSO laserCannonConfig;
+    GameObject LaserProjectile;
+
+    float laserShotInterval;
+
+    EnergyBehaviour EnergyBehaviour;
+
+    float energyCostPerShot;
+
+    bool shootingLaser;
+
+    float lastLaserShotTime;
+
+    [SerializeField]
+    LaserCannonArrayConfigSO laserCannonConfig;
 
     public LaserCannonArrayConfigSO LaserCannonConfig { get => laserCannonConfig; set {
         laserCannonConfig = value;

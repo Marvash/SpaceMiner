@@ -80,13 +80,17 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private void ShootStartHandler()
     {
-        weapons[selectedWeaponIndex]?.ShootBegin();
+        if(weapons[selectedWeaponIndex] != null) {
+            weapons[selectedWeaponIndex].ShootBegin();
+        }
         shooting = true;
     }
 
     private void ShootStopHandler()
     {
-        weapons[selectedWeaponIndex]?.ShootEnd();
+        if(weapons[selectedWeaponIndex] != null) {
+            weapons[selectedWeaponIndex].ShootEnd();
+        }
         shooting = false;
     }
 
@@ -126,11 +130,14 @@ public class PlayerWeaponsManager : MonoBehaviour
     {
         if (newWeaponIndex % weapons.Length != selectedWeaponIndex)
         {
-            weapons[selectedWeaponIndex]?.ShootInterrupt();
+            if(weapons[selectedWeaponIndex] != null)
+                weapons[selectedWeaponIndex].ShootEnd();
             selectedWeaponIndex = newWeaponIndex;
             if (shooting)
             {
-                weapons[selectedWeaponIndex]?.ShootBegin();
+                if(weapons[selectedWeaponIndex] != null) {
+                    weapons[selectedWeaponIndex].ShootBegin();
+                }
             }
         }
     }

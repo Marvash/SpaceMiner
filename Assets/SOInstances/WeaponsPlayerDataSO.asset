@@ -24,4 +24,5 @@ MonoBehaviour:
   <WeaponSlots>k__BackingField:
   - {fileID: 11400000, guid: 1f6ee70b6c08872408370e917abeb464, type: 2}
   <MaxWeaponSlotsCount>k__BackingField: 4
-  <WeaponSlotsCount>k__BackingField: 2
+  <WeaponSlotsCount>k__BackingField: 1
+  <WeaponSlotsPrices>k__BackingField: 00000000e803000010270000a0860100

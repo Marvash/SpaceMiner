@@ -16,6 +16,7 @@ public class WeaponShopPresenter : MonoBehaviour
         weaponShopUI.OnDeactivateUI.AddListener(HandleUIDeactivation);
         weaponShopUI.OnWeaponPurchase.AddListener(HandleWeaponPurchase);
         weaponShopUI.OnWeaponSlotAssign.AddListener(HandleWeaponAssignToSlot);
+        weaponShopUI.OnWeaponSlotPurchase.AddListener(HandleWeaponSlotPurchase);
     }
 
     void HandleWeaponPurchase(WeaponConfigBaseSO config, int level) {
@@ -31,6 +32,15 @@ public class WeaponShopPresenter : MonoBehaviour
     void HandleWeaponAssignToSlot(WeaponConfigBaseSO config, int selectedLevel, int selectedSlot) {
         weaponsPlayerData.SetWeaponSlot(config, selectedLevel, selectedSlot);
         weaponShopUI.UpdateWeaponSlots(weaponsPlayerData);
+    }
+
+    void HandleWeaponSlotPurchase() {
+        int weaponSlotCost = weaponsPlayerData.WeaponSlotsPrices[weaponsPlayerData.WeaponSlotsCount];
+        if(moneyPlayerData.TrySubtractMoney(weaponSlotCost)) {
+            weaponsPlayerData.IncreaseWeaponSlots(1);
+            weaponShopUI.UpdateWeaponSlots(weaponsPlayerData);
+            weaponShopUI.UpdateBalance(moneyPlayerData.GetCurrentBalance());
+        }
     }
 
     void HandleUIActivation(IGameUI ui) {

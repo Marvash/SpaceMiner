@@ -7,6 +7,10 @@ public class RocketLauncherArrayDetailUI : AWeaponDetailUI
 {
     [SerializeField]
     protected TextMeshProUGUI MaxAmmoText;
+    [SerializeField]
+    protected TextMeshProUGUI RateOfFireText;
+    [SerializeField]
+    protected TextMeshProUGUI ProjectileSpeedText;
 
     public void PopulateDetailPanel(RocketLauncherArrayConfigSO config, int weaponLevel) {
         base.PopulateDetailPanel(config, weaponLevel);
@@ -16,5 +20,7 @@ public class RocketLauncherArrayDetailUI : AWeaponDetailUI
         }
         RocketLauncherArrayLevelConfig levelConfig = config.RocketLauncherArrayLevelConfigs[levelIndex];
         MaxAmmoText.text = levelConfig.MaxAmmo.ToString();
+        ProjectileSpeedText.text = Mathf.FloorToInt(levelConfig.ProjectileSpeed).ToString();
+        RateOfFireText.text = Mathf.FloorToInt(1.0f / levelConfig.RocketShotCooldown * 60.0f).ToString();
     }
 }
