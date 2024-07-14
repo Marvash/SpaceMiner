@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd8998d5ea555b44b66ad9a369e17cf, type: 3}
+  m_Name: FuelCapacityModConfigSO
+  m_EditorClassIdentifier: 
+  <ModName>k__BackingField: Fuel Capacity
+  <ModDescription>k__BackingField: Increases the fuel tank capacity
+  <ModIcon>k__BackingField: {fileID: 21300000, guid: 460f8447d119b7c47aaad28b4ad63fe0, type: 3}
+  currentModLevel: 1
+  <CurrentUnlockedModLevel>k__BackingField: 1
+  FuelCapacityModLevelConfigs:
+  - <ModPrice>k__BackingField: 0
+    <FuelCapacity>k__BackingField: 10
+  - <ModPrice>k__BackingField: 2000
+    <FuelCapacity>k__BackingField: 15
+  - <ModPrice>k__BackingField: 25
+    <FuelCapacity>k__BackingField: 5000

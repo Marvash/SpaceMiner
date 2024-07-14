@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2aea23a6f174214d944e88f8d789a1e, type: 3}
+  m_Name: SpaceshipModsPlayerDataSO
+  m_EditorClassIdentifier: 
+  <CompleteModsConfigList>k__BackingField:
+  - {fileID: 11400000, guid: a31a8106a239c2746a2d61345815faac, type: 2}
+  - {fileID: 11400000, guid: f52551b4cc45b92429b514e28e9ba7f6, type: 2}
+  - {fileID: 11400000, guid: 04086d9c951dd3d4f8ef40a5d26364b8, type: 2}
+  - {fileID: 11400000, guid: 27c86966ea4dc434b8cb2fb9fdbffdd1, type: 2}
+  - {fileID: 11400000, guid: 5fa4ef59b9005a241b8de4b0568bc146, type: 2}
+  - {fileID: 11400000, guid: 007411e74b2060742859e91f9d514f21, type: 2}
+  - {fileID: 11400000, guid: a012f69e0978dcc40be76aa47319af7b, type: 2}

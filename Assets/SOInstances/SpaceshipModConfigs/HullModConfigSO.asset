@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9ad82d78e602441b96a1b57fc7a0c5, type: 3}
+  m_Name: HullModConfigSO
+  m_EditorClassIdentifier: 
+  <ModName>k__BackingField: Hull
+  <ModDescription>k__BackingField: Increases the amount of hits the spaceship can
+    take
+  <ModIcon>k__BackingField: {fileID: 21300000, guid: 460f8447d119b7c47aaad28b4ad63fe0, type: 3}
+  currentModLevel: 1
+  <CurrentUnlockedModLevel>k__BackingField: 1
+  HullModLevelConfigs:
+  - <ModPrice>k__BackingField: 0
+  - <ModPrice>k__BackingField: 2000
+  - <ModPrice>k__BackingField: 5000
